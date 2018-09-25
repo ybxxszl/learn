@@ -1,0 +1,133 @@
+升级内核
+	1、查看内核版本
+		uname -r
+	2、导入public key
+		rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+	3、安装ELRepo（http://elrepo.org/tiki/tiki-index.php）
+		rpm -Uvh https://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm
+	4、安装kernel-lt或kernel-ml
+		yum --enablerepo=elrepo-kernel install kernel-lt -y		kernel-lt		长期支持版本
+		yum --enablerepo=elrepo-kernel install kernel-ml -y		kernel-ml	最新稳定版本
+	5、编辑/etc/grub.conf，修改Grub引导顺序
+		default=0	一般最新安装的内核在第一位
+	6、重启并查看内核版本
+		reboot
+		uname -r
+
+更换软件源
+	1、备份
+		mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+	2、下载
+		wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+	3、清除缓存
+		yum clean all
+	4、更新缓存
+		yum makecache
+
+Docker
+	1、安装Docker
+		（1）移除旧版本
+			sudo yum remove docker \
+			docker-client \
+			docker-client-latest \
+			docker-common \
+			docker-latest \
+			docker-latest-logrotate \
+			docker-logrotate \
+			docker-selinux \
+			docker-engine-selinux \
+			docker-engine
+		（2）安装必要的系统工具
+			sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+		（3）添加软件源
+			sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+		（4）更新缓存
+			sudo yum makecache fast
+		（5）安装Docker
+			sudo yum -y install docker
+		（6）安装Docker-IO
+			sudo yum -y install docker-io
+		（7）安装Docker-CE
+			sudo yum -y install docker-ce
+		（8）使用脚本安装Docker-CE
+			curl -fsSL https://get.docker.com -o get-docker.sh
+			sudo sh get-docker.sh
+		（9）测试是否安装成功
+			docker version
+	2、基本命令
+		（1）查看容器
+			docker ps
+			docker ps -a
+		（2）查看镜像
+			docker images
+			docker images nginx
+	3、安装Nginx
+		docker search nginx
+		docker pull nginx
+	4、安装Tomcat
+		docker search tomcat
+		docker pull tomcat
+	5、安装MySQL
+		docker search mysql
+		docker pull mysql
+	6、安装Redis
+		docker search redis
+		docker pull redis
+
+
+
+
+CentOS 7 Docker
+
+C/S架构，Client与Server通信
+
+注册服务器、仓库、镜像、容器
+       注册服务器上存放着多个仓库，例如Ubuntu仓库、CentOS仓库等。一个仓库包含多个不同版本的镜像，例如Ubuntu仓库包含Ubuntu 16.04、Ubuntu 18.04等不同版本的镜像。镜像是一个面向Docker引擎的完整的文件系统，例如完整的Ubuntu操作系统。容器是根据镜像创建的实例。可以创建、启动、停止、删除。可以根据一个镜像创建多个容器，这些容器互相隔离，互不可见。容器可以打包成为镜像方便再次使用。镜像本身是只读的，容器根据镜像启动时，Docker引擎会创建一个可写层，镜像本身保持不变。
+
+
+	安装	yum install docker
+	测试	docker version
+
+	启动	service docker start/systemctl start docker
+	重启	service docker restart /systemctl restart docker
+	停止	service docker stop/systemctl stop docker
+	查看状态	service docker status/systemctl status docker
+
+	查看所有可用镜像	docker images -a
+	查找镜像	docker search ubuntu
+	拉取镜像	docker pull ubuntu
+
+	查看正在运行的容器		docker ps
+	查看所有容器		docker ps -a
+
+	运行容器	docker run name
+	创建容器	docker create name
+	启动容器	docker start name
+	停止容器	docker stop name
+	删除容器	docker rm name
+
+	进入容器的命令行操作界面	docker attach name
+
+	查看日志	docker logs -f --tail 1000 name
+
+
+	Nginx部署：
+		1、docker run -p 80 --name MyNginx -i -t ubuntu /bin/bash		创建映射端口为80的交互式界面
+		2、apt-get update							更新源
+		3、apt-get install nginx						安装Nginx
+		4、apt-get install vim						安装Vim
+		5、whereis nginx							搜索Nginx程序名称
+		6、
+vim /etc/nginx/conf.d/localhost.conf				编辑Nginx配置文件
+		7、mkdir -p /var/www/
+		8、vim /var/www/index.html
+
+
+注：
+	1、systemctl（service和checkout的组合）
+		systemctl start docker	启动服务
+		systemctl restart docker	重启服务
+		systemctl stop docker	停止服务
+		systemctl status docker	查看状态
+		systemctl enable docker	启动开机自启动
+		systemctl disable docker	停止开机自启动

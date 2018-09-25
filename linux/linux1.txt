@@ -1,0 +1,674 @@
+1、Linux文件系统基本结构
+	倒转的单根树状结构
+	文件名区分大小写
+	根为“/”，路径使用“/”，与Windows相反（“\”）
+（1）当前工作目录：
+	每一个shell或系统进程都有一个当前的工作目录
+	pwd命令显示当前工作目录
+	文件名称：
+		文件的名称大小写敏感
+		名称最多可以为255个字符
+		除了正斜线外，都是有效字符
+		通过touch命令可以创建一个空白文件或者更新已有文件的时间
+		以“.”开头的文件为隐藏文件
+		文件与目录没有区别，加“.”的目录会变成隐藏目录，加“.”的文件会变成隐藏文件
+		“ls”命令列出目录内容：
+			ls -a 显示所有文件（包括隐藏文件）
+			ls -l 显示详细信息
+			ls -R 递归显示子目录结构
+			ls -ld 显示目录和链接信息
+		“file”命令查看文件类型
+	绝对路径与相对路径：
+		绝对路径：以“/”开头，递归每级目录直到目标的路径。不受当前所在工作目录限制。
+		相对路径：以当前工作目录为起点，到达目标的路径。受当前所在目录限制。
+	 	“cd”命令切换目录
+			（家目录“~”：1普通用户/home/ybxxszl 2管理员/root）
+			cd. 当前目录
+			cd.. 上一级目录
+			cd - 上一个目录
+			cd ~ 家目录（Linux系统cd命令就会回到家目录）
+2、Linux文件基本操作管理
+	“cp”命令复制文件或目录
+		cp源文件（文件夹） 目标文件（文件夹）
+		常用参数：
+			-r 递归复制整个目录树
+			-v 显示复制过程的详细信息
+	“mv”命令移动或者重命名文件或目录
+		mv 文件 目标目录
+		如果指定文件名，则可以重命名文件
+	“touch”命令创建一个空文件或者更新文件创建时间
+	“rm”命令删除文件或者目录
+		常用参数：
+			-ri 询问是否进入文件夹，是否删除文件夹内某个文件，是否删除该文件夹
+			-rif 强制删除所有
+			-i 交互式
+			-r 递归删除包括目录中的所有内容
+			-f 强制删除，没有警告提示（使用时需谨慎）
+
+	“mkdir”命令创建一个目录
+	“rmdir”命令删除一个空目录，不能删除非空目录
+3、Linux系统目录架构
+	File System下
+		bin 可执行的二进制文件（所有用户都能执行）
+		boot 系统启动 vmlinuz内核 grup引导程序 initrd驱动程序
+		dev 计算机硬件设备（Linux将硬件抽象为文件）
+		etc 配置文件（纯文本 .config）,Linux配置保存在文件中，可更改
+		home 所有用户的家目录，在目录内，每一个用户都有自己的相同名称的文件夹
+		root 管理员的文件夹(“×”代表没有权限访问)
+		lib 库文件，开发使用
+		lost+found 每一个文件系统（ext4）的回收站
+		mnt 挂载使用（插入光盘）
+		opt 安装大型软件
+		proc 系统实时信息（只存在内存中，不存在硬盘上）
+		sbin 可执行的二进制文件（只有root用户能执行）
+		selinux 安全机制
+		sys 系统底层信息
+		tmp 临时目录，存储临时信息，系统会自动删除
+		user 安装应用软件，默认的
+		var 经常变化的信息 例如日志(log)
+4、Linux系统常用命令*
+	日期和时间
+		“date”命令查看或者设置当前系统时间
+			date +%Y/%m/%d 格式化显示时间
+			date -u 格林尼治时间
+			date -s *24:59:59* 修改时间
+		“cal”命令查看日历
+		“uptime”命令查看当前系统运行状态
+		“clock”与“hwclock”命令效果相同，显示硬件时钟时间
+	查看输入、文件内容
+		“echo”命令显示输入的内容
+		“cat”命令查看文件内容
+		“more”命令分页显示文件内容，只能向下翻页，空格翻页
+		“less”命令分页显示文件内容，上下翻页均可，空格翻页，按“q”退出
+		“head”命令显示文件的头几行，默认10行
+			head -n 显示行数 自定义显示行数
+		“tail”命令显示文件的尾几行，默认10行
+			tail -n 显示行数 自定义显示行数
+		head -f 追踪显示文件更新（一般用于查看日志，命令不会退出，而是持续显示新加入的内容）
+	查看硬件信息
+		“lspci”用以查看PCI设备
+			-v 查看详细信息
+		“lsusb”用以查看USB设备
+			-v 查看详细信息
+		“lsmod”用以查看加载的模块（驱动）
+	关机与重启
+		“shutdown”用以关闭、重启计算机
+			shutdown[关机、重启] 时间
+			shutdown -h 23:20 23:20关机
+			shutdown -h +10 10分钟后关机
+			shutdown -h now 立即关机
+			shutdown -r now 立即重启
+		“poweroff”用以立即关闭计算机
+		“reboot”用以立即重启计算机
+	压缩与归档文件
+		“zip”用以压缩zip文件
+			zip linuxcast.zip myfile
+		“unzip”用以解压缩zip文件
+			unzip linuxcast.zip
+		“gzip”用以压缩gz文件
+		“tar”用以归档文件
+			tar -cvf linuxcast.tar linuxcast 归档
+			tar -xvf linuxcast.tar 释放
+			tar -cvzf backup.tar.gz /etc
+				-z 将归档后的文件进行压缩以减少大小
+	查找文件或文件夹
+		“locate”命令用以快速查找文件或文件夹
+			locate keyword
+			此命令需要预先建立数据库，数据库默认每天更新一次，可用“update”命令手动建立、更新数据库
+		“find”命令用以高级查找文件或文件夹
+			find 查找位置 查找参数
+			find . -name *linuxcast* 查找关于文件名
+			find / -name *.config 查找关于文件名
+			find / -perm 777 查找关于权限（权限只能为数字）
+			find / -type d 查找关于目录（“d”为目录），查找所有目录
+			find . -name "a*" -exec ls -l {}\; 查找关于文件名，然后给“ls -l”添加参数
+			find支持的查找条件：
+				-name 基于文件名称
+				-perm 基于文件权限
+				-type 基于文件类型
+				-size 基于文件大小
+				-ctime 基于文件修改时间
+				-user 基于用户
+				-group 基于组
+	切换root用户与普通用户
+		su
+			su 切换为root用户
+				su 保持切换之前的用户的变量
+				su- 使用root用户的变量
+			su username(普通用户) 切换为普通用户
+		sudo
+			sudo 命令
+				申请获得root权限，可以执行需要root权限才能执行的命令，但并不是root用户，需要当前用户的密码
+5、vim文本编辑器
+	vim 目标文件路径
+		如果目标文件存在，则vim打开该文件
+		如果目标文件不存在，则vim新建并打开该文件
+	vim的三种模式：
+		命令模式（常规模式）
+			默认进入命令模式，任何模式都可以通过ESC健回到命令模式
+			命令模式下可以通过键入不同的命令完成选择、复制、粘贴、撤销等操作
+			命令（命令模式下使用）：
+				i 在光标前插入文本
+				o 在当前行的下面插入新行
+				dd 删除整行
+				yy 复制当前行
+				nyy 复制n行（n为数字，当前行为第一行，直至第n行）
+				p 粘贴
+				u 撤销上一个操作
+				r 替换当前字符
+				/ 查找关键字，按“n”切换
+		插入模式
+			在命令模式中按“i”健，即可进入插入模式
+			插入模式下可以编辑文本内容
+		ex模式
+			在命令模式中按“:”健，即可进入ex模式
+			ex模式下光标会移动到底部，可以保存、修改或退出vim
+			命令（ex模式下使用）：
+				:w 保存当前修改
+				:x 保存并退出
+				:q 退出，提示保存修改
+				:q! 强制退出，不保存修改
+				:set number 或 set nu 显示行号
+				:! 系统命令 执行一个系统命令并显示结果
+				:sh 切换到命令行，使用ctrl+d切换回vim
+6、使用fdisk进行磁盘管理
+	fdisk命令只有具有root用户的权限才能够运行
+		fdisk -l 可以列出所有安装的磁盘及其分区信息
+		fdisk /dev/sda 可以对目标磁盘进行分区操作
+			分区之后需要使用partprobe命令让内核更新分区信息，否则需要重启才能识别新的分区，/proc/partitions（系统实时信息）文件也可以用来查看分区信息
+7、Linux文件系统
+	mke2fs创建文件系统
+		mke2fs -c -t ext4 /dev/sdb1 在分区sdb1上创建格式为ext4的文件系统
+		参数：
+			-b 4096 即为4K，指定文件系统块大小
+			-L label 指定卷标
+	mkfs创建文件系统
+		mkfs.ext4 /dev/sdb1 在分区sdb1上创建格式为ext4的文件系统
+			支持的参数较少，不能进行精细化的控制
+	dumpe2fs查看分区的文件系统信息
+		dumpe2fs /dev/sdb1
+	e2label为文件系统添加标签
+		e2label /dev/sdb1 显示sdb1的系统标签
+		e2label /dev/sdb1 LINUXCAST 将sdb1的系统标签设置为LINUXCAST，标签名大写
+	fsck检查并修复损坏的文件系统
+		fsck /dev/sdb1
+			参数：
+				-t 如果文件系统损坏较为严重，指定文件系统类型
+				-y 不提示损坏信息而直接进行修复，适用于损坏信息较多
+			对于识别为文件的损坏数据（文件系统无记录），fsck会将该文件放入lost+found目录
+			系统启动时会对磁盘进行fsck操作
+8、Linux文件系统挂载管理
+	mount /dev/sdb1(要挂载的分区) /mnt(挂载点)
+	mount 显示所有已挂载的文件系统
+		参数：
+			-t 指定文件系统类型，一般不需要，系统无法识别时才使用
+			-o 指定挂载选项
+				ro、rw 以只读或读写形式挂载，默认是rw
+				sync 代表不使用缓存，而是对所有操作直接写入磁盘，数据重要或易断电、易崩溃时使用
+				async 代表使用缓存，默认是async
+				noatime 代表每次访问文件时不更新文件的访问时间
+				atime 代表每次访问文件时更新文件的访问时间，消耗性能，一般不使用
+				remount 重新挂载文件系统
+			例：
+				mount -o remount,ro,sync,noatime /dev/sdb1 /mnt
+	umount 卸载已挂载的文件系统
+		umount 文件系统/挂载点
+			umount /dev/sdb1  umount /mnt
+				如果出现device is busy报错，则表示文件系统正在被使用，无法卸载：
+					查看使用文件系统的进程：
+						fuser -m /mnt 返回进程编号
+					查看正在被使用的文件：
+						lsof /mnt 返回正在被使用的文件名
+	自动挂载
+		配置文件/etc/fstab用来定义需要自动挂载的文件系统，fstab中每一行代表一个挂载配置，格式如下：
+			/dev/sdb1          /mnt          ext4          defaults          0 0
+			需要挂载的设备     挂载点        文件系统      挂载选项          dump、fsck相关选项
+				要挂载的设备也可以使用LABEL进行识别，使用LABEL=LINUXCAST取代/dev/sdb1
+			mount -a 挂载所有fstab中定义的自动挂载项
+9、Linux用户基础
+		id显示当前用户的用户信息
+		id+其他用户的用户名 显示其他用户的信息
+		passwd修改当前用户的密码
+	相关文件：
+		/etc/passwd 保存用户信息
+		/etc/shadow 保存用户密码（已加密）
+		/etc/group 保存组信息
+	查看登录的用户：
+		whoami 显示当前用户
+		who 显示哪些用户已经登录系统
+		w 显示哪些用户已经登录系统并且在做什么
+	创建用户：
+		useradd 创建用户
+			useradd wjy
+			1、在/etc/passwd中添加用户信息
+			2、如果使用passwd命令创建密码，则将密码加密保存在/etc/shadow中
+			3、为用户建立一个新的家目录/home/wjy
+			4、将/etc/skel中的文件复制到用户的家目录中
+			5、建立一个与用户的用户名相同的组，新建的用户默认属于这个组
+			参数：
+				-d 家目录
+				-s 登录shell
+				-u userid
+				-g 主族
+				-G 附属组（最多31个，用“,”分割）
+	修改用户：
+		usermod 修改用户
+			usermod 参数 wjy
+			参数：
+				-l 新用户名（家目录的名称不会改变）
+				-u 新userid
+				-d 用户家目录位置
+				-g 用户所属主组
+				-G 用户所属附属组
+				-L 锁定用户使其不能登录
+				-U 解除锁定
+	删除用户：
+		userdel 删除用户
+			userdel wjy 只删除该用户不删除该用户的家目录
+			userdel -r wjy 删除该用户并且删除该用户的家目录
+	组：
+		创建组：
+			groupadd linuxcast
+		修改组：
+			groupmod -n newname oldname 修改组名
+			groupmod -g newGid oldGid 修改组ID
+		删除组：
+			groupdel linuxcast
+10、Linux权限机制
+	文件权限(目录必须拥有x权限，否则无法查看其内容)
+		权限		对文件的影响		对目录的影响
+		r(读取)		可读取文件内容		可列出目录内容
+		w(写入)		可修改文件内容		可在目录中创建或删除文件
+		x(执行)		可作为命令执行		可访问目录内容
+	 ls -l 查看当前目录下文件的详细信息
+		U ---- 所属用户权限
+		G ---- 所属组权限
+		O ---- 其他的用户和组权限
+			drwxr-xr-- 2 nash_su training 208 Oct 1 13:50 linuxcast.net
+
+			UGO 链接数量 所属用户(U) 所属组(G) 大小 时间 文件名
+
+
+			drwxr-xr--
+
+			第1个字母为文件类型
+			2-4个字母为U权限
+			5-7个字母为G权限
+			8-10个字母为O权限
+	修改文件所属用户、组
+		chown改变文件的所属用户
+			chown mash_su linuxcast.net
+			-R 参数递归的修改目录下的所有文件的所属用户
+		chgrp改变文件的所属组
+			chgrp mash_su linuxcast.net
+			-R 参数递归的修改目录下的所有文件的所属组
+	修改文件的权限
+		chmod修改文件的权限
+			chmod 模式 文件
+			模式为如下格式：
+				u、g、o分别代表用户、组和其他的用户和组
+				a可以代指ugo
+				+、-代表加入或删除对应权限
+				r、w、x代表三种权限
+			示例：
+				chmod u+rw linuxcast.net
+				chmod g-x linuxcast.net
+				chmod go+r linuxcast.net
+				chmod a-x linuxcast.net
+			另外：
+				r = 4 (2^2)	rwx = 4 + 2 + `1 = 7
+				w = 2 (2^1)	rw = 4 + 2 = 6
+				x = 1 (2^0)	r-x = 4 + 1 = 5
+			示例：
+				chmod 660 linuxcast.net		== rw-rw----
+				chmod 775 linuxcast.net		== rwxrwxr-x
+11、Linux扩展权限
+	umask属性，确定新建目录、文件的默认权限
+		目录的默认权限：777 - umask
+		文件的默认权限：666 - umask
+			一般，普通用户的默认umask002，root用户的默认umask是002
+			即，对于普通用户
+				新建目录的权限：777 - 002 = 775
+				新建文件的权限：666 - 002 = 664
+		umask查看设置umask值
+			umask 222
+	特殊权限：
+		权限		对文件的影响		对目录的影响
+			    以文件的所属用户身份
+		suid	    执行，而非执行文件的	     无
+			    用户
+						    在该目录中创建的任意
+		sgid	    以文件所属组身份运行    新文件的所属组与该目
+						    录的所属组相同
+						    对目录拥有写入权限的
+		sticky		     无		    用户仅可以删除其拥有
+						    的文件，无法删除其他
+						    用户所拥有的文件
+	设置特殊权限：
+		设置suid:
+			chmod u+s linuxcast.net
+		设置sgid:
+			chmod g+s linuxcast.net
+		设置sticky:
+			chmod o+t linuxcast.net
+		另外：
+			suid = 4
+			sgid = 2
+			sticky = 1
+			chmod 4755 linuxcast.net
+12、Linux网络基础配置
+	在Linux中，以太网接口被命令为：eth0、eth1等，0,1代表网卡编号
+		lspci pci网卡信息
+		lsusb usb网卡信息
+	ifconfig -a 查看所有借口
+	ifconfig eth0 查看特定接口
+	ifup eth0 启用接口
+	ifdown eth0 禁用接口
+		1、setup图形界面配置网络
+		2、网络相关配置文件
+			网卡配置文件
+			/etc/sysconfig/network-scripts/fcfg-eth0
+			DNS配置文件
+			/etc/resolv.conf
+			主机名配置文件
+			/etc/sysconfig/network
+			静态主机名配置文件
+			/etc/hosts
+	网络测试命令
+		测试网络连通性
+		ping 192.168.1.1
+		ping www.linuxcast.net
+		测试DNS解析
+		host www.linuxcast.net
+		dig www.linuxcast.net
+		显示路由表
+		ip route
+		追踪到达目标地址的网络路径
+		traceroute www.linuxcast.net
+		使用mtr进行网络质量测试（结合了traceroute和ping）
+		mtr www.linuxcast.net
+	修改主机名
+		显示主机名
+			hostname
+		实时修改主机名
+			hostname hostname.test
+		永久修改主机名
+			/etc/sysconfig/network
+			HOSTNAME=hostname.test
+	网路故障排查
+		网络故障排查遵循从底层到高层、从自身到外部的流程进行
+			首先查看网络配置信息是否正确
+			-IP地址
+			-子网掩码
+			-网关
+			-DNS
+			然后查看网关是否连通
+			ping 网关IP地址
+			最后查看DNS解析是否正常
+			host www.linuxcast.net
+			host www.baidu.com
+			host www.douban.com
+13、Linux多命令协作：管道及重定向
+	命令行shell的数据流有以下定义：
+		名称		说明		编号		默认
+		STDIN		标准输入	0		键盘
+		STDOUT		标准输出	1		终端
+		STDERR		标准错误	2		终端
+	命令通过STDIN接收参数或数据，通过STDOUT输出结果或通过STDERR输出错误
+
+	通过管道和重定向可以控制CLI的数据流
+		分类		关键字			定义					例子
+				>		将STDOUT重定向到文件（覆盖）			echo "linuxcast.net" > outfile	ls > outfile
+				>>		将STDOUT重定向到文件（追加）			echo "linuxcast.net" >> outfile date >> outfile
+		重定向		2>		将STDERR重定向到文件（覆盖）			ls test.txt 2> errorout
+				2>&|		将STDERR与STDOUT结合				ls test.txt 2>&| allout
+				<		重定向到STDIN					grep linuxcast < /etc/passwd
+		管道		|		将一个命令的STDOUT作为另一个命令的STDIN		find / -user linuxcast.net 2> /dev/null | grep Video
+
+	管道通常用来组合不同的命令，以实现一个复杂的功能
+	重定向通常用来保存某命令的输出信息或错误信息，可以用来记录执行结果或保存错误信息到一个指定的文件
+14、Linux命令行文本处理工具
+	文件浏览
+		cat 查看文件内容
+		more 以翻页形式查看文件内容（只能向下翻页）
+		less 以翻页形式查看文件内容（可上下翻页）
+		head 查看文件的开始10行（或指定行数）
+		tail 查看文件的结束10行（或指定行数）
+	基于关键字的搜索
+		grep
+			grep "linuxcast" /etc/passwd
+			find / -user linuxcast | grep Video 获取用户linuxcast文件夹下所有的文件，找到文件名中包含Video的
+			-i 在搜索的时候忽略大小写
+			-n 显示结果所在的行数
+			-v 输出不带关键字的行
+			-Ax 在输出的时候包含结果所在行之后的指定行数
+			-Bx 在输出的时候包含结果所在行之前的制定行数
+	基于列处理文本
+		cut
+			cut -d: -f1 /etc/passwd
+			grep linuxcast /etc/passwd | cut -d: -f3
+			-d 指定分割字符（默认是TAB）
+			-f 指定输出的序号
+			-c 基于字符进行切割
+				cut -c2-6 /etc/passwd
+	文本统计
+		wc linuxcast
+			默认输出所有详细信息
+			-l 只统计行数
+			-w 只统计单词
+			-c 只统计字节数
+			-m 只统计字符数
+	文本排序
+		sort 只能对数字和字母进行排序
+			sort linuxcast
+			-r 进行倒序排序
+			-n 基于数字进行排序
+			-f 忽略大小写
+			-u 删除重复行
+			-t c 使用c作为分隔符分割为列进行排序
+			-k x 当进行基于指定字符分割为列的排序时，指定基于哪个列排序
+	删除重复行
+		sort -u 会进行排序
+		uniq 只会删除重复的相邻行
+	文本比较
+		diff linuxcast linuxcast-new
+		-i 忽略大小写
+		-b 忽略空格数量的改变
+		-u 统一显示比较信息（一般用以生成patch文件）
+			diff -u linuxcast linuxcast-new > final.patch
+	拼写检查
+		aspel 只能检查英文拼写
+			aspell check linuxcast
+			aspell list < linuxcast
+	处理文本内容
+		tr
+			tr -d'TMD' < linuxcast 删除关键字
+			tr 'a-z''A-Z' < linuxcast 转换大小写
+	搜索替换
+		sed
+			sed 's/linux/unix/g' linuxcast 把linux替换为unix，重复替换
+			sed '1,50s/linux/unix/g' linuxcast 只替换1-50行
+			sed -e 's/linux/unix/g' -e's/nash/nash_su/g' linuxcast 多个替换
+			sed -f sededit linuxcast sededit记录替换的表达式，使用其替换
+15、Linux系统启动
+	BIOS 基本输入输出系统（检查硬件、查找可启动设备（具有引导信息））
+	MBR: Boot Code 共512字节，第一个扇区（512字节）的最后两个字节是55aa的为可启动设备，第一个扇区（512字节）的前446个字节为引导代码，作为跳转，加载引导程序
+	GRUB 可以引导所有的操作系统，相关文件保存在/boot/grub目录中 grub.conf文件
+	加载内核（KERNEL） 内核：/boot/vmlinuz-2.6.32-279.el6.i686 常用模块打包文件：/boot/initramfs-2.6.32-279.el6.i686.img 不常用模块打包文件：initramfs文件（替代initrd文件，节省空间、灵活） 命令dmesg可以查看本次启动时内核的输出信息 目录/var/log中dmesg有相同信息
+	执行init init是Linux系统运行的第一个进程，调用/etc/rc.d/rc/sysinit负责对系统进行初始化、挂载文件系统，并且根据运行级别启动相应服务
+			top查看系统进程 q退出进程管理界面
+			Linux运行级别：0关机 1单用户模式（功能少） 2不带网络的多用户模式 3带网络的多用户模式（无图形界面，纯命令行模式） 4未使用 5XII图形化模式（有图形界面） 6重新启动		（3、5常见）
+		可以通过/etc/inittab配置文件修改默认的运行级别（/etc/init目录下control-alt-delete.conf，按下Ctrl+Alt+Delete系统重启，可更改）
+		每个运行级别的启动服务保存在/etc/rc.d/rc[0123456].d中
+		命令runlevel可显示当前及上一个运行级别
+		命令init可用以改变当前运行级别
+		单用户修改root密码
+			为内核传递参数“1”或“single”可以进入单用户模式
+			单用户模式不启动任何服务
+			单用户模式直接以root用户登录，并且不需要密码，可以使用passwd修改密码，不安全，可以GRUB加密
+				通过grub-md5-crypt生成加密后的密码
+				在grub.conf中的启动配置中加入如下参数即可对grub进行加密：
+					password --md5 加密后的密码
+17、RPM软件包管理
+	源代码形式
+		绝大多数开源软件都是直接以源代码形式发布，一般会被打包成tar.gz的归档压缩文件，需要编译为二进制形式之后才能够运行使用
+		源代码基本编译流程：
+			1、./configure 检查编译环境、相关库文件以及配置参数并生成makefile
+			2、make 对源代码进行编译，生成可执行文件
+			3、make install 将生成的可执行文件安装到计算机中
+		开源软件一般会大量使用其他开源软件的功能，所以开源软件会有大量的依赖关系（使用某软件需要先安装其他软件）
+			优点：适合所有系统、可定制
+			缺点：操作复杂、编译时间较长、极容易出现错误
+	RPM
+		RPM通过将源代码基于特定平台系统编译为可执行文件，并保存依赖关系，来简化开源软件的安装管理
+		设计目标：
+			使用简单 使用单一软件包格式文件发布（.rpm文件）可升级 追踪软件依赖关系 基本信息查询 软件验证功能 支持多平台
+		命名规范
+			linuxcast-1.2.0-30.el6.i686.rpm(el6代表系统为RedHat 6)(i686为32位、x86_64为64位)
+		基础命令
+			安装软件：rpm -i software.rpm
+			卸载软件：rpm -e software
+			升级软件：rpm -U software-new.rpm
+			rpm支持通过http、ftp协议安装软件：rpm -ivh http://linuxcast.net/software.rpm
+			可以加入以下参数：
+				-v 显示详细信息
+				-h 显示进度条
+		RPM查询
+			rpm -qa			列出所有安装的rpm软件
+			rpm -qt filename	查询目标文件属于哪个rpm包
+			rpm -qi packagename	查询指定已安装rpm软件的信息
+			rpm -ql packagename	查询指定已安装rpm软件包含的文件
+			rpm -qip software.rpm	查询rpm文件的信息
+			rpm -qlp software.rpm	查询rpm文件包含的文件
+		RPM验证
+			导入秘钥 rpm --import RPM-GPG-KEY-CentOS-6
+			验证rpm文件 rpm -K software.rpm
+			验证已安装软件 rpm -V software
+18、YUM软件管理
+	YUM特点
+		自动解决依赖关系 可以对RPM进行分组，并基于组进行安装操作（同一类型的软件） 引入仓库概念，支持多个仓库（存放现有rpm软件包的本地仓库或者HTTP、FTP或NFS上的网络仓库，自动在仓库中查找依赖软件并安装） 配置简单
+	YUM仓库
+		保存管理rpm软件包。仓库的配置文件保存在/etc/yum.repos.d/目录下
+		格式：
+			[base]
+			name = CentOS-$releasever - Base
+			mirrorlist = http://mirrorlist.centos.org/?releasever&arch=$basearch&repo=os
+			#baseurl = http://mirrorlist.centos.org/centos/$releasever/os/$basearch/(如果为本地路径，本地路径为绝对路径)
+			gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+			gpgcheck = 1
+			enabled = 1
+		仓库可以使用file和HTTP、FTP或NFS方式
+		yum配置文件必须以.repo结尾
+		一个配置文件内可以保存多个仓库的配置信息
+		/etc/yum.repos.d/目录下可以存在多个配置文件
+	YUM基本命令
+		yum install software-name 安装指定软件
+		yum remove software-name 卸载指定软件
+		yum update software-name 升级指定软件
+	YUM查询命令
+		yum search keyword 基于关键字的搜索
+		yum list (all/installed//updates/recent) 列出仓库中全部的软件、已安装的软件、更新的软件、最近的软件
+		yum info packagename 查询指定软件的信息
+		yum whatprovides filename 查询哪个rpm软件包含目标文件（filename一般为绝对路径）
+	创建YUM仓库
+		1、将所有rpm文件拷贝到一个文件夹中
+		2、通过rpm命令手工安装createrepo软件
+		3、运行命令createrepo -v/rpm-directory
+		4、如果有分组信息，则在运行命令的时候使用-g参数指定分组文件 createrepo -g /tmp/*comps.xml/rpm-directory
+			CentOS/RHEL的分组信息保存在光盘repodata/目录下，文件名以comps.xml结尾的xml文件
+		创建之后本机可以通过file方式直接使用，如果需要作为对外的YUM仓库服务器，可以通过HTTP、FTP或NFS协议共享出去
+		5、yum为了提高速度会缓存很多信息，需要通过yum clean all命令清除（每次运行安装或查询命令会重建yum缓存）
+19、FTP服务原理及vsftpd服务配置
+	FTP用户
+		正常用户（系统用户） 访问自己的家目录
+		匿名用户（anonymous） 访问/var/ftp 任何没有访问限制的文件都可以通过匿名用户共享
+		虚拟用户（ftp-only） 对外提供ftp服务，需要大量用户，使用虚拟用户
+	安装vsftpd服务程序 yum install -y vsftpd
+	启动/重新启动/停止vsftpd服务 service vsftpd start    service vsftpd restart    service vsftpd stop
+	vsftpd相关配置文件及目录如下：
+		/etc/vsftpd/vsftpd.conf 主配置文件
+		/etc/vsftpd/ftpusers 黑名单
+		/etc/vsftpd/user_list 控制名单（有配置文件控制是白名单还是黑名单）
+		/etc/ftp 共享目录
+		/var/ftp/xferlog 日志
+	将服务端作为客户端使用
+		yum install -y lftp
+		lftp 192.168.1.100
+		lftp -u linuxcast 192.168.1.100
+	基本命令：
+		使用get命令可以从ftp服务器上下载一个文件
+			lftp 192.168.1.100
+			cd pub
+			get linuxcast.tar.gz
+		使用put命令可以将一个文件上传到ftp服务器上
+			lftp -u linuxcast 192.168.1.100
+			cd Downloads
+			put linuxcast.tar.gz
+		只要登录使用的用户对某个文件具有写权限，就可以进行上传操作
+	匿名用户上传
+		1、修改配置文件开启匿名用户上传功能
+			/etc/vsftpd/vsftpd.conf
+				anonymous_enable=YES    开启匿名用户（默认）
+				anon_upload_enable=YES    打开匿名用户上传功能
+				anon_mkdir_write_enable=YES    打开匿名用户创建文件夹功能
+		2、赋予匿名用户上传使用的文件夹以写权限
+			chmod 777 /var/ftp/pub
+		注意：不可将匿名用户家目录设置为777权限，只能设置子目录，否则vsftpd将禁止访问匿名用户的家目录
+		/etc/selinux config SELINUX=disabled
+扩展：
+	vsftpd服务器配置
+		/etc/vsftpd/vsftp.conf
+		/etc/vsftpd.ftpusers
+		/etc/vsftpd.user_list
+		修改前建议备份，修改后需要重新启动vsftpd服务才能生效
+			对vsftp.conf文件的配置：
+				1、匿名用户
+					允许匿名用户上传文件
+						anon_upload_enable=YES
+						anon_mkdir_write_enable=YES
+					仅允许匿名用户访问
+						local_enable=YES
+						write_enable=YES
+				2、本地用户
+					使用用户列表进行访问控制
+						userlist_enable=NO   vsftpd.ftpuser文件中的用户将被禁止访问FTP服务器
+						userlist_enable=YES userlist_deny=NO   仅允许vsftpd.user_list文件中的用户访问FTP服务器
+						userlist_enable=YES userlist_deny=YES   vsftpd.ftpuser和vsftpd.user_list文件中的用户都不能访问FTP服务器
+					限制用户目录的访问权限
+						chroot_local_user=YES   本地用户登录后不能访问自己目录以外的其他目录或文件
+				其他配置
+					设置匿名用户的最大传输速率为20Kbps，添加语句 anon_max_rate=20000
+					设置本地用户的最大传输速率为1Mbps,添加语句 local_max_rate=1000000
+					设置服务器最大并发数为99，添加语句 max_clients=99
+					设置用户同一时段的最大连接数，添加语句 max_per_ip=5
+					设置使用ASCII的编码方式传输数据，修改语句 ascii_upload_enable=YES ascii_download_enable=YES
+					设置数据传输中断间隔时间，空闲会话时间为600秒 idle_session_timeout=600，数据连接超时时间为120秒 data_connection_timeout=120
+					修改默认端口，服务器的端口号为4444，应该尽量大于4000 listen_port=4444
+					禁止某些IP段的主机匿名访问服务器，修改vsftpd.conf文件，确认有如下语句：tcp_wrappers=YES 修改/etc/hosts.allow文件，增加1行命令：					vsftp:192.168.1.1:DENY 表示限制IP为192.168.1.1的主机访问FTP服务器 重启vsftpd服务
+20、Linux远程管理 - SSH、VNC
+	SSH
+		SSH(Secure SHell)是Linux、Unix、Mac及其他网络设备最常用的远程CLI管		理协议，SSH使用秘钥对数据进行加密传输，保证了远程管理数据的安全性
+		SSH2是现在广泛使用的SSH版本
+		SSH协议使用TCP协议，端口号22
+		openssh是ssh的一个开源程序，绝大多数Linux版本使用openssh作为SSH程序
+		SSH分为服务端与客户端，SSH服务端默认启动，作为常驻服务运行
+			service sshd status
+
+		命令SSH用以以SSH协议登录其他主机：
+			ssh root@192.168.1.1
+			ssh root@192.168.1.1 who
+		第一次在两台主机之间建立SSH连接时，需要交换公钥用以进行加密
+		SSH信息保存在用户家目录的.ssh隐藏文件夹下
+		命令scp用以以以SSH协议在两台计算机间快速的、加密的数据传输：
+			scp 源文件 目标地址
+			scp linuxcast.tar root@192.168.1.1:/root/
+			-r 递归的进行拷贝（用以传输文件夹）
+			-p 传输时保留文件权限及时间戳
+			-c 传输时进行数据压缩
+		命令rsync用以在两台计算机之间通过SSH协议同步文件
+			rsync *.* root@192.168.1.1:/root/
+			rsync命令是一种增量同步方式，只会拷贝变化的文件（修改的、新			增的、删除的）
+	VNC
+		VNC是一种Linux系统（BSD、Mac等）下常用的图形化远程管理协议，使用REB		协议
+		VNC分为客户端和服务端，VNC服务运行在被管理的服务器上，其他计算机通		过VNC客户端与其进行连接
+		CentOS 6 / RHEL6中使用tigervnc作为自带的VNC程序

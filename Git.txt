@@ -1,0 +1,114 @@
+Git（git-bash）
+	1、设置用户名和邮箱
+		$ git config --global user.name "name"
+		$ git config --global user.email "email"
+	2、创建版本库
+		$ git init	自动生成.git隐藏文件夹，目录下所有文件由Git管理
+	3、基本操作
+		1）$ git add file			添加	可以多次使用，添加多个文件
+		2）$ git commit --m "提交的说明"	提交	可以一次提交多个添加的文件
+		3）$ git status			查看仓库状态
+		4）$ git diff			查看上次修改的详细信息
+		5）$ git diff HEAD file		查看工作区中文件与版本库中最新的文件的区别
+		6）$ git log			查看日志
+		7）$ git log --pretty=oneline	查看简洁的日志
+		8）$ git reflog			查看命令日志
+		9）$ git reset --hard HEAD^		回退	HEAD代表当前版本，HEAD^代表上个版本，HEAD^^代表上上个版本，HEAD^^^代表上上上个版本
+		10）$ git reset --hard 版本号		返回	版本号可以只有前几位，但是必须能确定版本
+		11）$ git checkout file		撤销工作区的修改，回到最近add或commit时的状态
+		12）$ git rm file			删除	需要 $ git commit 提交
+	4、远程仓库
+		1）创建SSH KEY
+			$ ssh-keygen -t rsa -C "email"
+		      用户目录下生成.ssh隐藏文件夹，内有两个文件id_rsa和id_rsa.pub，id_rsa是私钥，需要保密，id_rsa.pub是公钥，不需要保密
+		2）GitHub --> Settings -->SSH and GPG keys --> New SSH key
+		3）添加任意Title，标识Git是公司的还是家的，将id_rsa.pub的内容复制粘贴到Key中，点击Add SSH Key
+		4）Git关联GitHub
+			$ git remote add origin git@github.com:ybxxszl/repository.git
+		5）将GitHub上的README.md同步到Git版本库
+			$ git pull --rebase origin master
+		6）将Git版本库中的内容同步到GitHub上
+			$ git push -u origin master
+		7）提交到版本库后，同步到GitHub上
+			$ git push origin master
+		8）克隆
+			$ git clone git@github.com:ETENG-WIKI/static-html-builder.git
+		9）查看远程库GitHub的信息
+			（1）$ git remote
+			（2）$ git remote -v	详细信息
+	5、分支管理
+		1）创建分支（dev）
+			$ git branch dev
+		2）选择分支（dev）
+			$ git checkout master
+		3）创建并选择分支（dev）
+			$ git checkout -b dev
+		4）查看当前分支	当前分支前面有一个“*”
+			$ git branch
+		5）合并指定分支到当前分支（指定分支为dev）	
+			（1）$ git merge dev	使用Fast forward模式，丢失分支信息
+			（2）$ git merge --no-ff -m "learn" dev	使用普通模式，产生一个新的commit，需要附加“提交的说明”
+		6）强行删除未合并的分支（dev）
+			git branch -D dev
+		7）stash
+			（1）保存工作现场
+				$ git stash
+			（2）查看保存的工作现场列表
+				$ git stash list
+			（3）恢复保存的工作现场
+				$ git stash apply stash@{0}	$ git stash apply
+			（4）删除保存的工作现场
+				$ git stash drop stash@{0}	$ git stash drop
+			（5）恢复并删除保存的工作现场
+				$ git stash pop stash@{0}	$ git stash pop
+		8）多人协作
+			（1）抓取分支（从远程库克隆项目）
+				$ git clone git@github.com:ETENG-WIKI/static-html-builder.git
+			（2）查看分支（默认情况下，只有本地的master分支）
+				$ git branch
+			（3）创建并选择远程库的origin的dev分支
+				$ git checkout -b dev origin/dev
+			（4）查看分支
+				$ git branch
+			（5）添加并提交代码
+				$ git add test.txt
+				$ git commit -m "test"
+			（6）将dev分支推送到远程
+				$ git push origin dev
+			（7）产生冲突（小伙伴最新的提交和你推送的提交产生冲突）
+				①设置origin/dev和dev的链接
+					$ git branch --set-upstream-to=origin/dev dev
+				②抓取origin/dev上最新的提交
+					$ git pull
+				③本地合并、解决冲突、然后推送
+		9）Rebase
+			（1）查看日志
+				$ git log --graph --pretty=oneline --abbrev-commit
+			（2）变基
+				$ git rebase
+	6、标签管理
+		1）创建标签
+			（1）查看当前分支
+				$ git branch
+			（2）切换到需要标签的分支上
+				$ git checkout master
+			（3）根据ID打标签并添加标签的说明
+				$ git tag -a v1.0 -m "标签的说明" 123456
+			（4）查看所有标签
+				$ git tag
+			（5）根据标签查看标签信息
+				$ git show v1.0
+			（6）注意：默认标签打在最新的提交上，如果这个提交既出现在master上，又出现在dev上，那么在两个分支上都可以看到这个标签
+		2）操作标签
+			（1）推送标签到远程
+				$ git push origin v1.0
+			（2）推送全部标签到远程
+				$ git push origin --tags
+			（3）删除本地标签
+				$ git tag -d v1.0
+			（4）删除远程标签
+				$ git tag -d v1.0
+				$ git push origin :refs/tags/v1.0
+	7、忽略特殊文件
+		配置.gitignore
+	8、搭建Git服务器

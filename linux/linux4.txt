@@ -1,0 +1,348 @@
+1、磁盘管理：LVM逻辑卷
+	LVM逻辑卷管理通过将底层物理硬盘抽象封装起来，以逻辑卷的形式表现给上层系统，逻辑卷的大小可以动态调整，而且不会丢失现有数据。新加入的硬盘也不会改变现有上层的逻辑卷。作为一种动态磁盘管理机制，逻辑卷技术大大提高了磁盘管理的灵活性。
+		PE(physical extend) --> PV(physical volume) --> VG(volume group) --> LV(logical volume)
+			（1）物理磁盘被格式化为PV，空间被分为一个个PE
+			（2）不同的PV加入同一个VG，不同PV的PE全部进入VG的PE池内
+			（3）LV基于PE创建，大小为PE的整数倍，组成LV的PE可能来自不同的物理磁盘
+			（4）LV现在就直接可以格式化后挂在使用
+			（5）LV的扩充缩减实际上就是增加减少组成LV的PE的数量，其过程不丢失原始数据
+	/dev/vgname/lvname
+	创建LVM
+		fdis -l
+		（1）将物理磁盘初始化为物理卷
+			pvcreate /dev/sdb /dev/sdc
+			查看物理卷信息
+				pvdisplay	详细信息
+				pvs
+		（2）创建卷组，并将PV加入卷组中
+			查看卷组信息
+				vgdisplay	详细信息
+				vgs
+			vgcreate linuxcast/dev/sdb /dev/sdc
+		（3）基于卷组创建逻辑卷
+			lvcreate -n mylv -L 2G linuxcast
+			查看逻辑卷信息
+				lvdisplay	详细信息
+				lvs
+		（4）为创建好的逻辑卷创建文件系统
+			mkfs.ext4 /dev/linuxcast/mylv
+		（5）将格式化好的逻辑卷挂载使用
+			mount /dev/linuxcast/mylv /mnt
+	删除（按照顺序，先卸载，再删除，再删除）
+		删除逻辑卷LV
+			lvremove
+		删除卷组VG
+			vgremove
+		删除物理卷PV
+			pvremove
+	拉伸与缩小
+		拉伸逻辑卷（在线执行）
+			（1）保证VG中有足够的空闲空间
+				vgdisplay
+			（2）扩充逻辑卷
+				lvextend -L +1G /dev/linuxcast/mylv
+			（3）查看扩充后LV大小
+				lvdisplay
+			（4）更新文件系统
+				resize2fs /dev/linuxcast/mylv
+			（5）查看更新后的文件系统
+				df -h
+		拉伸卷组
+			（1）将要添加到VG的硬盘格式化PV
+				pvcreate /dev/sdd
+			（2）将新的PV添加到指定卷组中
+				vgextend linuxcast /dev/sdd
+			（3）查看扩充后VG大小
+				vgdisplay
+		缩小逻辑卷（不在线执行）
+			（1）卸载已经挂载的逻辑卷
+				umount /dev/linuxcast/mylv
+			（2）缩小文件系统（会提示需要运行fsck检查文件系统）
+				resize2fs /dev/linuxcast/mylv 1G
+			（3）缩小LV
+				lvreduce -L -1G /dev/linuxcast/mylv
+			（4）查看缩小后的LV
+				lvdisplay
+			（5）挂载
+				mount /dev/linuxcast/mylv /mnt
+		缩小卷组
+			（1）将一个PV从制定卷组中移除
+				vgreduce linuxcast /dev/sdd
+			（2）查看缩小后的卷组大小
+				vgdisplay
+2、Linux高级权限管理 - ACL
+	查看一个文件/文件夹的ACL设置
+		getfacl linuxcast.net
+	针对一个用户对文件进行ACL设置
+		setacl -m u:nash_su:rwx linuxcast.net
+	针对一个组对文件进行ACL设置
+		setfacl -m g:training:rw linuxcast.net
+	删除一个ACL设置
+		setfacl -x u:nash_su linuxcast.net
+3、使用RAID提升磁盘速度及冗余性
+	RAID原理基础
+		RAID廉价磁盘冗余阵列技术是通过多磁盘并行运行来提高计算机存储IO性能
+		RAID级别
+			RAID 0 读写性能				至少2块硬盘	空间利用率最高、性能最好、没有冗余能力
+			RAID 1 读写性能、冗余性			至少2块硬盘	空间利用率最低、读性能很好、写性能还好、冗余能力最强
+			RAID 5 读写性能、冗余性（1块硬盘）	至少3块硬盘	空间利用率1-1/n、读性能接近RAID 0、写性能较RAID 0弱一些、可接受1块硬盘损坏
+			RAID 6 读写性能、冗余性（2块硬盘）	至少4块硬盘	空间利用率1-2/n、读性能接近RAID 5、写性能较RAID 5还要弱一些、可接受2块硬盘损坏
+		RAID实现
+			软件RAID
+				通过系统功能或RAID软件实现RAID，没有独立硬件和接口，需要占用一定的系统资源（CPU、硬盘接口速度），并且受操作系统稳定性影响
+			硬件RAID
+				通过独立的RAID硬件卡实现，有些主板集成RAID硬件，有些需要购买独立的RAID硬件卡，硬件RAID实现不需要占用其他硬件资源，稳定性和速度都比软件RAID要强
+	软件RAID配置
+		每种操作系统都有软件RAID的实现
+		在Linux中软件RAID通过mdadam这个程序实现
+		mdadm支持的RAID级别有：RAID 0、RAID 1、RAID 4、RAID 5、RAID 6
+		madadm可以基于多块硬盘、分区或逻辑卷创建软件RAID
+		创建好的软件RAID对应/dev/mdn，n为第几个RAID，如第一个创建的RAID为/dev/md0，第二个为/dev/md1
+		RAID的信息保存在/proc/mdstat文件中，或通过mdadm命令查看
+		创建软件RAID
+			mdadm -C /dev/md0 -a yes -l 0 -n 2 /dev/sdb /dev/sdc
+			mdadm -C /dev/md0 -a yes -l 5 -n 3 /dev/sdb /dev/sdc /dev/sdd
+				-C 创建一个新的RAID
+				-a 自动创建对应设备
+				-l 指定要创建的RAID级别
+				-n 指定硬盘的数量
+			创建好RAID之后，我们需要创建一个配置文件：
+				mdadm -D --scan > /etc/mdadm.conf
+			创建文件系统之后挂载使用
+				mkfs.ext4 /dev/md0
+				mount /dev/md0 /mnt
+			我们也可以使用-x参数指定一个备份磁盘，备份磁盘一般不使用，当出现故障磁盘时，指定的备份磁盘可以自动上线工作
+				mdadm -C /dev/md6 -a yes -l 6 -n 4 -x 2 /dev/sde /dev/sdf /dev/sdg /dev/sdh /dev/sdi /dev/sdj
+		查看RAID信息
+			使用mdadm命令查看RAID相关信息：
+				mdadm -D /dev/md0
+			/proc/mdstat中包含RAID相关信息：
+				cat /proc/mdstat
+		控制RAID
+			关闭RAID，关闭前先卸载
+				mdadm -S /dev/md0
+			mdadm --zero superblock /dev/sdb 清除磁盘所有信息，才能重新使用RAID
+			启用RAID
+				mdadm -R /dev/md0
+		模拟故障
+			实验环境下，我们可以通过以下命令模拟一个磁盘的故障
+				mdadm /dev/md0 -f /dev/sdb
+			之后，我们可以将故障磁盘移除
+				mdadm /dev/md0 -r /dev/sdb
+			换上新的硬盘后，我们可以将新硬盘添加到RAID
+				mdadm /dev/md0 -a /dev/sdb
+4、Linux网卡绑定、子接口
+	网卡高级命令
+		命令mii-tool eth0用以查看网卡状态
+	命令ethtool命令用以查看网卡设置
+		ethtool eth0	查看网卡物理特性
+		ethtool -l eth0	查看网卡驱动信息
+		ethtool -S eth0	查看网卡状态
+	IP别名
+		Linux支持在一个物理网卡上配置多个IP配置，用来实现类似子接口之类的功能，称之为IP别名
+		CentOS或RHEL系统默认会启用NetworkManager对网卡管理，以方便用户使用，但是如果使用子接口需要禁用NetworkManager
+			service NetworkManager stop
+			chkconfig NetworkManager off
+		之后使用ip命令临时创建一个IP别名
+			ip addr add 10.1.1.1/24 dev eth0 label eth0:0	eth0:0中第二个0为别名编号，第二个可以命名为eth0:1
+		永久添加IP别名
+			如果需要永久添加IP别名，则可以在/etc/sysconfig/network.scripts/下添加别名配置文件：
+				配置文件名：
+					ifcfg-eth0:0
+				内容：
+					DEVICE=eth0:0
+					IPADDR=192.168.1.200
+					PREFIX=24 --子网掩码
+					ONPARENT=yes --依附关系
+		多网卡绑定
+			Linux支持将多块物理网卡绑定为一个逻辑物理网卡，绑定后的逻辑网卡可以并行使用组成其的所有物理网卡，通过这样的方式用以提高带宽及稳定性
+			绑定后的物理网卡不再直接使用，IP地址配置在绑定后的逻辑网卡上
+			Linux支持以下的网卡绑定模式：
+				模式0：平衡轮训
+				模式1：主动备份
+				模式3：广播
+			网卡绑定配置（首先关闭NetworkManager服务）
+				绑定后的逻辑网卡命名为bondn，n为编号，如/dev/bond0、/dev/bond1
+				创建绑定网卡的配置文件：
+					/etc/sysconfig/network.scripts/ifcfg-bond0
+					DEVICE=bond0
+					IPADDR=192.168.1.200
+					PREFIX=24
+					ONBOOT=yes --开机启动
+					BOOTPROTO=none --启动协议
+					USERCTL=no --用户控制
+					BONDING_OPTS="mode=0 miimon=100"
+				之后修改每个属于该逻辑网卡的物理网卡（一般称之为slave接口）的配置文件：
+					/etc/sysconfig/network.scripts/ifcfg-eth0
+					DEVICE=eth0
+					BOOTPROTO=none
+					ONBOOT=yes
+					MASTER=bond0
+					SLAVE=yes
+					USERCTL=no
+				然后给bond网卡添加驱动支持：
+					/etc/modprobe.d/bonding.conf
+					alias bond0 bonding
+				关闭设备
+					ifdown eth0
+				启动设备
+					ifup eth0
+5、SELinux基础
+	SELinux安全增强Linux是由NSA针对计算机基础结构安全开发的一个全新的Linux安全策略机制。SELinux允许管理员更加灵活的定义安全策略
+	SELinux是一个内核级的安全机制，对SELinux的修改一般需要重新启动Linux系统
+	主流的Linux发行版都会集成SELinux机制，CentOS/RHEL默认开启SELinux
+	SELinux基本概念
+		所有的安全机制都是对两样东西做出限制：进程和系统资源（文件、网络套接字、系统调用等）
+		SELinux针对这两种类型定义了两个基本概念：域和上下文
+			域用来对进程进行限制
+			上下文用来对系统资源进行限制
+		命令ps -Z可查看进程的域
+		命令ls -Z可查看文件的上下文
+	策略
+		SELinux通过定义策略来控制哪些域可以访问哪些上下文
+		CentOS/RHEL使用预置的目标策略
+		目标策略定义只有目标进程受到SELinux限制，其他进程运行在非限制模式下。目标策略只影响网络应用程序
+	SELinux工作模式
+		强制（enforcing）	违反策略的行动都被禁止，并作为内核信息记录
+		允许（permissive）	违反策略的行动都不被禁止，但是会产生警告信息
+		禁用（disabled）	禁用SELinux，与没有SELinux功能的系统相同
+		SELinux模式的配置文件为/etc/sysconfig/selinux SELINUX=disabled
+		命令getenforce可以查看当前SELinux工作状态 getenforce
+		命令setenforce可以设置当前SELinux工作状态 setenforce [0/1]
+	策略、域、上下文
+		命令ps、ls加入-Z参数就可以显示对应的SELinux信息，显示的信息类似
+			system_u:object_r:httpd_exec-t:s0
+			  用户     角色       类型     MLS、MCS
+		在对系统进行管理时，对文件的操作有时会改变文件的上下文，导致一些进程无法访问某些文件，所以我们一般需要检查、修改文件的上下文
+		命令restorecon用来恢复文件默认的上下文：
+			restorecon -R -v /var/www
+		命令chcon用来改变文件的上下文
+			chcon --reference=/etc/named.conf.org /etc/named.conf 做参考
+	实例
+		假设我们需要搭建一个Web服务器，网页文件保存在/var/www/html目录中，用户在其家目录中编辑了一个网页，并将其通过mv命令移动到/var/www/html目录中
+		将SELinux设置为enforcing状态，通过浏览器访问该页面
+		查看/var/log/audit/audit.log中的报错信息
+		通过restorecon命令或chcon命令进行修复
+6、IPTables防火墙基础
+	网络访问控制
+		Linux一般都是作为服务器系统使用，对外提供一些基于网络的服务
+		需要进行网络访问控制：哪些IP可以访问服务器、可以使用哪些协议、那些接口、是否需要对数据包进行修改等等，例如服务器可能受到来自某IP的攻击，这时就需要禁止所有来自该IP的访问
+	Netfilter
+		Linux内核通过netfilter模块实现网络访问控制功能，在用户层可以通过iptables程序对netfilter进行控制管理
+		netfilter可以对数据进行允许、丢弃、修改操作
+		netfilter支持通过以下方式对数据包进行分类：
+			源IP地址
+			目标IP地址
+			使用接口
+			使用协议（TCP、UDP、ICMP等）
+			端口号
+			连接状态（new、ESTABLISHED、RELATED、INVALID）
+			Filtering			Table
+			point(chain)	filter		nat		mangle
+			INPUT		√				√
+			FORWARD		√				√
+			OUTPUT		√		√		√
+			PREROUTING			√		√
+			POSTROUTING			√		√
+				filter(chain)用以对数据进行过滤
+				nat用以对数据包的源、目标地址进行修改
+				mangle用以对数据包进行高级修改
+	常用功能
+		作为服务器使用：
+			过滤本机接收的流量	input链、filter表
+			过滤本机发送的流量	output链、filter表
+		作为路由器使用：
+			过滤转发的流量		forward链、filter表
+			对转发数据的源、目标IP进行修改（nat）	PREROUTING链、POSTROUTING链、nat表
+	规则
+		iptables通过规则对数据进行访问控制
+		一个规则使用一行配置
+		规则按顺序排列，很重要的
+		当接收、发送、转发数据包时，使用规则对数据包进行匹配，按规则顺序进行逐条匹配
+		数据包按照第一个匹配上的规则执行相应动作：丢弃、放行、修改
+		没有匹配规则，则使用默认动作（每个chain拥有各自的默认动作）
+		通过iptables命令创建一个规则，一条规则包含以下几个部分：
+			iptables -t filter -A INPUT -s 192.168.1.1 -j DROP
+				表		链	匹配属性	动作
+						（可多个，需全部匹配）
+			表：规定使用的表（filter、nat、mangle、不同表有不同功能）
+			链：规定过滤点
+			匹配属性：规定匹配数据包的特征
+			动作：丢弃、放行、修改
+		参数类型		可选值
+					filter
+		表			nat
+					mangle
+					INPUT
+					OUTPUT
+		链			FORWARD
+					PREROUTING
+					POSTROUTING
+					源、目标IP地址
+					协议（TCP、UDP、ICMP...）
+		匹配属性		端口号
+					接口
+					TCP状态
+					ACCEPT
+		动作			DROP
+					REJECT
+	基础配置
+		基本操作
+			列出现有的iptables规则
+				iptables -L
+			插入一个iptables规则
+				iptables -I INPUT 2 -p tcp --dport 22 -j ACCEPT
+			删除一个iptables规则
+				iptables -D INPUT 3
+				iptables -D INPUT -s 192.168.1.1 -j DROP
+			删除所有规则
+				iptables -F
+			匹配参数
+				s 源地址  d 目标地址  i 接收  o 发送  '!'取反
+				基于IP地址：
+					-s 192.168.1.1
+					-d 10.0.0.0/8  --8代表子网掩码
+				基于接口：
+					-i eth0
+					-o rth1
+				基于协议和接口：
+					-p tcp --dport 23
+					-p udp --sport 53
+					-p icmp
+				排除参数：
+					-s '!' 192.168.1.0/24
+		INPUT、OUTPUT
+			控制到本机的网络流量：
+				iptables -A INPUT -s 192.168.1.100 -j DROP
+				iptables -A INPUT -p tcp --dport 80 -j DROP  --网页服务
+				iptables -A INPUT -s 192.168.1.0/24 -p tcp --dport 22 -j DROP  --ssh服务
+				iptables -A INPUT -I eth0 -j ACCEPT
+		FORWARD
+			当时用Linux作为路由（进行数据转发）设备使用的时候，可以通过定义forward规则进行转发控制
+				禁止所有192.168.1.0/24到10.1.1.0/24的流量：
+					iptables -A FORWARD -s 192.168.1.0/24 -d 10.1.1.0/24 -j DROP
+		NAT
+			NAT网络地址转换是用来对数据包的IP地址进行修改的机制
+				SNAT 源地址转换，通常用于伪装内部地址
+				DNAT 目标地址转换，通常用于跳转
+			iptables中实现NAT功能的是NAT表
+			常用NAT
+				通过NAT进行跳转：
+					iptables -t not -A PREROUTING -p tcp --dport 80 -j DNAT --to-dest 192.168.1.10
+					将使用tcp协议访问80端口的请求转发给IP地址192.168.1.10
+				通过NAT对出向数据进行跳转：
+					iptables -t not -A OUTPUT -p tcp --dport 80 -j DNAT --to-dest 192.168.1.100:8080
+					将使用tcp协议访问80端口的请求修改为访问IP地址192.168.1.100的8080端口
+				通过NAT对数据流进行伪装（一般意义上的NAT，将内部地址全部伪装为一个外网公网IP地址）
+					iptables -t not -A POSTROUTING -o eth0 -j MASQUERADE
+					将内部地址全部伪装为eth0网卡的地址
+				通过NAT隐藏源IP地址
+					iptables -t not -A POSTROUTING -j SNAT --to-source 1.2.3.4
+					将请求的IP地址伪装为1.2.3.4
+		配置文件
+			通过iptables添加的规则并不会永久保存，如果需要永久保存规则，则需要将规则保存在/etc/sysconfig/iptables配置文件中
+			可以通过以下命令将iptables规则写入配置文件：
+				service iptables save
+			CentOS/RHEL系统带有默认iptables规则，默认保存在/etc/sysconfig/iptables中，保存自定义规则会覆盖默认规则
+		注意
+			如果是远程管理一个Linux主机并修改iptables规则，则必须先允许来自客户端主机的SSH流量确保这是第一条iptables规则，否则可能会由于配置失误将自己锁在外面！

@@ -1,0 +1,276 @@
+1、日志基本概念及rsyslog服务配置
+		内核信息 服务信息 应用程序信息
+			rsyslog默认安装、自动启动
+				配置文件为/etc/rsyslog.conf 日志文件为/var/log（tail messages显示最后十行、tail -f messages实时监控）
+				Facility定义日志消息来源：
+					kern							内核消息
+					user							用户级消息
+					mail							邮件系统消息
+					daemon						系统服务消息
+					auth							认证系统消息
+					syslog						日志系统自身消息
+					lpr								打印系统消息
+					authpriv					权限系统消息
+					cron							定时任务消息
+					news							新闻系统消息
+					uucp							uucp系统消息
+					ftp								ftp服务消息
+					local0 ~ local7
+				Priority定义优先级划分：
+					Emergency					系统已经不可用
+					Alert							必须立即进行处理
+					Critical					严重错误
+					Error							错误
+					Warning						警告
+					Notice						正常信息、但是较为重要
+					Informational			正常信息
+					Debug							debug信息
+				rsyslog配置
+					facility.priority				log_location
+					例如：
+								mail.*																		-/var/log/maillog
+								*.info;mail.none;authpriv.none;cron.none	/var/log/messages
+					如果需要将日志发送至一个统一的日志服务器，则可以按如下配置：
+							*.*				@192.168.1.1		(使用UDP协议发送)
+							*.*				@@192.168.1.1		(使用TCP协议发送)
+2、DNS基础及域名系统架构
+		www.Linuxcast.net
+		主机名  域名  类型
+			DNS客户端
+				Linux中一般使用系统底层提供的gethostbyname()功能进行域名解析
+				解析可以基于以下几种方式进行：
+					文件（/etc/hosts、/etc/networks）
+					DNS
+					NIS
+				可以通过配置文件/etc/nsswitch.conf控制查询顺序
+					hosts:files dns
+				DNS专用查询命令
+					host www.linuxcast.net		(不详细)
+					dig www.linuxcast.net			(详细)
+					命令hosts、dig都不会使用/etc/nsswicth的配置,只会通过/etc/resolv.conf进行dns查询
+				dig +trace www.linuxcast.net		显示解析过程
+				dig -t mx linuxcast.net					查询邮件服务器
+				dig -x www.linuxcast.net				逆向解析
+				dig -t soa linuxcast.net				显示soa信息
+3、BIND服务基础及域主服务器配置
+	BIND服务的名称为named
+	安装yum install -y bind bind-chroot bind-utils
+	DNS默认使用UDP、TCP协议，使用端口号为53(domain)、953(mdc)
+	BIND配置文件
+		/etc/named.conf				BIND服务主配置文件
+		/var/named						zone文件
+		安装bind-chroot后
+		/var/named/chroot/etc/named.conf				BIND服务主配置文件
+		/var/named/chroot/var/named							zone文件
+		chroot是通过将相关文件封装在一个伪根目录内，已达到安全防护的目的，一旦该程序被攻破，将只能访问伪根目录的内容，而不是真实的根目录
+		BIND配置文件
+			cp -rv /usr/share/doc/bind-9.8.2/sample/etc/* /var/named/chroot/etc/
+			cp -rv /usr/share/doc/bind-9.8.2/sample/var/* /var/named/chroot/var/
+			/var/named/chroot/etc/named.conf
+				options
+				{
+					directory 		"/var/named";工作目录
+					listen-on port 53	{ 127.0.0.1; };IPv4地址
+					listen-on-v6 port 53	{ ::1; };IPv6地址
+				};
+		域主服务器
+			1、在BIND的主配置文件中添加该域的定义
+				在BIND的主配置文件中添加域linuxcast.net的定义：
+					配置文件位置：
+						/var/named/chroot/etc/named.conf
+					在主配置文件中添加一行域的zone定义：
+						zone "linuxcast.net"
+						{
+							type master;
+							file "linuxcast.net.zone";
+						};
+			3、在/var/named/chroot/var/named中创建该域zone文件
+				为定义的域添加zone配置文件：
+					zone文件位置：
+						/var/named/chroot/var/named/linuxcast.net.zone
+					zone文件内容：
+						cp named.localhost linuxcast.net.zone	权限为644(chmod 644 linuxcast.net.zone)
+						添加一个资源记录（RR）：
+							www IN A 192.168.1.1
+			5、编辑zone文件，添加需要的信息
+				启动BIND服务或刷新配置：
+					service named start
+					service named reload	刷新配置
+				将本机的DNS配置指向本机
+					/etc/resolv.conf
+						nameserver 127.0.0.1
+				使用命令host或dig验证DNS配置：
+					host www.linuxcast.net
+					dig www.linuxcast.net
+			7、启动BIND服务或使BIND刷新配置
+			9、使用host或dig命令检测域信息是否正常
+			错误排查
+				命令named-checkconf可以用来查看BIND主配置文件的错误
+					named-checkconf /var/named/chroot/etc/named.conf
+				命令named-checkzone可以用来查看zone配置文件的错误
+					named-checkzone linuxcast.net linuxcast.net.zone
+		域从服务器
+				删除域主服务器监听端口
+				/var/named/chroot/etc/named.conf
+				options
+				{
+					directory 		"/var/named";工作目录
+					listen-on port 53	{ 127.0.0.1; };IPv4地址（删除）
+					listen-on-v6 port 53	{ ::1; };IPv6地址（删除）
+				};
+			1、在BIND的主配置文件中添加该域的定义
+				在BIND的主配置文件中添加从域linuxcast.net的配置信息：
+					配置文件位置：
+						/var/named/chroot/etc/named.conf
+					在主配置文件中添加一行域的zone定义：
+						zone "linuxcast.net"
+						{
+							type slave;
+							masters {192.168.1.1};
+							file "slaves/linuxcast.net.zone";
+						};
+			2、启动BIND服务或使BIND刷新配置
+				启动BIND服务或刷新配置：
+					service named start
+					service named reload	刷新配置
+				查看zone文件是否正常抓取下来：
+					/var/named/chroot/var/named/slaves/linuxcast.net.zone
+				将本机的DNS配置指向本机
+					/etc/resolv.conf
+						nameserver 127.0.0.1
+				使用命令host或dig验证DNS配置：
+					host www.linuxcast.net
+					dig www.linuxcast.net
+			3、查看域的zone文件是否正常抓取到/var/named/slaves目录中
+			4、使用host或dig命令检测域信息是否正常
+		缓存服务器
+			通常在一个局域网中配置缓存服务器是为了加速网络访问
+			也可以为缓存服务器配置一个上游DNS服务器地址，缓存服务器可以给客户提供一个上游DNS服务器的地址
+				forwarders{218.30.19.40;};
+			也可以通过以下选项让服务器转发所有DNS查询到forwarders服务器：
+				forward only;
+4、NFS文件共享基础及配置
+	NFSv2、NFSv3默认需要使用rpc服务，所以计算机的rpc服务必须启动：
+		service rpcbind start
+		chkconfig rpcbind on    设置开机启动
+	NFSv4不再需要rpc支持，并且防火墙是友好的
+	NFSv2、NFSv3既可以使用TCP协议进行传输、也可以使用UDP协议，UDP协议效率高，但是不保证传输可靠性，不建议使用。NFSv4使用TCP协议进行传输
+	NFS服务默认安装，通过以下命令可以启动：
+		service nfs start
+		chkconfig nfs on    设置开机启动
+	默认NFS需要使用5个端口，其中4个是动态的，以及rpc服务的端口，动态端口无法通过防火墙，如果需要通过防火墙，则需要配置NFS使用指定的静态端口：
+		配置NFS的配置文件/etc/sysconfig/nfs，添加静态端口设置：
+			MOUNT_PORT="4001"				挂载使用端口
+			STATD_PORT="4002"				状态使用端口
+			LOCKD_TCPPORT="4003"		TCP锁使用端口
+			LOCKD_UDPPORT="4004"		UDP锁使用端口
+			防火墙需要配置允许以上端口，以及NFS协议的2049端口，RPC的111端口允许通过，才能够正常使用NFS。
+	NFS服务的共享配置文件为/etc/exports
+		每一个共享占用一行，格式如下：
+			共享目录						允许的客户主机(选项)
+		如：
+			/linuxcast-nfs			192.168.1.0/24(ro,async)
+			/linuxcast-nfs			10.1.1.1(rw,sync)
+			/linuxcast-nfs			*.linuxcast.net
+		配置好共享后，可以使用以下命令启用共享：
+			exportfs -r
+		可以通过以下命令查看当前共享：
+			exportfs -v
+		NFS共享选项
+		默认选项：
+			ro								只读共享
+			sync							所有操作返回前必须已经写入磁盘
+			wdelay						延迟写操作，等待更多的写操作一起执行
+			root_squash				防止远程root用户使用root权限对共享进行访问
+		常用选项：
+			rw								读写共享
+			async							操作可以延迟写入硬盘，立即响应，可提高速度
+			no_wdelay					关闭写延迟，需要与sync选项同时使用
+			no_root_squash		关闭root_squash
+		客户端挂载NFS共享
+			客户端可以通过mount命令挂载NFS共享，命令格式如下：
+				mount -t nfs 192.168.1.100:/linuxcast-nfs /mnt
+											NFS服务器				共享路径
+				也可以将配置写入/etc/fstab中，在启动时自动挂载：
+					mount -t nfs 192.168.1.100:/linuxcast-nfs /mnt nfs defaults 0 0
+				挂载时可以使用-o指定挂载选项，常用选项如下：
+					ro				只读挂载
+					rw				读写挂载
+					vers=4		指定使用NFSv4方式挂载
+				mount -o ro -t nfs 192.168.0.103:/home/wddtbxx/workspace /mnt
+5、SMB文件共享原理及配置
+	主要功能：
+		通过SMB协议进行文件共享
+		通过SMB协议进行打印共享
+		加入一个windows2000/2003/2008域环境
+		通过windows域环境进行认证操作
+	SMB协议又称为CIFS协议
+	服务端
+		安装
+			yum install -y samba
+		服务
+			smbd				提供文件共享及打印共享，使用139、445端口
+			nmbd				提供NetBIOS支持，使用137端口
+			winbindd		提供针对windows2000/2003/2008的用户及组信息的解析功能
+			一般作为文件共享使用samba，则只需要smbd服务
+			winbindd服务需要单独安装：
+				yum install -y samba-winbind
+	客户端
+		windows客户端直接使用以下方式连接即可：
+			\\192.168.1.100\linuxcast-smb
+		Linux或类Unix系统图形界面下使用以下方式连接：
+			smb://192.168.1.100/linuxcast-smb
+		Linux使用CLI下可以使用smbclient命令连接：
+			smbclient //192.168.1.100/linuxcast-smb -U linuxcast
+		也可以通过mount命令挂载smb共享：
+			mount -t cifs //192.168.1.100/linuxcast-smb /mnt -o username=linuxcast,password='linuxcast'
+	samba服务
+		samba服务的主配置文件：
+			/etc/samba/smb.conf
+		作为独立服务器使用时，samba使用Linux用户作为其用户，但是需要单独创建密码；当加入windows域环境使用时，一般使用windows域用户
+		两种安全模式：
+			User-Level		默认安全模式，使用用户名、密码进行认证
+			Share-Level		只需要密码即可访问共享，但与部分windows客户端有兼容性问题，不推荐使用
+		samba配置文件
+			samba的配置文件为/etc/samba/smb.conf
+			配置文件分为三个部分：
+				[global]		定义全局性配置
+				[homes]			定义对用户家目录的共享配置
+				[printers]	定义打印机共享配置
+			Global配置
+				samba常用的global配置如下：
+					配置工作组信息：
+						workgroup = LINUXCAST
+						server string = This is LinuxCast.net WorkGroup
+					配置安全模式：
+						security = user
+						支持的安全模式：
+							user				默认
+							share				创建匿名共享时
+							domain
+							ads
+							server
+6、Linux系统服务基础
+	system V script
+		可执行文件system V路径 /etc/rc.d/init.d
+		命令service可以用来调用指定服务的Sys V脚本，并执行指定动作
+			service 服务名 [start/restsrt/stop/status]
+			例如：
+				serivce network start
+				serivce network restsrt
+				serivce network stop
+				serivce network status
+	chkconfig
+		命令chkconfig可以用来设置服务在开机时是否启动
+			chkconfig 服务名 [on/off]
+			例如：
+				chkconfig cups on
+				chkconfig cups off
+				chkconfig --list 显示所有服务
+	xinetd服务（自己是一个service服务，根据需要运行一些不常用的服务）
+		常用xinetd服务：
+			tftp    rsync
+		安装
+			yum install -y xinetd
+		xinetd控制的服务的启用、禁用可以通过chkconfig进行控制
+			chkconfig tftp on
