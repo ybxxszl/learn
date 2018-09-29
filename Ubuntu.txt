@@ -1,13 +1,48 @@
 JDK
-
 	source /etc/profile
-
 	sudo vim /etc/profile
-
 	export JAVA_HOME=/home/ybxxszl/jdk/jdk1.8.0_181
-
 	export PATH=.:${JAVA_HOME}/bin:$PATH
-
-STS
-
+Eclipse
+	mkdir jre
 	sudo ln -s /home/ybxxszl/jdk/jdk1.8.0_181/bin bin
+Spring Tool Suite
+	mkdir jre
+	sudo ln -s /home/ybxxszl/jdk/jdk1.8.0_181/bin bin
+
+Sublime Text 3
+	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+	sudo apt-get install apt-transport-https
+	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+	sudo apt-get update
+	sudo apt-get install sublime-text
+
+indicator-sysmonitor
+	sudo add-apt-repository ppa:alexeftimie/ppa
+	sudo apt-get update
+	sudo apt-get install indicator-sysmonitor
+启动	indicator-sysmonitor
+
+WPS字体缺失
+	sudo mv wps_symbol_fonts /usr/share/fonts
+
+执行.sh文件
+	./startup.sh
+安装deb文件
+	sudo dpkg -i sougoupinyin.deb
+
+设置root密码
+	sudo passwd root
+	su
+
+创建快捷方式	/usr/share/applications/Eclipse.desktop
+[Desktop Entry]
+Encoding=UTF-8
+Name=Eclipse
+Comment=Eclipse IDE
+Exec=/home/ybxxszl/eclipse/eclipse
+Icon=/home/ybxxszl/eclipse/icon.xpm
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Application;Development;
