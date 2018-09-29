@@ -117,10 +117,10 @@ C/S架构，Client与Server通信
 		3、apt-get install nginx						安装Nginx
 		4、apt-get install vim						安装Vim
 		5、whereis nginx							搜索Nginx程序名称
-		6、
-vim /etc/nginx/conf.d/localhost.conf				编辑Nginx配置文件
-		7、mkdir -p /var/www/
-		8、vim /var/www/index.html
+		6、vim /etc/nginx/conf.d/localhost.conf				编辑Nginx配置文件
+		7、mkdir -p /var/www/						级联创建根目录
+		8、vim /var/www/index.html					编辑首页文件
+		9、docker port MyNginx						查看映射端口
 
 
 注：

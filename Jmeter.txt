@@ -1,0 +1,56 @@
+JMeter（Apache JMeter Version 2.13 r1665067）
+	一、下载运行
+		下载http://jmeter.apache.org，apache-jmeter-2.13\bin\jmeter.bat运行
+	二、创建测试计划
+		1、默认测试计划
+			Test Plan
+		2、添加线程组
+			Test Plan --> Add --> Threads(Users) --> Thread Group
+			配置：
+				线程数量Number of Threads(users)，即为客户端数量
+				循环次数Loop Count，即为每个客户端访问次数
+				访问时间Ramp-Up Period(in seconds)
+				请求次数为线程数量乘以循环次数
+		3、添加HTTP请求头
+			Thread Group --> Add --> Config Element --> HTTP Header Manager
+		4、添加HTTP请求
+			Thread Group --> Add --> Sampler --> HTTP Request
+			配置：
+				请求方式Method
+				请求路径和参数Path
+			注意：
+				将请求路径和参数全部写在Path中
+		5、添加监听器
+			（1）添加聚合报告
+				Thread Group --> Add --> Listener --> Assertion Results
+				解释：
+					Label		HTTP Request的Name属性
+					Samples		本次测试的请求次数
+					Average		响应时间的平均值
+					Median		响应时间的中值
+					90%Line		90%的响应时间
+					95%Line		95%的响应时间
+					99%Line		99%的响应时间
+					Min		响应时间的最小值
+					Max		响应时间的最大值
+					Error%		错误概率
+					Throughput	每秒完成的请求数，即为吞吐量
+					KB/sec		每秒从服务器接收的数据大小
+			（2）添加图形结果
+				Thread Group --> Add --> Listener --> Graph Results
+			（3）添加结果树
+				Thread Group --> Add --> Listener --> View Results Tree
+		6、添加全局变量
+			Test Plan --> Add --> Config Element --> User Defined Variables
+			注意：调用方式${url}
+		7、添加正则表达式（使用上一个HTTP请求的返回值作为下一个HTTP请求的参数）
+			Thread Group --> Add --> Post Processors --> Regular Expression Extractor
+			配置：
+				Reference Name		id		需要获取的变量名
+				Regular Expression		.*"id":"(.+?)".*	正则表达式匹配JSON
+				Template			$1$		模板，1时为匹配一个，0时为匹配所有
+				Match No.(0 for Random)	1		顺序匹配第几个，0时为随机匹配
+				Default Value				默认值
+	三、注意
+		目录没有等级分别，定义的东西随处可用。
+		如果需要使用不同的值，可以重复定义。
