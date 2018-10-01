@@ -122,6 +122,17 @@ C/S架构，Client与Server通信
 		8、vim /var/www/index.html					编辑首页文件
 		9、docker port MyNginx						查看映射端口
 
+	MySQL部署：
+		1、docker pull registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+		2、docker tag registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7 mysql5.7
+		3、docker run --name MySQL -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 3306:3306  mysql5.7
+		4、docker exec -it 4977de2a0142 /bin/bash
+
+	Redis部署：
+		1、docker pull redis
+		2、docker run --name Redis -d -p 6379:6379 redis --requirepass "admin"
+		3、docker exec -it 13d57e1aaa70 redis-cli
+
 
 注：
 	1、systemctl（service和checkout的组合）
