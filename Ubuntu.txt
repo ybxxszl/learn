@@ -1,24 +1,82 @@
-JDK
-	source /etc/profile
-	sudo vim /etc/profile
-	export JAVA_HOME=/home/ybxxszl/application/Java/jdk1.8.0_181
-	export PATH=.:${JAVA_HOME}/bin:$PATH
+常用命令
+	1、管理员权限
+		su命令
+			重装系统后需要设置root密码
+				sudo passwd root
+	2、配置环境变量
+		编辑环境变量	vim /etc/profile
+		当前终端中生效	source /etc/profile
+	3、更新缓存
+		apt-get update
+	4、更新软件
+		apt-get upgrade
+	5、自动解决依赖
+		apt-get install -f
+	6、删除没有使用的依赖
+		apt-get install autoremove
+	7、安装.deb文件
+		dpkg -i sougoupinyin.deb
+	8、运行.sh文件
+		./jmeter.sh
+	9、运行.jar文件
+		java -jar restclient.jar
 
-Eclipse
-	mkdir jre
-	sudo ln -s /home/ybxxszl/application/Java/jdk1.8.0_181 bin
 
-WPS字体缺失
-	sudo mv wps_symbol_fonts /usr/share/fonts
+命令行工具
+	1、tree
+		apt-get install tree
+	2、autojump
+		apt-get install autojump
+
 
 创建快捷方式	/usr/share/applications/Eclipse.desktop
 [Desktop Entry]
 Encoding=UTF-8
 Name=Eclipse
 Comment=Eclipse IDE
-Exec=/home/ybxxszl/application/Eclipse/eclipse
+Exec=/home/ybxxszl/application/Eclipse/eclipse/eclipse
 Icon=/home/ybxxszl/application/Eclipse/eclipse/icon.xpm
 Terminal=false
 StartupNotify=true
 Type=Application
 Categories=Application;Development;
+
+
+JDK
+	vim /etc/profile
+	export JAVA_HOME=/home/ybxxszl/application/Java/jdk1.8.0_181
+	export PATH=.:${JAVA_HOME}/bin:$PATH
+	source /etc/profile
+
+Maven
+	vim /etc/profile
+	export MAVEN_HOME=/home/ybxxszl/application/Apache/apache-maven-3.5.4
+	export PATH=.:${MAVEN_HOME}/bin:$PATH
+	source /etc/profile
+
+Gradle
+	vim /etc/profile
+	export GRADLE_HOME=/home/ybxxszl/application/Gradle/gradle-4.10.2
+	export PATH=.:${GRADLE_HOME}/bin:$PATH
+	source /etc/profile
+
+Eclipse
+	mkdir jre
+	ln -s /home/ybxxszl/application/Java/jdk1.8.0_181 bin
+
+MySQL Workbench
+	apt-get install mysql-workbench
+
+Redis Desktop Manager
+	snap install redis-desktop-manager
+
+Foxit Reader
+	使用管理员权限执行命令，修改安装路径为/opt
+	chmod +x FoxitReader.enu.setup.2.4.4.0911\(r057d814\).x64.run
+	./FoxitReader.enu.setup.2.4.4.0911\(r057d814\).x64.run
+
+解决WPS字体缺失
+	mv wps_symbol_fonts /usr/share/fonts
+
+SuperTux
+	apt-get install supertux
