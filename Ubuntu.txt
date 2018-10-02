@@ -48,6 +48,15 @@ Gimp
 Guake
 	apt-get install guake
 
+Docker
+	apt-get remove docker*
+	apt-get autoremove
+	apt-get update
+	apt-get install docker.io
+
+	systemctl start docker
+	systemctl disable docker
+
 JDK
 	vim /etc/profile
 	export JAVA_HOME=/home/ybxxszl/application/Java/jdk1.8.0_181
