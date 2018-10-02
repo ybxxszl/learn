@@ -46,13 +46,23 @@ Gimp
 	apt-get install gimp
 
 Docker
-	apt-get remove docker*
-	apt-get autoremove
-	apt-get update
-	apt-get install docker.io
-
-	systemctl start docker
-	systemctl disable docker
+	安装
+		apt-get remove docker*
+		apt-get autoremove
+		apt-get update
+		apt-get install docker.io
+	配置
+		systemctl disable docker
+	启动
+		su
+		systemctl start docker
+		docker start MySQL
+		docker start Redis
+	关闭
+		su
+		docker stop MySQL
+		docker stop Redis
+		systemctl stop docker
 
 JDK
 	vim /etc/profile
