@@ -42,6 +42,12 @@ Type=Application
 Categories=Application;Development;
 
 
+Gimp
+	apt-get install gimp
+
+Guake
+	apt-get install guake
+
 JDK
 	vim /etc/profile
 	export JAVA_HOME=/home/ybxxszl/application/Java/jdk1.8.0_181
