@@ -45,9 +45,6 @@ Categories=Application;Development;
 Gimp
 	apt-get install gimp
 
-Guake
-	apt-get install guake
-
 Docker
 	apt-get remove docker*
 	apt-get autoremove
@@ -92,6 +89,3 @@ Foxit Reader
 
 解决WPS字体缺失
 	mv wps_symbol_fonts /usr/share/fonts
-
-SuperTux
-	apt-get install supertux
