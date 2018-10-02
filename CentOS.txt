@@ -24,58 +24,6 @@
 	4、更新缓存
 		yum makecache
 
-Docker
-	1、安装Docker
-		（1）移除旧版本
-			sudo yum remove docker \
-			docker-client \
-			docker-client-latest \
-			docker-common \
-			docker-latest \
-			docker-latest-logrotate \
-			docker-logrotate \
-			docker-selinux \
-			docker-engine-selinux \
-			docker-engine
-		（2）安装必要的系统工具
-			sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-		（3）添加软件源
-			sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-		（4）更新缓存
-			sudo yum makecache fast
-		（5）安装Docker
-			sudo yum -y install docker
-		（6）安装Docker-IO
-			sudo yum -y install docker-io
-		（7）安装Docker-CE
-			sudo yum -y install docker-ce
-		（8）使用脚本安装Docker-CE
-			curl -fsSL https://get.docker.com -o get-docker.sh
-			sudo sh get-docker.sh
-		（9）测试是否安装成功
-			docker version
-	2、基本命令
-		（1）查看容器
-			docker ps
-			docker ps -a
-		（2）查看镜像
-			docker images
-			docker images nginx
-	3、安装Nginx
-		docker search nginx
-		docker pull nginx
-	4、安装Tomcat
-		docker search tomcat
-		docker pull tomcat
-	5、安装MySQL
-		docker search mysql
-		docker pull mysql
-	6、安装Redis
-		docker search redis
-		docker pull redis
-
-
-
 
 CentOS 7 Docker
 
@@ -109,18 +57,6 @@ C/S架构，Client与Server通信
 	进入容器的命令行操作界面	docker attach name
 
 	查看日志	docker logs -f --tail 1000 name
-
-
-	Nginx部署：
-		1、docker run -p 80 --name MyNginx -i -t ubuntu /bin/bash		创建映射端口为80的交互式界面
-		2、apt-get update							更新源
-		3、apt-get install nginx						安装Nginx
-		4、apt-get install vim						安装Vim
-		5、whereis nginx							搜索Nginx程序名称
-		6、vim /etc/nginx/conf.d/localhost.conf				编辑Nginx配置文件
-		7、mkdir -p /var/www/						级联创建根目录
-		8、vim /var/www/index.html					编辑首页文件
-		9、docker port MyNginx						查看映射端口
 
 	MySQL部署：
 		1、docker pull registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7			拉取镜像
