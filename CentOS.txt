@@ -124,14 +124,14 @@ C/S架构，Client与Server通信
 
 	MySQL部署：
 		1、docker pull registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7			拉取镜像
-		2、docker tag registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7 mysql5.7		重新命名
-		3、docker run --name MySQL -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 3306:3306  mysql5.7	运行容器
-		4、docker exec -it 4977de2a0142 /bin/bash						进入命令行
+		2、docker tag registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7 mysql		重新命名
+		3、docker run --name MySQL -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 3306:3306  mysql	运行容器
+		4、docker exec -it 98842d616373 /bin/bash						进入命令行
 
 	Redis部署：
 		1、docker pull redis									拉取镜像
-		2、docker run --name Redis -d -p 6379:6379 redis --requirepass "admin"			运行容器
-		3、docker exec -it 13d57e1aaa70 redis-cli						进入命令行
+		2、docker run --name Redis -d -p 6379:6379 redis --requirepass "1234"			运行容器
+		3、docker exec -it bcddb4ef390e redis-cli						进入命令行
 
 
 注：
