@@ -1,0 +1,10 @@
+windows
+	启动				start nginx
+	停止				nginx -s quit
+	重新加载日志			nginx -s reopen
+	重新加载配置文件			nginx -s reload
+	检查配置文件是否正确		nginx -t conf/nginx.conf
+	更改配置文件			nginx -c conf/my.conf
+	查看nginx进程			tasklist /fi "imagename eq nginx.exe"
+	查看nginx版本			nginx -v
+	查看nginx版本、编译器版本、配置参数	nginx -V
