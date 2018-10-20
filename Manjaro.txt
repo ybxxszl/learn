@@ -1,0 +1,46 @@
+1、添加源（中科大源）
+	编辑配置文件
+		nano /etc/pacman.conf
+	添加内容
+		[archlinuxcn]
+		SigLevel = Optional TrustedOnly
+		Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+	导入GPG KEY
+		pacman -Syy && pacman -S archlinuxcn-keyring
+2、更新源
+	pacman -Sy
+3、更新系统
+	pacman -Syu
+	
+	
+创建快捷方式	/usr/share/applications/Eclipse.desktop
+[Desktop Entry]
+Encoding=UTF-8
+Name=Eclipse
+Comment=Eclipse IDE
+Exec=/usr/lib/eclipse/eclipse
+Icon=/usr/lib/eclipse/icon.xpm
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Application;Development;
+
+Eclipse
+	mkdir jre
+	ln -s /usr/lib/jvm/java-8-jdk bin
+
+JDK
+	nano /etc/profile
+	export JAVA_HOME=/usr/lib/jvm/java-8-jdk
+	export PATH=.:${JAVA_HOME}/bin:$PATH
+	source /etc/profile
+
+搜狗输入法
+	pacman -S fcitx-im
+	pacman -S fcitx-configtool
+	pacman -S fcitx-sogoupinyin
+	
+	nano ~/.xprofile
+	export GTK_IM_MODULE=fcitx
+	export QT_IM_MODULE=fcitx
+	export XMODIFIERS="@im=fcitx"
