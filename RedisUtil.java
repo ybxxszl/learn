@@ -22,7 +22,7 @@ public class RedisUtil {
 	 *            键
 	 * @param values
 	 *            值
-	 * @return 列表长度
+	 * @return 列表的长度
 	 */
 	public static Long lpush(String key, String... values) {
 		Jedis jedis = JedisUtil.getJedis();
@@ -38,7 +38,7 @@ public class RedisUtil {
 	 *            键
 	 * @param values
 	 *            值
-	 * @return 列表长度
+	 * @return 列表的长度
 	 */
 	public static Long lpushx(String key, String... values) {
 		Jedis jedis = JedisUtil.getJedis();
@@ -54,7 +54,7 @@ public class RedisUtil {
 	 *            键
 	 * @param values
 	 *            值
-	 * @return 列表长度
+	 * @return 列表的长度
 	 */
 	public static Long rpush(String key, String... values) {
 		Jedis jedis = JedisUtil.getJedis();
@@ -70,7 +70,7 @@ public class RedisUtil {
 	 *            键
 	 * @param values
 	 *            值
-	 * @return 列表长度
+	 * @return 列表的长度
 	 */
 	public static Long rpushx(String key, String value) {
 		Jedis jedis = JedisUtil.getJedis();
@@ -184,15 +184,17 @@ public class RedisUtil {
 	}
 
 	/**
-	 * 在列表的元素前或者后插入元素，返回List的长度
+	 * 在列表中元素前面或者后面插入元素，返回列表的长度
 	 * 
 	 * @param key
+	 *            键
 	 * @param where
-	 *            LIST_POSITION
+	 *            标识前面或者后面
 	 * @param pivot
-	 *            以该元素作为参照物，是在它之前，还是之后（pivot：枢轴;中心点，中枢;[物]支点，支枢;[体]回转运动。）
+	 *            列表中元素值
 	 * @param value
-	 * @return Long
+	 *            插入的元素值
+	 * @return 列表的长度
 	 */
 	public static Long linsert(String key, LIST_POSITION where, String pivot, String value) {
 		Jedis jedis = JedisUtil.getJedis();
@@ -201,15 +203,6 @@ public class RedisUtil {
 		return length;
 	}
 
-	/**
-	 * 通过索引设置列表元素的值，当超出索引时会抛错。成功设置返回true
-	 * 
-	 * @param key
-	 * @param index
-	 *            索引
-	 * @param value
-	 * @return boolean
-	 */
 	public static boolean lset(String key, long index, String value) {
 		Jedis jedis = JedisUtil.getJedis();
 		String statusCode = jedis.lset(key, index, value);
@@ -221,18 +214,6 @@ public class RedisUtil {
 		}
 	}
 
-	/**
-	 * 对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。
-	 * 
-	 * @param key
-	 * @param start
-	 *            <li>可以为负数（-1是列表的最后一个元素，-2是列表倒数第二的元素。）</li>
-	 *            <li>如果start大于end，则返回一个空的列表，即列表被清空</li>
-	 * @param end
-	 *            <li>可以为负数（-1是列表的最后一个元素，-2是列表倒数第二的元素。）</li>
-	 *            <li>可以超出索引，不影响结果</li>
-	 * @return boolean
-	 */
 	public static boolean ltrim(String key, long start, long end) {
 		Jedis jedis = JedisUtil.getJedis();
 		String statusCode = jedis.ltrim(key, start, end);
@@ -244,18 +225,6 @@ public class RedisUtil {
 		}
 	}
 
-	/**
-	 * 移除列表元素，返回移除的元素数量
-	 * 
-	 * @param key
-	 * @param count，标识，表示动作或者查找方向
-	 *            <li>当count=0时，移除所有匹配的元素；</li>
-	 *            <li>当count为负数时，移除方向是从尾到头；</li>
-	 *            <li>当count为正数时，移除方向是从头到尾；</li>
-	 * @param value
-	 *            匹配的元素
-	 * @return Long
-	 */
 	public static Long lrem(String key, long count, String value) {
 		Jedis jedis = JedisUtil.getJedis();
 		Long length = jedis.lrem(key, count, value);
