@@ -203,35 +203,6 @@ public class RedisUtil {
 		return length;
 	}
 
-	public static boolean lset(String key, long index, String value) {
-		Jedis jedis = JedisUtil.getJedis();
-		String statusCode = jedis.lset(key, index, value);
-		jedis.close();
-		if ("ok".equals(statusCode)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public static boolean ltrim(String key, long start, long end) {
-		Jedis jedis = JedisUtil.getJedis();
-		String statusCode = jedis.ltrim(key, start, end);
-		jedis.close();
-		if ("ok".equals(statusCode)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public static Long lrem(String key, long count, String value) {
-		Jedis jedis = JedisUtil.getJedis();
-		Long length = jedis.lrem(key, count, value);
-		jedis.close();
-		return length;
-	}
-
 	/**
 	 * 获取List列表
 	 * 
