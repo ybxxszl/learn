@@ -1,0 +1,22 @@
+## CentOS 7
+1、SSH服务
+	安装openssh
+		yum install openssh*
+	启动sshd服务
+		systemctl status sshd
+		systemctl start sshd
+		systemctl stop sshd
+	开机启动sshd服务
+		systemctl enable sshd
+		systemctl disable sshd
+2、firewall防火墙
+	查看防火墙规则
+		firewall-cmd --list-all
+	查看端口80是否开放
+		firewall-cmd --query-port=80/tcp
+	开放80端口
+		firewall-cmd --permanent --add-port=80/tcp
+	闭塞80端口
+		firewall-cmd --permanent --remove-port=80/tcp
+	修改配置需要重新启动防火墙
+		firewall-cmd --reload
