@@ -1,0 +1,22 @@
+生成默认package.json
+npm init --yes
+依据package.json安装包
+npm install
+
+更新包
+npm update
+安装包并修改dependencies
+npm install lodash --save
+安装包并修改devDependencies
+npm install lodash --save-dev
+卸载包并修改dependencies
+npm uninstall lodash --save
+卸载包并修改devDependencies
+npm uninstall lodash --save-dev
+
+更新全局包
+npm update -g
+安装全局包
+npm install grunt -g
+卸载全局包
+npm uninstall grunt -g
