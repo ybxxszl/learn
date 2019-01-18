@@ -1,5 +1,6 @@
 mpvue官方文档	http://mpvue.com/
 ESLint语法规范	https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md
+Vant Weapp组件	https://youzan.github.io/vant-weapp/#/intro
 
 快速创建
 1、检查nodejs和npm版本
@@ -19,3 +20,7 @@ ESLint语法规范	https://github.com/standard/standard/blob/master/docs/RULES-zhcn.
 	D:\qs-mpvue\dist\wx
 7、编译运行
 	npm start
+
+
+npm run build
+npm run dev
