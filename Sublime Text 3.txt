@@ -1,0 +1,15 @@
+Sublime Text 3 插件（http://cst.stu.126.net/u/json/cms/channel_v3.json）
+1、ChineseLocalization	中文插件 在C:\Users\Administrator\AppData\Roaming\Sublime Text 3\Packages目录下git clone -b st3 https://github.com/rexdf/ChineseLocalization.git
+2、Pretty JSON		JSON格式化，输入Ctrl+Alt+J格式化
+3、DocBlockr		生成优美的注释，Package Settings -> DocBlockr -> Settings - User 添加 {"jsdocs_extra_tags": ["@Desc","@Date {{date}}","@Author wjy"]}
+4、Emmet		快速编写HTML/CSS
+5、HTML5		输入html5，输入Tab，自动补全HTML5规范文档
+6、CSS3			CSS3插件
+7、jQuery		支持jQuery规范
+8、JsFormat		Package Control: Add Repository 输入https://github.com/jdavisclark/JsFormat，回车，搜索插件并安装，输入Ctrl+Alt+F格式化
+9、SideBarEnhancements	增强侧边栏右键功能，快速打开浏览器：Package Settings -> Side Bar -> Settings - User，输入{"default_browser": "chrome"}、Package Settings -> Side Bar -> Key Bindings - User，输入[{"keys": ["alt+f12"], "command": "side_bar_open_in_browser"}]
+10、All Autocomplete	搜索所有打开的文件寻找匹配的提示词
+11、AutoFileName		快速在文件中写路径
+12、ColorPicker		编辑CSS颜色时，可以查看或者选择颜色，输入Ctrl+Shift+C显示
+13、FileDiffs		比较两个文件的差异
+14、HTML-CSS-JS Prettify	HTML/CSS/JS格式化插件 HTML-CSS-JS Prettify -> Set 'node' Path 设置NodeJS路径，HTML-CSS-JS Prettify -> Prettify Code 格式化代码
