@@ -41,7 +41,7 @@ C/S架构，Client与Server通信
 	停止	service docker stop/systemctl stop docker
 	查看状态	service docker status/systemctl status docker
 
-	查看所有可用镜像	docker images -a
+	查看所有可用镜像	docker images
 	查找镜像	docker search ubuntu
 	拉取镜像	docker pull ubuntu
 
@@ -86,3 +86,5 @@ C/S架构，Client与Server通信
 		systemctl status docker	查看状态
 		systemctl enable docker	启动开机自启动
 		systemctl disable docker	停止开机自启动
+		systemctl set-default multi-user.target	使用默认运行级别：命令行模式
+		systemctl set-default graphical.target	使用默认运行级别：图形化模式
