@@ -84,7 +84,8 @@ Gradle
 
 Eclipse
 	mkdir jre
-	ln -s /home/ybxxszl/application/Java/jdk1.8.0_181 bin
+	cd jre
+	ln -s /home/ybxxszl/application/Java/jdk1.8.0_181/bin bin
 
 MySQL Workbench
 	apt-get install mysql-workbench
