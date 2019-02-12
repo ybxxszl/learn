@@ -3,30 +3,20 @@
 		su命令
 			重装系统后需要设置root密码
 				sudo passwd root
-	2、配置环境变量
-		编辑环境变量	vim /etc/profile
-		当前终端中生效	source /etc/profile
-	3、更新缓存
+	2、更新缓存
 		apt-get update
-	4、更新软件
+	3、更新软件
 		apt-get upgrade
-	5、自动解决依赖
+	4、自动解决依赖
 		apt-get install -f
-	6、删除没有使用的依赖
+	5、删除没有使用的依赖
 		apt-get install autoremove
-	7、安装.deb文件
+	6、安装.deb文件
 		dpkg -i sougoupinyin.deb
-	8、运行.sh文件
+	7、运行.sh文件
 		./jmeter.sh
-	9、运行.jar文件
+	8、运行.jar文件
 		java -jar restclient.jar
-
-
-命令行工具
-	1、tree
-		apt-get install tree
-	2、autojump
-		apt-get install autojump
 
 
 创建快捷方式	/usr/share/applications/Eclipse.desktop
@@ -41,28 +31,6 @@ StartupNotify=true
 Type=Application
 Categories=Application;Development;
 
-
-Gimp
-	apt-get install gimp
-
-Docker
-	安装
-		apt-get remove docker*
-		apt-get autoremove
-		apt-get update
-		apt-get install docker.io
-	配置
-		systemctl disable docker
-	启动
-		su
-		systemctl start docker
-		docker start MySQL
-		docker start Redis
-	关闭
-		su
-		docker stop MySQL
-		docker stop Redis
-		systemctl stop docker
 
 JDK
 	vim /etc/profile
@@ -87,16 +55,14 @@ Eclipse
 	cd jre
 	ln -s /home/ybxxszl/application/Java/jdk1.8.0_181/bin bin
 
-MySQL Workbench
-	apt-get install mysql-workbench
-
-Redis Desktop Manager
-	snap install redis-desktop-manager
-
-Foxit Reader
-	使用管理员权限执行命令，修改安装路径为/opt
-	chmod +x FoxitReader.enu.setup.2.4.4.0911\(r057d814\).x64.run
-	./FoxitReader.enu.setup.2.4.4.0911\(r057d814\).x64.run
 
 解决WPS字体缺失
 	mv wps_symbol_fonts /usr/share/fonts
+
+
+Docker
+	安装
+		apt-get remove docker*
+		apt-get autoremove
+		apt-get update
+		apt-get install docker.io
