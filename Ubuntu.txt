@@ -72,3 +72,15 @@ MySQL Workbench
 
 Redis Desktop Manager
 	snap install redis-desktop-manager
+
+Indicator Sysmonitor
+	add-apt-repository ppa:fossfreedom/indicator-sysmonitor
+	apt-get update
+	apt-get install indicator-sysmonitor
+	indicator-sysmonitor &
+	CPU温度: {cputemp} CPU占用: {cpu} 内存: {mem} 网速: {net} 电量: {bat}
+
+Wine
+	apt-get install wine64
+	wine --version
+	winecfg
