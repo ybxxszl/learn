@@ -67,11 +67,14 @@ Docker
 		apt-get update
 		apt-get install docker.io
 
+Redis Desktop Manager
+	snap install redis-desktop-manager
+
 MySQL Workbench
 	apt-get install mysql-workbench
 
-Redis Desktop Manager
-	snap install redis-desktop-manager
+Gimp
+	apt-get install gimp
 
 Indicator Sysmonitor
 	add-apt-repository ppa:fossfreedom/indicator-sysmonitor
