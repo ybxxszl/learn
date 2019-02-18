@@ -3,6 +3,8 @@
 2、创建Gerrit
 	java -jar gerrit-2.10.war init -d /home/ybxxszl/Gerrit
 	/home/ybxxszl/gerrit/bin/gerrit.sh start
+	/home/ybxxszl/gerrit/bin/gerrit.sh restart
+	/home/ybxxszl/gerrit/bin/gerrit.sh stop
 3、创建passwd
 	apt-get install apache2-utils
 	touch passwd
@@ -12,7 +14,7 @@
 
 /home/ybxxszl/Gerrit/lib/bcpkix-jdk15on-149.jar
 
-
+gerrit.conf
 [gerrit]
 	basePath = /home/ybxxszl/gerrit/git
 	canonicalWebUrl = 127.0.0.1:9002
@@ -38,7 +40,7 @@
 [cache]
 	directory = cache
 
-
+nginx.conf
 server {
         	listen       82;
         	server_name  127.0.0.1:9002;
