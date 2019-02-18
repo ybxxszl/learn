@@ -1,0 +1,61 @@
+1、使用docker创建MySQL数据库
+	docker run --name mysql_gerrit -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 9102:3306 mysql
+2、创建Gerrit
+	java -jar gerrit-2.10.war init -d /home/ybxxszl/Gerrit
+	/home/ybxxszl/gerrit/bin/gerrit.sh start
+3、创建passwd
+	apt-get install apache2-utils
+	touch passwd
+	htpasswd -b passwd ybxxszl wjy13944997040
+	htpasswd -b passwd admin 1234
+	htpasswd -b passwd wjy 0000
+
+/home/ybxxszl/Gerrit/lib/bcpkix-jdk15on-149.jar
+
+
+[gerrit]
+	basePath = /home/ybxxszl/gerrit/git
+	canonicalWebUrl = 127.0.0.1:9002
+[database]
+	type = mysql
+	hostname = 127.0.0.1
+	port = 9102
+	database = gerrit
+	username = root
+[index]
+	type = LUCENE
+[auth]
+	type = HTTP
+[sendemail]
+	smtpServer = localhost
+[container]
+	user = ybxxszl
+	javaHome = /usr/lib/java/jdk1.8.0_181/jre
+[sshd]
+	listenAddress = *:29418
+[httpd]
+	listenUrl = proxy-http://127.0.0.1:9002
+[cache]
+	directory = cache
+
+
+server {
+        	listen       82;
+        	server_name  127.0.0.1:9002;
+
+        	location / {
+          		auth_basic              "Gerrit Code Review";
+          		auth_basic_user_file    /home/ybxxszl/gerrit/passwd;
+          		proxy_pass              http://127.0.0.1:9002;
+          		proxy_set_header        X-Forwarded-For $remote_addr;
+          		proxy_set_header        Host $host;
+        	}
+
+        	error_page 404 /404.html;
+            		location = /40x.html {
+        	}
+        	error_page 500 502 503 504 /50x.html;
+            		location = /50x.html {
+        	}
+
+    	}
