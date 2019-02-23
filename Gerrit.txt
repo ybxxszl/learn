@@ -63,3 +63,17 @@ server {
         	}
 
     	}
+
+
+MySQL配置中文
+查看编码
+	status;
+	show variables like 'char%';
+添加配置
+	vim /etc/mysql/my.cnf
+[mysql]
+default-character-set = utf8
+[client]
+default-character-set = utf8
+[mysqld]
+character-set-server = utf8
