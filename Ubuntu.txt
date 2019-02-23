@@ -67,11 +67,27 @@ Docker
 		apt-get update
 		apt-get install docker.io
 
+MySQL
+	apt-get install mysql-server
+	mysql_secure_installation
+	mysql -uroot -p
+
+Redis
+	apt-get install redis-server
+	redis-cli
+
 Redis Desktop Manager
 	snap install redis-desktop-manager
 
 MySQL Workbench
 	apt-get install mysql-workbench
+
+VirtualBox
+	dpkg -i virtualbox-6.0_6.0.4-128413_Ubuntu_bionic_amd64.deb
+	apt-get install -f
+	apt-get install gcc
+	apt-get install make
+	/sbin/vboxconfig
 
 Gimp
 	apt-get install gimp
