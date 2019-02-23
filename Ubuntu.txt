@@ -67,14 +67,13 @@ Docker
 		apt-get update
 		apt-get install docker.io
 
-MySQL
-	apt-get install mysql-server
-	mysql_secure_installation
-	mysql -uroot -p
-
 Redis
 	apt-get install redis-server
 	redis-cli
+
+MySQL
+	apt-get install mysql-server
+	mysql_secure_installation
 
 Redis Desktop Manager
 	snap install redis-desktop-manager
