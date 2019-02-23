@@ -16,8 +16,8 @@
 
 gerrit.conf
 [gerrit]
-	basePath = /home/ybxxszl/gerrit/git
-	canonicalWebUrl = 127.0.0.1:9002
+	basePath = /home/ybxxszl/Gerrit/git
+	canonicalWebUrl = http://127.0.0.1/
 [database]
 	type = mysql
 	hostname = 127.0.0.1
@@ -36,9 +36,11 @@ gerrit.conf
 [sshd]
 	listenAddress = *:29418
 [httpd]
-	listenUrl = proxy-http://127.0.0.1:9002
+	listenUrl = proxy-http://127.0.0.1:9002/
 [cache]
 	directory = cache
+[gitweb]
+	cgi = /usr/share/gitweb/gitweb.cgi
 
 nginx.conf
 server {
@@ -47,7 +49,7 @@ server {
 
         	location / {
           		auth_basic              "Gerrit Code Review";
-          		auth_basic_user_file    /home/ybxxszl/gerrit/passwd;
+          		auth_basic_user_file    /home/ybxxszl/Gerrit/passwd;
           		proxy_pass              http://127.0.0.1:9002;
           		proxy_set_header        X-Forwarded-For $remote_addr;
           		proxy_set_header        Host $host;
