@@ -124,6 +124,19 @@ C/S架构，Client与Server通信
 
 	查看日志	docker logs -f --tail 1000 name
 
+	推送镜像到DockerHUB
+		登录
+			docker login
+				Username: ybxxszl
+				Password: wjy13944997040
+				Email: 1062837400@qq.com
+		标记镜像
+			docker tag yitengshidai/tomcat:0.1 ybxxszl/company_tomcat:1.0
+		推送镜像
+			docker push ybxxszl/company_tomcat:1.0
+		拉取镜像
+			docker pull ybxxszl/company_tomcat:1.0
+
 	MySQL部署：
 		1、docker pull registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7			拉取镜像
 		2、docker tag registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7 mysql			重新命名
