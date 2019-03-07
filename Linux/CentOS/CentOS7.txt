@@ -124,7 +124,7 @@ C/S架构，Client与Server通信
 
 	查看日志	docker logs -f --tail 1000 name
 
-	推送镜像到DockerHUB
+	推送镜像到Docker Hub
 		登录
 			docker login
 				Username: ybxxszl
