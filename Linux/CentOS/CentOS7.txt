@@ -1,3 +1,72 @@
+##CentOS 7
+1、SSH服务
+	安装openssh
+		yum install openssh*
+	启动sshd服务
+		systemctl status sshd
+		systemctl start sshd
+		systemctl stop sshd
+	开机启动sshd服务
+		systemctl enable sshd
+		systemctl disable sshd
+2、firewall防火墙
+	查看防火墙规则
+		firewall-cmd --list-all
+	查看端口80是否开放
+		firewall-cmd --query-port=80/tcp
+	开放80端口
+		firewall-cmd --permanent --add-port=80/tcp
+	闭塞80端口
+		firewall-cmd --permanent --remove-port=80/tcp
+	修改配置需要重新启动防火墙
+		firewall-cmd --reload
+3、安装jdk
+	解压
+		tar -xzf jdk-8u181-linux-x64.tar.gz
+	移动
+		mv jdk1.8.0_181 /usr/local/jdk
+	卸载openjdk
+		搜索openjdk包
+			rpm -qa|grep openjdk
+		卸载openjdk包
+			rpm -e --nodeps java-1.7.0-openjdk-1.7.0.191-2.6.15.4.el7_5.x86_64
+			rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.191-2.6.15.4.el7_5.x86_64
+			rpm -e --nodeps java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
+			rpm -e --nodeps java-1.8.0-openjdk-headless-1.8.0.191.b12-0.el7_5.x86_64
+	配置环境变量
+		vim /etc/profile
+		export JAVA_HOME=/usr/local/jdk/jdk1.8.0_181
+		export PATH=$JAVA_HOME/bin:$PATH
+		source /etc/profile
+4、安装nginx
+	安装依赖包
+		yum install gcc-c++
+		yum install -y pcre pcre-devel
+		yum install -y zlib zlib-devel
+		yum install -y openssl openssl-devel
+	解压
+		tar -xzf nginx-1.14.0.tar.gz
+	进入nginx目录
+		编译
+			./configure
+		执行
+			make
+			make install
+		进入sbin目录
+			启动
+				./nginx
+	开放80端口
+		firewall-cmd --permanent --add-port=80/tcp
+	重新启动防火墙
+		firewall-cmd --reload
+5、安装tomcat
+	解压
+		tar -xzf apache-tomcat-8.5.34.tar.gz
+	移动
+		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat1
+		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat2
+
+
 升级内核
 	1、查看内核版本
 		uname -r
@@ -31,7 +100,6 @@ C/S架构，Client与Server通信
 
 注册服务器、仓库、镜像、容器
        注册服务器上存放着多个仓库，例如Ubuntu仓库、CentOS仓库等。一个仓库包含多个不同版本的镜像，例如Ubuntu仓库包含Ubuntu 16.04、Ubuntu 18.04等不同版本的镜像。镜像是一个面向Docker引擎的完整的文件系统，例如完整的Ubuntu操作系统。容器是根据镜像创建的实例。可以创建、启动、停止、删除。可以根据一个镜像创建多个容器，这些容器互相隔离，互不可见。容器可以打包成为镜像方便再次使用。镜像本身是只读的，容器根据镜像启动时，Docker引擎会创建一个可写层，镜像本身保持不变。
-
 
 	安装	yum install docker
 	测试	docker version
@@ -76,7 +144,29 @@ C/S架构，Client与Server通信
 			（1）docker cp token.war 966d8517a70a:/usr/local/tomcat/webapps
 			     docker run --name Tomcat_Token -p 8080:8080 tomcat
 			（2）docker run -d -v /root/token.war:/usr/local/tomcat/webapps/token.war --name Tomcat_Token -p 8080:8080 tomcat
+	Nginx部署：
+		1、docker pull nginx												拉取镜像
+		2、docker run --name Nginx -p 80:80 nginx									运行容器
+		3、docker exec -it 966d8517a70a /bin/bash									进入命令行
 
+Dockerfile
+	1、创建文件夹
+		mkdir MyDockerfile
+	2、复制war包
+		cp questionnaire_survey.war MyDockerfile
+		cp questionnaire_survey_background_system.war MyDockerfile
+	3、创建文件
+		cd MyDockerfile
+		vim Dockerfile
+		FROM tomcat
+		COPY questionnaire_survey.war /usr/local/tomcat/webapps
+		COPY questionnaire_survey_background_system.war /usr/local/tomcat/webapps
+	4、创建镜像
+		docker build -t tomcat:1.0
+	5、创建容器
+		docker create --name Tomcat -p 8080:8080 tomcat:1.0
+	6、启动容器
+		docker start Tomcat
 
 注：
 	1、systemctl（service和checkout的组合）
