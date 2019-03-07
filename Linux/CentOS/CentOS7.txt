@@ -1,4 +1,31 @@
 ##CentOS 7
+
+升级内核
+	1、查看内核版本
+		uname -r
+	2、导入public key
+		rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+	3、安装ELRepo（http://elrepo.org/tiki/tiki-index.php）
+		rpm -Uvh https://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm
+	4、安装kernel-lt或kernel-ml
+		yum --enablerepo=elrepo-kernel install kernel-lt -y		kernel-lt		长期支持版本
+		yum --enablerepo=elrepo-kernel install kernel-ml -y		kernel-ml		最新稳定版本
+	5、编辑/etc/grub.conf，修改Grub引导顺序
+		default=0	一般最新安装的内核在第一位
+	6、重启并查看内核版本
+		reboot
+		uname -r
+
+更换软件源
+	1、备份
+		mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+	2、下载
+		wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+	3、清除缓存
+		yum clean all
+	4、更新缓存
+		yum makecache
+
 1、SSH服务
 	安装openssh
 		yum install openssh*
@@ -66,38 +93,8 @@
 		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat1
 		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat2
 
-
-升级内核
-	1、查看内核版本
-		uname -r
-	2、导入public key
-		rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-	3、安装ELRepo（http://elrepo.org/tiki/tiki-index.php）
-		rpm -Uvh https://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm
-	4、安装kernel-lt或kernel-ml
-		yum --enablerepo=elrepo-kernel install kernel-lt -y		kernel-lt		长期支持版本
-		yum --enablerepo=elrepo-kernel install kernel-ml -y		kernel-ml	最新稳定版本
-	5、编辑/etc/grub.conf，修改Grub引导顺序
-		default=0	一般最新安装的内核在第一位
-	6、重启并查看内核版本
-		reboot
-		uname -r
-
-更换软件源
-	1、备份
-		mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-	2、下载
-		wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
-	3、清除缓存
-		yum clean all
-	4、更新缓存
-		yum makecache
-
-
-CentOS 7 Docker
-
+6、Docker
 C/S架构，Client与Server通信
-
 注册服务器、仓库、镜像、容器
        注册服务器上存放着多个仓库，例如Ubuntu仓库、CentOS仓库等。一个仓库包含多个不同版本的镜像，例如Ubuntu仓库包含Ubuntu 16.04、Ubuntu 18.04等不同版本的镜像。镜像是一个面向Docker引擎的完整的文件系统，例如完整的Ubuntu操作系统。容器是根据镜像创建的实例。可以创建、启动、停止、删除。可以根据一个镜像创建多个容器，这些容器互相隔离，互不可见。容器可以打包成为镜像方便再次使用。镜像本身是只读的，容器根据镜像启动时，Docker引擎会创建一个可写层，镜像本身保持不变。
 
@@ -112,6 +109,7 @@ C/S架构，Client与Server通信
 	查看所有可用镜像	docker images
 	查找镜像	docker search ubuntu
 	拉取镜像	docker pull ubuntu
+	删除镜像	docker rmi ubuntu
 
 	查看正在运行的容器		docker ps
 	查看所有容器		docker ps -a
@@ -128,26 +126,25 @@ C/S架构，Client与Server通信
 
 	MySQL部署：
 		1、docker pull registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7			拉取镜像
-		2、docker tag registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7 mysql		重新命名
-		3、docker run --name MySQL -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 3306:3306 mysql		运行容器
-		4、docker exec -it d5610f48e3aa /bin/bash						进入命令行
-
+		2、docker tag registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7 mysql			重新命名
+		3、docker run --name MySQL -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 3306:3306 mysql			运行容器
+		4、docker exec -it d5610f48e3aa /bin/bash			进入命令行
 	Redis部署：
-		1、docker pull redis									拉取镜像
+		1、docker pull redis			拉取镜像
 		2、docker run --name Redis -d -p 6379:6379 redis --requirepass "1234"			运行容器
-		3、docker exec -it 966d8517a70a redis-cli						进入命令行
+		3、docker exec -it 966d8517a70a redis-cli			进入命令行
 	Tomcat部署：
-		1、docker pull tomcat									拉取镜像
-		2、docker run --name Tomcat_Token -p 8080:8080 tomcat					运行容器
-		3、docker exec -it 966d8517a70a /bin/bash								进入命令行
+		1、docker pull tomcat			拉取镜像
+		2、docker run --name Tomcat_Token -p 8080:8080 tomcat			运行容器
+		3、docker exec -it 966d8517a70a /bin/bash			进入命令行
 		4、部署项目：
 			（1）docker cp token.war 966d8517a70a:/usr/local/tomcat/webapps
 			     docker run --name Tomcat_Token -p 8080:8080 tomcat
 			（2）docker run -d -v /root/token.war:/usr/local/tomcat/webapps/token.war --name Tomcat_Token -p 8080:8080 tomcat
 	Nginx部署：
-		1、docker pull nginx												拉取镜像
-		2、docker run --name Nginx -p 80:80 nginx									运行容器
-		3、docker exec -it 966d8517a70a /bin/bash									进入命令行
+		1、docker pull nginx			拉取镜像
+		2、docker run --name Nginx -p 80:80 nginx			运行容器
+		3、docker exec -it 966d8517a70a /bin/bash			进入命令行
 
 Dockerfile
 	1、创建文件夹
@@ -169,12 +166,13 @@ Dockerfile
 		docker start Tomcat
 
 注：
-	1、systemctl（service和checkout的组合）
-		systemctl start docker	启动服务
-		systemctl restart docker	重启服务
-		systemctl stop docker	停止服务
-		systemctl status docker	查看状态
-		systemctl enable docker	启动开机自启动
-		systemctl disable docker	停止开机自启动
-		systemctl set-default multi-user.target	使用默认运行级别：命令行模式
-		systemctl set-default graphical.target	使用默认运行级别：图形化模式
+	systemctl（service和checkout的组合）
+
+	systemctl start docker					启动服务
+	systemctl restart docker				重启服务
+	systemctl stop docker					停止服务
+	systemctl status docker				查看状态
+	systemctl enable docker				启动开机自启动
+	systemctl disable docker				停止开机自启动
+	systemctl set-default multi-user.target		使用默认运行级别：命令行模式
+	systemctl set-default graphical.target		使用默认运行级别：图形化模式
