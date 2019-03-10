@@ -45,3 +45,7 @@ Subversion
 Token Macro
 Translation Assistance plugin
 WMI Windows Agents
+
+docker pull jenkins
+
+docker run --name Jenkins -d -p 8083:8080 -p 50000:50000 jenkins

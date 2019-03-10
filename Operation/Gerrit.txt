@@ -1,4 +1,4 @@
-1、使用docker创建MySQL数据库
+﻿1、使用docker创建MySQL数据库
 	docker run --name mysql_gerrit -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 9102:3306 mysql
 2、创建Gerrit
 	java -jar gerrit-2.10.war init -d /home/ybxxszl/Gerrit
@@ -77,3 +77,9 @@ default-character-set = utf8
 default-character-set = utf8
 [mysqld]
 character-set-server = utf8
+
+docker pull docker.io/openfrontier/gerrit
+
+docker tag docker.io/openfrontier/gerrit gerrit
+
+docker run --name Gerrit -d -p 8082:8080 -p 29418:29418 gerrit

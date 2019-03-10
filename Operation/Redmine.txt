@@ -1,0 +1,4 @@
+docker pull redmine
+
+docker run --name MySQL -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD="1234" -e MYSQL_DATABASE=redmine mysql
+docker run --name Redmine -d -p 8081:3000 -e MYSQL_ROOT_PASSWORD="1234" --link MySQL:mysql redmine
