@@ -83,3 +83,5 @@ docker pull docker.io/openfrontier/gerrit
 docker tag docker.io/openfrontier/gerrit gerrit
 
 docker run --name Gerrit -d -p 8082:8080 -p 29418:29418 gerrit
+
+type = DEVELOPMENT_BECOME_ANY_ACCOUNT
