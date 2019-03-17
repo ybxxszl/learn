@@ -12,7 +12,6 @@
 		Gradle Plugin
 		Git plugin
 		Publish Over SSH
-		Gitee Plugin
 Dockerfile
 FROM openjdk:8-jdk-alpine
 MAINTAINER ybxxszl
@@ -24,4 +23,3 @@ ENTRYPOINT ["java","-jar","/qs.jar","--spring.profiles.active=test"]
 		Gradle Plugin
 		Git plugin
 		Deploy to container Plugin
-		Gitee Plugin
