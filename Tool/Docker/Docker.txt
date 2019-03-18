@@ -1,0 +1,83 @@
+C/S架构，Client与Server通信
+注册服务器、仓库、镜像、容器
+       注册服务器上存放着多个仓库，例如Ubuntu仓库、CentOS仓库等。一个仓库包含多个不同版本的镜像，例如Ubuntu仓库包含Ubuntu 16.04、Ubuntu 18.04等不同版本的镜像。镜像是一个面向Docker引擎的完整的文件系统，例如完整的Ubuntu操作系统。容器是根据镜像创建的实例。可以创建、启动、停止、删除。可以根据一个镜像创建多个容器，这些容器互相隔离，互不可见。容器可以打包成为镜像方便再次使用。镜像本身是只读的，容器根据镜像启动时，Docker引擎会创建一个可写层，镜像本身保持不变。
+
+	安装	yum install docker
+	测试	docker version
+
+	启动	service docker start/systemctl start docker
+	重启	service docker restart /systemctl restart docker
+	停止	service docker stop/systemctl stop docker
+	查看状态	service docker status/systemctl status docker
+
+	查看所有可用镜像	docker images
+	查找镜像	docker search ubuntu
+	拉取镜像	docker pull ubuntu
+	删除镜像	docker rmi ubuntu
+
+	查看正在运行的容器		docker ps
+	查看所有容器		docker ps -a
+
+	运行容器	docker run name
+	创建容器	docker create name
+	启动容器	docker start name
+	停止容器	docker stop name
+	删除容器	docker rm name
+
+	进入容器的命令行操作界面	docker attach name
+
+	查看日志	docker logs -f --tail 1000 name
+
+	推送镜像到Docker Hub
+		登录
+			docker login
+				Username: ybxxszl
+				Password: wjy13944997040
+				Email: 1062837400@qq.com
+		标记镜像
+			docker tag yitengshidai/tomcat:0.1 ybxxszl/company_tomcat:1.0
+		推送镜像
+			docker push ybxxszl/company_tomcat:1.0
+		拉取镜像
+			docker pull ybxxszl/company_tomcat:1.0
+
+	MySQL部署：
+		1、docker pull registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7			拉取镜像
+		2、docker tag registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7 mysql			重新命名
+		3、docker run --name MySQL -e MYSQL_ROOT_PASSWORD=1234 -d -i -p 3306:3306 mysql			运行容器
+		4、docker exec -it d5610f48e3aa /bin/bash			进入命令行
+	Redis部署：
+		1、docker pull redis			拉取镜像
+		2、docker run --name Redis -d -p 6379:6379 redis --requirepass "1234"			运行容器
+		3、docker exec -it 966d8517a70a redis-cli			进入命令行
+	Tomcat部署：
+		1、docker pull tomcat			拉取镜像
+		2、docker run --name Tomcat_Token -p 8080:8080 tomcat			运行容器
+		3、docker exec -it 966d8517a70a /bin/bash			进入命令行
+		4、部署项目：
+			（1）docker cp token.war 966d8517a70a:/usr/local/tomcat/webapps
+			     docker run --name Tomcat_Token -p 8080:8080 tomcat
+			（2）docker run -d -v /root/token.war:/usr/local/tomcat/webapps/token.war --name Tomcat_Token -p 8080:8080 tomcat
+	Nginx部署：
+		1、docker pull nginx			拉取镜像
+		2、docker run --name Nginx -p 80:80 nginx			运行容器
+		3、docker exec -it 966d8517a70a /bin/bash			进入命令行
+
+Dockerfile
+	1、创建文件夹
+		mkdir MyDockerfile
+	2、复制war包
+		cp questionnaire_survey.war MyDockerfile
+		cp questionnaire_survey_background_system.war MyDockerfile
+	3、创建文件
+		cd MyDockerfile
+		vim Dockerfile
+		FROM tomcat
+		COPY questionnaire_survey.war /usr/local/tomcat/webapps
+		COPY questionnaire_survey_background_system.war /usr/local/tomcat/webapps
+	4、创建镜像
+		docker build -t tomcat:1.0
+	5、创建容器
+		docker create --name Tomcat -p 8080:8080 tomcat:1.0
+	6、启动容器
+		docker start Tomcat
