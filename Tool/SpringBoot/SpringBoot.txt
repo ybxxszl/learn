@@ -9,3 +9,18 @@ docker pull openjdk:8-jdk-alpine
 docker build --build-arg JAR_FILE=qs.jar -t qs:1.0 .
 docker create --name QS -p 8383:8383 qs:1.0
 docker start QS
+
+
+Dockerfile
+FROM docker.io/tomcat
+RUN pwd
+RUN ls
+COPY apache-tomcat-9.0.16.tar.gz /usr/local/apache-tomcat-9.0.16.tar.gz
+RUN rm -rf /usr/local/tomcat
+RUN tar -xzf /usr/local/apache-tomcat-9.0.16.tar.gz -C /usr/local/
+RUN rm -rf /usr/local/apache-tomcat-9.0.16.tar.gz
+RUN mv /usr/local/apache-tomcat-9.0.16 /usr/local/tomcat
+
+docker pull docker.io/tomcat
+docker create --name QS-war -p 8384:8383 docker.io/tomcat
+docker start QS-war
