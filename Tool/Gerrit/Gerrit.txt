@@ -79,10 +79,8 @@ default-character-set = utf8
 character-set-server = utf8
 
 
-docker pull docker.io/openfrontier/gerrit
-docker run --name Gerrit -p 8082:8080 -d docker.io/openfrontier/gerrit
-
-type = DEVELOPMENT_BECOME_ANY_ACCOUNT
-
 docker pull docker.io/gerritcodereview/gerrit
-docker run --name Gerrit -p 8082:8080 -d docker.io/gerritcodereview/gerrit
+docker run --name Gerrit -p 8082:8080 -p 29418:29418 -d docker.io/gerritcodereview/gerrit
+
+docker pull docker.io/openfrontier/gerrit
+docker run --name Gerrit -p 8082:8080 -p 29418:29418 -d docker.io/openfrontier/gerrit
