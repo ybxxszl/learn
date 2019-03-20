@@ -78,10 +78,11 @@ default-character-set = utf8
 [mysqld]
 character-set-server = utf8
 
+
 docker pull docker.io/openfrontier/gerrit
-
-docker tag docker.io/openfrontier/gerrit gerrit
-
-docker run --name Gerrit -d -p 8082:8080 -p 29418:29418 gerrit
+docker run --name Gerrit -p 8082:8080 -d docker.io/openfrontier/gerrit
 
 type = DEVELOPMENT_BECOME_ANY_ACCOUNT
+
+docker pull docker.io/gerritcodereview/gerrit
+docker run --name Gerrit -p 8082:8080 -d docker.io/gerritcodereview/gerrit
