@@ -1,4 +1,4 @@
-C/S架构，Client与Server通信
+﻿C/S架构，Client与Server通信
 注册服务器、仓库、镜像、容器
        注册服务器上存放着多个仓库，例如Ubuntu仓库、CentOS仓库等。一个仓库包含多个不同版本的镜像，例如Ubuntu仓库包含Ubuntu 16.04、Ubuntu 18.04等不同版本的镜像。镜像是一个面向Docker引擎的完整的文件系统，例如完整的Ubuntu操作系统。容器是根据镜像创建的实例。可以创建、启动、停止、删除。可以根据一个镜像创建多个容器，这些容器互相隔离，互不可见。容器可以打包成为镜像方便再次使用。镜像本身是只读的，容器根据镜像启动时，Docker引擎会创建一个可写层，镜像本身保持不变。
 
@@ -24,9 +24,12 @@ C/S架构，Client与Server通信
 	停止容器	docker stop name
 	删除容器	docker rm name
 
-	进入容器的命令行操作界面	docker attach name
+	进入容器	docker exec -it QS /bin/bash
 
 	查看日志	docker logs -f --tail 1000 name
+
+	获取镜像的详细信息	docker inspect qs
+	获取容器的详细信息	docker inspect QS
 
 	推送镜像到Docker Hub
 		登录

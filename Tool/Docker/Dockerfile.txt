@@ -1,4 +1,4 @@
-一、Dockerfile的格式
+﻿一、Dockerfile的格式
 
 Dockerfile的格式如下：
 
@@ -16,7 +16,7 @@ Dockerfile的格式如下：
 
 # escap
 
-Escape在dockerfile中被用作转义字符和换行符，如果不特别指定，系统默认的转义字符为：\ (反斜杠)。转义不能在RUN命令中执行，除非位于行末进行格式换行。作为换行符时，escape允许Dockerfile指令跨行执行。反引号在Windows下非常有用（举例可以参阅官方文档）
+escape在dockerfile中被用作转义字符和换行符，如果不特别指定，系统默认的转义字符为：\ (反斜杠)。转义不能在RUN命令中执行，除非位于行末进行格式换行。作为换行符时，escape允许Dockerfile指令跨行执行。反引号在Windows下非常有用（举例可以参阅官方文档）
 
 # escape=\ (反斜杠)
 
@@ -238,4 +238,4 @@ HEALTHCHECK在Dockerfile中只能出现一次，如果出现多次则最后一�
 
 SHELL
 
-SHEELL指令允许默认的shell形式被命令形式覆盖。在Linux系统中默认shell形式为 ["/bin/sh", "-c"], 在 Windows上是["cmd", "/S", "/C"]。SHELL指令必须用Dockerfile中的JSON格式写入。SHELL指令在Windows上特别有用，其中有两个常用的和完全不同的本机shell：cmd和powershell，以及包括sh的备用shell。 SHELL指令可以出现多次。每个SHELL指令都会覆盖所有以前的SHELL指令，并影响所有后续指令。
+SHELL指令允许默认的shell形式被命令形式覆盖。在Linux系统中默认shell形式为 ["/bin/sh", "-c"], 在 Windows上是["cmd", "/S", "/C"]。SHELL指令必须用Dockerfile中的JSON格式写入。SHELL指令在Windows上特别有用，其中有两个常用的和完全不同的本机shell：cmd和powershell，以及包括sh的备用shell。 SHELL指令可以出现多次。每个SHELL指令都会覆盖所有以前的SHELL指令，并影响所有后续指令。
