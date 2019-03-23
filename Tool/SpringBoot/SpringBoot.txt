@@ -4,6 +4,7 @@ MAINTAINER ybxxszl
 VOLUME /tmp
 ARG JAR_FILE
 COPY ${JAR_FILE} qs.jar
+ENTRYPOINT ["java","-jar","/qs.jar"]
 
 docker pull openjdk:8-jdk-alpine
 docker build --build-arg JAR_FILE=qs.jar -t qs:1.0 .
