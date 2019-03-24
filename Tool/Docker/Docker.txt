@@ -31,6 +31,9 @@
 	获取镜像的详细信息	docker inspect qs
 	获取容器的详细信息	docker inspect QS
 
+	Docker容器中的文件拷贝到宿主机	docker cp Gerrit:/var/gerrit/etc/gerrit.config /root/gerrit.config
+	宿主机中的文件拷贝到Docker容器	docker cp /root/gerrit.config Gerrit:/var/gerrit/etc/gerrit.config
+
 	推送镜像到Docker Hub
 		登录
 			docker login
