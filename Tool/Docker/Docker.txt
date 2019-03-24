@@ -87,3 +87,14 @@ Dockerfile
 		docker create --name Tomcat -p 8080:8080 tomcat:1.0
 	6、启动容器
 		docker start Tomcat
+
+
+FROM docker.io/tomcat
+LABEL name="ybxxszl" \email="1062837400@qq.com"
+ADD timezone /etc/
+ADD tomcat-users.xml /usr/local/tomcat/conf/
+RUN rm -rf /usr/local/tomcat/webapps/examples
+RUN rm -rf /usr/local/tomcat/webapps/docs
+
+docker build -t tomcat:1.0 .
+docker inspect tomcat:1.0
