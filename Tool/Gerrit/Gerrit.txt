@@ -84,3 +84,41 @@ docker run --name Gerrit -p 8082:8080 -p 29418:29418 -d docker.io/gerritcoderevi
 
 docker pull docker.io/openfrontier/gerrit
 docker run --name Gerrit -p 8082:8080 -p 29418:29418 -d docker.io/openfrontier/gerrit
+
+[gerrit]
+	basePath = git
+	serverId = 872dafaa-3220-4d2c-8f14-a191eec43a56
+	canonicalWebUrl = http://96db21344c93
+[database]
+	type = h2
+	database = db/ReviewDB
+[index]
+	type = LUCENE
+[auth]
+	type = DEVELOPMENT_BECOME_ANY_ACCOUNT
+[sendemail]
+        smtpServer = smtp.qq.com
+        smtpServerPort = 25
+        smtpUser = 1062837400@qq.com
+        smtpPass = ebpmyklxkalwbfgd
+        from = 1062837400@qq.com
+[sshd]
+	listenAddress = *:29418
+[httpd]
+	listenUrl = http://*:8080/
+	filterClass = com.googlesource.gerrit.plugins.ootb.FirstTimeRedirect
+	firstTimeRedirectUrl = /login/%23%2F?account_id=1000000
+[cache]
+	directory = cache
+[plugins]
+	allowRemoteAdmin = true
+[container]
+	javaOptions = "-Dflogger.backend_factory=com.google.common.flogger.backend.log4j.Log4jBackendFactory#getInstance"
+	javaOptions = "-Dflogger.logging_context=com.google.gerrit.server.logging.LoggingContext#getInstance"
+	user = gerrit
+	javaHome = /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64/jre
+	javaOptions = -Djava.security.egd=file:/dev/./urandom
+[receive]
+	enableSignedPush = false
+[noteDb "changes"]
+	autoMigrate = true
