@@ -1,1 +1,12 @@
 docker pull docker.io/gitlab/gitlab-ce
+
+
+docker run --name GitLab -p 80:80 -d docker.io/gitlab/gitlab-ce
+
+
+docker exec -it GitLab vi /etc/gitlab/gitlab.rb
+
+external_url 'http://192.168.1.5'
+
+
+docker restart GitLab
