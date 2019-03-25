@@ -1,9 +1,0 @@
-1、GitLab
-2、DevOps
-3、K8S
-4、ELK
-ELK日志系统之通用应用程序日志接入方案 https://mp.weixin.qq.com/s/7bygZNOr_mdCWpF9PrZcFg
-ELK日志系统之使用Rsyslog快速方便的收集Nginx日志 https://mp.weixin.qq.com/s?__biz=MzU5MDY1MzcyOQ==&mid=2247483779&idx=1&sn=ceca63d6b95ca9cec280698d014ba18d&scene=21#wechat_redirect
-
-https://blog.csdn.net/m0_37739193/article/details/79014343
-https://www.cnblogs.com/kevingrace/p/5919021.html
