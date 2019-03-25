@@ -1,2 +1,2 @@
 docker pull docker.io/portainer/portainer
-docker run --name Portainer -p 8085:9000 -v /var/run/docker.sock:/var/run/docker.sock -d docker.io/portainer/portainer
+docker run --name Portainer -p 8084:9000 -v /var/run/docker.sock:/var/run/docker.sock -d docker.io/portainer/portainer
