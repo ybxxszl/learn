@@ -1,0 +1,4 @@
+1、Jenkins使用Gerrit触发器
+2、修改Gerrit的hostname
+3、Redmine使用Gerrit连接
+4、Gerrit登录方式
