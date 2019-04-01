@@ -1,4 +1,4 @@
 ﻿Plugins
 1、Lombok plugin
-2、Gerrit
-3、Spring Assistant
+2、Spring Assistant
+3、Gerrit
