@@ -1,2 +1,5 @@
 1、Jenkins使用Gerrit触发
 2、Redmine使用Gerrit连接
+
+1、Kubernetes
+2、OpenResty
