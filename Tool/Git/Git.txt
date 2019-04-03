@@ -112,3 +112,9 @@ Git（git-bash）
 	7、忽略特殊文件
 		配置.gitignore
 	8、搭建Git服务器
+
+关于Gerrit
+1、推送Gerrit
+	git add .
+	git commit --m "提交的说明"
+	git push origin HEAD:refs/for/master
