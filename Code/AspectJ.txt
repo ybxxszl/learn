@@ -1,0 +1,9 @@
+1、安装
+	java -jar aspectj-1.9.3.jar
+2、添加环境变量
+	bin目录添加环境变量
+3、编译
+	ajc -d . Hello.java TestAspectJ.java
+	ajc -d . *.java
+4、运行
+	java Hello
