@@ -11,8 +11,8 @@
 		docker logs -f --tail 200 Jenkins
 Dockerfile
 FROM docker.io/tomcat
-RUN pwd
-RUN ls
+LABEL name="ybxxszl" \email="1062837400@qq.com"
+ADD timezone /etc/
 COPY jenkins.war /usr/local/tomcat/webapps/
 COPY jdk-8u181-linux-x64.tar.gz /usr/local/java/
 RUN tar -xzf /usr/local/java/jdk-8u181-linux-x64.tar.gz -C /usr/local/java/
