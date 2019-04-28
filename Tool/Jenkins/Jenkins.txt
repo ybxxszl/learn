@@ -39,3 +39,8 @@ RUN rm -rf /usr/local/java/jdk-8u181-linux-x64.tar.gz
 	5、其他
 		Gerrit Trigger			Gerrit触发器插件
 		Email Extension Plugin		邮件增强插件
+
+
+docker pull jenkins
+
+docker run -d -p 8080:8080 --name Jenkins -v /opt/jenkins/data/jenkins:/var/jenkins_home jenkins

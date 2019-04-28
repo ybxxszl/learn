@@ -8,3 +8,9 @@ windows
 	查看nginx版本			nginx -v
 	查看nginx版本、编译器版本、配置参数	nginx -V
 	查看nginx进程			tasklist /fi "imagename eq nginx.exe"
+
+
+
+docker pull nginx
+
+docker run -d -p 80:80 --name Nginx -v /opt/nginx/config/conf.d:/etc/nginx/conf.d -v /opt/nginx/apps/:/opt/apps/ nginx

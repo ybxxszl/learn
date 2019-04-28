@@ -1,0 +1,20 @@
+FROM tomcat:9.0.19-jre8-alpine
+
+LABEL name="ybxxszl" \email="1062837400@qq.com"
+
+# 定义环境变量
+ENV TIME_ZONE Asia/Shanghai
+
+# 时区同步和时间同步
+RUN \
+apk add --no-cache tzdata \
+&& echo "${TIME_ZONE}" > /etc/timezone \
+&& ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
+
+# 允许所有IP访问
+ADD context.xml /usr/local/tomcat/webapps/manager/META-INF/
+# 配置用户及权限
+ADD tomcat-users.xml /usr/local/tomcat/conf/
+
+RUN rm -rf /usr/local/tomcat/webapps/examples
+RUN rm -rf /usr/local/tomcat/webapps/docs
