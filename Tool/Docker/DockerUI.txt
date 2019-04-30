@@ -1,2 +1,0 @@
-docker pull docker.io/uifd/ui-for-docker
-docker run --name DockerUI -p 8084:9000 -v /var/run/docker.sock:/var/run/docker.sock -d docker.io/uifd/ui-for-docker
