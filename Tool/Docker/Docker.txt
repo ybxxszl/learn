@@ -87,3 +87,11 @@ Dockerfile
 		docker create --name Tomcat -p 8080:8080 tomcat:1.0
 	6、启动容器
 		docker start Tomcat
+
+
+Docker安装
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce
+pip install --upgrade pip
+pip install docker-compose
