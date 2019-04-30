@@ -1,0 +1,20 @@
+1、安装pip
+	yum -y install epel-release
+	yum -y install python-pip
+2、查看pip版本
+	pip --version
+3、更新pip
+	pip install --upgrade pip
+4、安装docker-compose
+	pip install docker-compose
+	遇到问题：
+		①Found existing installation: requests 2.6.0
+			pip install docker-compose --ignore-installed requests
+5、查看docker-compose版本
+	docker-compose version
+6、卸载docker-compose
+	pip uninstall docker-compose
+7、下载docker-compose脚本
+	curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+8、模板文件
+	默认为docker-compose.yml
