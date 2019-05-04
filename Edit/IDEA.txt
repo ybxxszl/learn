@@ -2,3 +2,4 @@
 1、Lombok plugin
 2、Spring Assistant
 3、Gerrit
+4、RestfulToolkit
