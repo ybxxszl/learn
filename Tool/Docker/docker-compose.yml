@@ -1,0 +1,35 @@
+#docker-compose版本
+version: "2"
+#服务
+services:
+  #使用官方Redis镜像创建容器
+  Redis:
+    image: docker.io/redis
+    container_name: Redis
+    ports:
+      - 6379:6379
+    networks:
+      - dev
+  #使用阿里云MySQL镜像创建容器
+  MySQL:
+    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+    container_name: MySQL
+    ports:
+      - 3306:3306
+    networks:
+      - dev
+  Tomcat:
+    depends_on:
+      - Redis
+      - MySQL
+    image: docker.io/tomcat
+    container_name: Tomcat
+    ports:
+      - 8080:8080
+    networks:
+      - dev
+#网络
+networks:
+  dev:
+    #桥接网络
+    driver: bridge
