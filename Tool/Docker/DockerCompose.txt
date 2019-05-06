@@ -1,3 +1,5 @@
+// https://blog.51cto.com/9291927/2310444
+
 1、安装pip
 	yum -y install epel-release
 	yum -y install python-pip
@@ -18,3 +20,45 @@
 	curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 8、模板文件
 	默认为docker-compose.yml
+
+
+一、常用选项
+
+docker-compose -f docker-compose.yml	指定模板文件名称
+docker-compose -p ybxxszl				指定工程名称
+
+docker-compose -f docker-compose.yml -p ybxxszl up -d	后台启动所有容器
+
+二、常用命令
+
+docker-compose config					查看模板文件
+docker-compose config -q				验证模板文件
+
+docker-compose ps						查看所有容器
+
+docker-compose up						启动所有容器
+docker-compose up -d					后台启动所有容器
+
+docker-compose up -d --build			容器启动前，构建镜像
+docker-compose up -d --no-build			容器启动前，不构建镜像
+docker-compose up -d --no-recreate		容器已存在，不重新创建容器
+docker-compose up -d --force-recreate	容器已存在，重新创建容器
+
+docker-compose build					构建所有镜像
+
+docker-compose start					启动所有容器
+
+docker-compose stop						停止所有容器
+
+docker-compose rm						删除所有容器
+docker-compose rm -v					删除所有容器和挂载的数据卷
+
+docker-compose down --rmi all			删除所有镜像
+docker-compose down --rmi local			删除所有镜像
+
+docker-compose push						推送所有镜像
+docker-compose pull						拉取所有镜像
+
+docker-compose logs						查看服务日志
+
+docker-compose -h						查看帮助
