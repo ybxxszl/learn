@@ -2,6 +2,18 @@
 version: "2"
 #服务
 services:
+  #使用阿里云MySQL镜像创建容器
+  MySQL:
+    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+    container_name: MySQL
+    ports:
+      - 3306:3306
+    #挂载卷
+    volumes:
+      - /opt/mysql/config/my.cnf:/etc/my.cnf
+      - /opt/mysql/data/mysql:/var/lib/mysql
+    networks:
+      - dev
   #使用官方Redis镜像创建容器
   Redis:
     image: docker.io/redis
@@ -10,18 +22,11 @@ services:
       - 6379:6379
     networks:
       - dev
-  #使用阿里云MySQL镜像创建容器
-  MySQL:
-    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
-    container_name: MySQL
-    ports:
-      - 3306:3306
-    networks:
-      - dev
+  #使用官方Tomcat镜像创建容器
   Tomcat:
     depends_on:
-      - Redis
       - MySQL
+      - Redis
     image: docker.io/tomcat
     container_name: Tomcat
     ports:
