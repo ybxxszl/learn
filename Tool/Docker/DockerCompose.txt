@@ -12,6 +12,10 @@
 	遇到问题：
 		①Found existing installation: requests 2.6.0
 			pip install docker-compose --ignore-installed requests
+		②File "/usr/lib/python2.7/site-packages/paramiko/ssh_gss.py", line 55, in <module>
+			vim /usr/lib/python2.7/site-packages/paramiko/ssh_gss.py
+			53 import gssapi.error
+			54 GSS_EXCEPTIONS = (gssapi.error.GSSException,)
 5、查看docker-compose版本
 	docker-compose version
 6、卸载docker-compose
