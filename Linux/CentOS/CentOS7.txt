@@ -26,6 +26,22 @@
 	4、更新缓存
 		yum makecache
 
+解决中文乱码
+	1、查看是否存在中文语言包
+		locale -a
+	2、安装中文语言包
+		yum install kde-l10n-Chinese
+	3、修改并应用配置
+		localectl set-locale LANG=zh_CN
+		source /etc/locale.conf
+
+		vim /etc/locale.conf
+		LANG=zh_CN
+		source /etc/locale.conf
+	4、查看时间
+		date
+		2019年 12月 31日 星期二 23:59:59 CST
+
 1、SSH服务
 	安装openssh
 		yum install openssh*
