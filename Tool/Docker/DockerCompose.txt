@@ -1,5 +1,3 @@
-// https://blog.51cto.com/9291927/2310444
-
 1、安装pip
 	yum -y install epel-release
 	yum -y install python-pip
