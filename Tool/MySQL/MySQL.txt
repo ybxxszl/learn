@@ -1,3 +1,3 @@
 docker pull registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
 
-docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 --name MySQL --privileged=true -v /opt/mysql/config/my.cnf:/etc/my.cnf -v /opt/mysql/data/mysql:/var/lib/mysql registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 --name MySQL --privileged=true -v /opt/mysql/config/my.cnf:/etc/my.cnf -v /opt/mysql/data:/var/lib/mysql registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
