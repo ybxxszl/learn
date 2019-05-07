@@ -4,35 +4,97 @@ version: "2"
 services:
   #使用阿里云MySQL镜像创建容器
   MySQL:
+    #镜像文件
     image: registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+    #容器名称
     container_name: MySQL
+    #root权限
+    privileged: true
+    #环境变量
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    #端口映射
     ports:
       - 3306:3306
     #挂载卷
     volumes:
-      - /opt/mysql/config/my.cnf:/etc/my.cnf
-      - /opt/mysql/data/mysql:/var/lib/mysql
+      - /opt/docker/mysql/config/my.cnf:/etc/my.cnf
+      - /opt/docker/mysql/data:/var/lib/mysql
+    #网络
     networks:
       - dev
+    #说明
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   #使用官方Redis镜像创建容器
   Redis:
+    #镜像文件
     image: docker.io/redis
+    #容器名称
     container_name: Redis
+    #root权限
+    privileged: true
+    #端口映射
     ports:
       - 6379:6379
+    #挂载卷
+    volumes:
+      - /opt/docker/redis/config/redis.conf:/etc/redis/redis.conf
+      - /opt/docker/redis/data:/data
+    #执行命令
+    command: redis-server /etc/redis/redis.conf
+    #网络
     networks:
       - dev
+    #说明
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   #使用官方Tomcat镜像创建容器
-  Tomcat:
+  Tomcat1:
+    #依赖
     depends_on:
       - MySQL
       - Redis
+    #镜像文件
     image: docker.io/tomcat
-    container_name: Tomcat
+    #容器名称
+    container_name: Tomcat1
+    #root权限
+    privileged: true
+    #端口映射
     ports:
-      - 8080:8080
+      - 8081:8080
+    #网络
     networks:
       - dev
+    #说明
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  #使用官方Tomcat镜像创建容器
+  Tomcat2:
+    #依赖
+    depends_on:
+      - MySQL
+      - Redis
+    #镜像文件
+    image: docker.io/tomcat
+    #容器名称
+    container_name: Tomcat2
+    #root权限
+    privileged: true
+    #端口映射
+    ports:
+      - 8082:8080
+    #网络
+    networks:
+      - dev
+    #说明
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
 #网络
 networks:
   dev:
