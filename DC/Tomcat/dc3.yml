@@ -1,0 +1,21 @@
+version: "2"
+services:
+  #自定义镜像
+  #运行war包
+  Tomcat:
+    image: tomcat:1.0
+    build:
+      context: .
+      dockerfile: tomcat
+    container_name: Tomcat
+    privileged: true
+    ports:
+      - 8080:8080
+    networks:
+      - dev
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
