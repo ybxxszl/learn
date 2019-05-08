@@ -1,0 +1,19 @@
+version: "2"
+services:
+  #Docker可视化工具Portainer
+  Portainer:
+    image: docker.io/portainer/portainer
+    container_name: Portainer
+    privileged: true
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - dev
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
