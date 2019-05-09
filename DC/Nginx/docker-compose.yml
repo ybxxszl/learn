@@ -12,10 +12,15 @@ services:
       - /opt/docker/nginx/config/conf.d/default.conf:/etc/nginx/conf.d/default.conf
       - /opt/docker/nginx/apps/:/opt/apps/
     networks:
-      - dev
+      dev:
+        ipv4_address: 172.20.0.5
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
 networks:
   dev:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1

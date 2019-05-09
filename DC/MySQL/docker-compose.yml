@@ -22,31 +22,8 @@ services:
       - /opt/docker/mysql/data:/var/lib/mysql
     #网络
     networks:
-      - dev
-    #说明
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  #使用官方Redis镜像创建容器
-  Redis:
-    #镜像文件
-    image: docker.io/redis
-    #容器名称
-    container_name: Redis
-    #root权限
-    privileged: true
-    #端口映射
-    ports:
-      - 6379:6379
-    #挂载卷
-    volumes:
-      - /opt/docker/redis/config/redis.conf:/etc/redis/redis.conf
-      - /opt/docker/redis/data:/data
-    #执行命令
-    command: redis-server /etc/redis/redis.conf
-    #网络
-    networks:
-      - dev
+      dev:
+        ipv4_address: 172.20.0.4
     #说明
     labels:
       - name=ybxxszl
@@ -56,3 +33,7 @@ networks:
   dev:
     #桥接网络
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1

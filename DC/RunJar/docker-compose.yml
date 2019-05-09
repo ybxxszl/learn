@@ -1,0 +1,69 @@
+version: "2"
+services:
+  RunJar_MQ:
+    image: runjar:1.0
+    container_name: RunJar_MQ
+    privileged: true
+    ports:
+      - 8282:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.1.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  RunJar_Token:
+    image: runjar:1.0
+    container_name: RunJar_Token
+    privileged: true
+    ports:
+      - 8383:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.1.3
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  RunJar_QS1:
+    image: runjar:1.0
+    container_name: RunJar_QS1
+    privileged: true
+    ports:
+      - 8484:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.1.4
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  RunJar_QS2:
+    image: runjar:1.0
+    container_name: RunJar_QS2
+    privileged: true
+    ports:
+      - 8585:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.1.5
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  RunJar_QS3:
+    image: runjar:1.0
+    container_name: RunJar_QS3
+    privileged: true
+    ports:
+      - 8686:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.1.6
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.1.0/16
+          gateway: 172.20.1.1
