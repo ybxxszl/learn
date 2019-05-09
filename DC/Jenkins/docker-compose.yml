@@ -1,0 +1,25 @@
+version: "2"
+services:
+  # chown -R 1000 /opt/docker/jenkins/jenkins_home
+  Jenkins:
+    image: docker.io/jenkins/jenkins:lts
+    container_name: Jenkins
+    privileged: true
+    ports:
+      - 8082:8080
+      - 50000:50000
+    volumes:
+      - /opt/docker/jenkins/jenkins_home:/var/jenkins_home
+    networks:
+      dev:
+        ipv4_address: 172.20.2.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.2.0/16
+          gateway: 172.20.2.1
