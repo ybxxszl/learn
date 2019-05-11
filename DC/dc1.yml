@@ -1,0 +1,40 @@
+version: "2"
+services:
+  Portainer:
+    image: docker.io/portainer/portainer
+    container_name: Portainer
+    restart: always
+    privileged: true
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      dev:
+        ipv4_address: 172.20.1.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Jenkins:
+    image: docker.io/jenkins/jenkins:lts
+    container_name: Jenkins
+    restart: always
+    privileged: true
+    ports:
+      - 8000:8080
+      - 50000:50000
+    volumes:
+      - /opt/docker/jenkins/jenkins_home:/var/jenkins_home
+    networks:
+      dev:
+        ipv4_address: 172.20.1.3
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.1.0/16
+          gateway: 172.20.1.1

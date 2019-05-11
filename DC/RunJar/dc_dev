@@ -3,4 +3,4 @@ LABEL name="ybxxszl" \email="1062837400@qq.com"
 VOLUME /tmp
 ADD timezone /etc/
 ADD base.jar /
-ENTRYPOINT ["java","-jar","/base.jar"]
+ENTRYPOINT ["java","-jar","/base.jar","--spring.profiles.active=dev"]
