@@ -1,0 +1,44 @@
+version: "2"
+services:
+  MySQL:
+    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+    container_name: MySQL
+    restart: always
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - 3306:3306
+    volumes:
+      - /opt/docker/mysql/config/my.cnf:/etc/my.cnf
+      - /opt/docker/mysql/data:/var/lib/mysql
+    networks:
+      dev:
+        ipv4_address: 172.20.2.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Redis:
+    image: docker.io/redis
+    container_name: Redis
+    restart: always
+    privileged: true
+    ports:
+      - 6379:6379
+    volumes:
+      - /opt/docker/redis/config/redis.conf:/etc/redis/redis.conf
+      - /opt/docker/redis/data:/data
+    command: redis-server /etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.20.2.3
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.2.0/16
+          gateway: 172.20.2.1

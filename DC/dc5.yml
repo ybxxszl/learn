@@ -1,0 +1,33 @@
+version: "2"
+services:
+  QS1:
+    image: runjar_prod:1.0
+    container_name: QS1
+    privileged: true
+    ports:
+      - 8282:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  QS2:
+    image: runjar_prod:1.0
+    container_name: QS2
+    privileged: true
+    ports:
+      - 8383:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.3
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.5.0/16
+          gateway: 172.20.5.1
