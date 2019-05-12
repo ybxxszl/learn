@@ -1,16 +1,37 @@
-windows
-	启动				start nginx
-	停止				nginx -s quit
-	重新加载日志			nginx -s reopen
-	重新加载配置文件			nginx -s reload
-	检查配置文件是否正确		nginx -t conf/nginx.conf
-	更改配置文件			nginx -c conf/my.conf
-	查看nginx版本			nginx -v
-	查看nginx版本、编译器版本、配置参数	nginx -V
-	查看nginx进程			tasklist /fi "imagename eq nginx.exe"
-
-
-
 docker pull nginx
-
 docker run -d -p 80:80 --name Nginx -v /opt/nginx/config/conf.d:/etc/nginx/conf.d -v /opt/nginx/apps/:/opt/apps/ nginx
+
+
+安装依赖
+	yum install gcc-c++
+	yum install -y pcre pcre-devel
+	yum install -y zlib zlib-devel
+	yum install -y openssl openssl-devel
+解压文件
+	tar -xzf nginx-1.16.0.tar.gz
+进入nginx目录
+	编译
+		./configure
+	安装
+		make
+		make install
+	进入sbin目录
+		启动
+			./nginx
+开放80端口
+	firewall-cmd --permanent --add-port=80/tcp
+重新启动防火墙
+	firewall-cmd --reload
+
+Linux
+	启动					./nginx
+	停止					./nginx -s quit
+	重新加载配置文件		./nginx -s reload
+	检查配置文件是否正确	./nginx -t
+
+Windows
+	启动					start nginx
+	停止					nginx -s quit
+	重新加载配置文件		nginx -s reload
+	检查配置文件是否正确	nginx -t conf/nginx.conf
+	更改配置文件			nginx -c conf/my.conf
