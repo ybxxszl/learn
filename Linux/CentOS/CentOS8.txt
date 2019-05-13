@@ -1,0 +1,1 @@
+netstat -tunlp | grep 80	查看80端口情况

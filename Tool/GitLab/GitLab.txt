@@ -1,0 +1,2 @@
+docker pull docker.io/gitlab/gitlab-ce
+docker run -d --name=GitLab -p 80:80 docker.io/gitlab/gitlab-ce

@@ -1,8 +1,4 @@
-1、Jenkins使用Gerrit触发
-2、Redmine使用Gerrit连接
-
 1、Kubernetes
 2、OpenResty
-3、GitLab
-4、Gitblit
-5、ELK
+3、Gitblit
+4、ELK
