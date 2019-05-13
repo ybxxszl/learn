@@ -1,0 +1,21 @@
+docker pull docker.io/openresty/openresty
+docker run -d -p 80:80 --name OpenResty docker.io/openresty/openresty
+
+一、安装开发库
+    yum install pcre-devel openssl-devel gcc curl
+二、链接安装OpenResty
+    1、添加OpenResty仓库
+        yum install yum-utils
+        yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+    2、安装
+        yum install openresty
+三、编译安装OpenResty
+    1、解压
+        tar -xzf openresty-1.13.6.2.tar.gz
+    2、进入OpenResty目录
+        配置
+            ./configure
+        编译
+            make
+        安装
+            make install
