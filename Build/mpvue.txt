@@ -11,9 +11,9 @@ Vant Weapp组件	https://youzan.github.io/vant-weapp/#/intro
 3、全局安装vue-cli
 	npm install --global vue-cli@2.9
 4、创建基于mpvue-quickstart的项目
-	vue init mpvue/mpvue-quickstart my-project
+	vue init mpvue/mpvue-quickstart qs-mpvue
 5、安装依赖
-	cd my-project
+	cd qs-mpvue
 	npm install
 	npm run dev
 6、导入项目
@@ -22,5 +22,12 @@ Vant Weapp组件	https://youzan.github.io/vant-weapp/#/intro
 	npm start
 
 
-npm run build
-npm run dev
+快速导入
+1、安装依赖
+	cd qs-mpvue
+	npm install
+	npm run dev
+2、导入项目
+	D:\qs-mpvue\dist\wx
+3、编译运行
+	npm start
