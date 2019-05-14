@@ -1,2 +1,2 @@
 docker pull docker.io/gitlab/gitlab-ce
-docker run -d --name=GitLab -p 80:80 docker.io/gitlab/gitlab-ce
+docker run -d --name=GitLab -p 8080:80 -p 222:22 -p 443:443 -v /opt/docker/gitlab/etc:/etc/gitlab -v /opt/docker/gitlab/data:/var/opt/gitlab -v /opt/docker/gitlab/log:/var/log/gitlab docker.io/gitlab/gitlab-ce
