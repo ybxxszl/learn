@@ -1,4 +1,2 @@
 1、Kubernetes
-2、OpenResty
-3、Gitblit
-4、ELK
+2、ELK
