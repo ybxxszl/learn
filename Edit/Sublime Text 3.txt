@@ -21,3 +21,17 @@ Sublime Text 3 插件（http://cst.stu.126.net/u/json/cms/channel_v3.json）
 20、Less2Css			编译less生成css
 21、AngularJS			AngularJS插件
 22、Vue Syntax HighlightVue插件
+
+1、Lua配置
+①工具 -> 编译系统 -> 新建编译系统
+MyLua.sublime-build
+{
+  "cmd": [
+    "D:/Lua/5.1/lua.exe",
+    "$file"
+  ],
+  "file_regex": "^(?:lua:)?[\t ](...*?):([0-9]*):?([0-9]*)",
+  "selector": "source.lua"
+}
+②工具 -> 编译系统 -> 选中MyLua
+③编译快捷键 F7
