@@ -1,0 +1,28 @@
+vue-cli@2.9.6
+1、安装
+	npm install --global vue-cli
+2、卸载
+	npm uninstall --global vue-cli
+3、查看版本
+	vue -V
+4、创建项目
+	npm init webpack qs-vue
+	cd qs-vue
+	npm install
+5、运行项目
+	npm run dev
+
+
+vue-cli@3.0.0
+1、安装
+	npm install --global @vue/cli
+2、卸载
+	npm uninstall --global @vue/cli
+3、查看版本
+	vue -V
+4、创建项目
+	npm creare qs-vue
+	cd qs-vue
+	npm install
+5、运行项目
+	npm run serve
