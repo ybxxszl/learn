@@ -26,3 +26,11 @@ vue-cli@3.0.0
 	npm install
 5、运行项目
 	npm run serve
+
+
+
+
+1、axios
+	npm install axios
+2、echarts
+	npm install echarts
