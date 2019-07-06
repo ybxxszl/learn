@@ -4,3 +4,7 @@
 3、Gerrit
 4、RestfulToolkit
 5、EmmyLua
+6、VisualVM Launcher
+7、Background Image Plus
+8、Programmer Motivator
+9、Vue.js
