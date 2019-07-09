@@ -9,7 +9,7 @@ Vant Weapp组件	https://youzan.github.io/vant-weapp/#/intro
 2、修改源
 	npm set registry https://registry.npm.taobao.org/
 3、全局安装vue-cli
-	npm install --global vue-cli@2.9
+	npm install --global vue-cli
 4、创建基于mpvue-quickstart的项目
 	vue init mpvue/mpvue-quickstart qs-mpvue
 5、安装依赖
