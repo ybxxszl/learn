@@ -1,0 +1,12 @@
+1、初始化
+	yarn init
+2、添加依赖
+	yarn add flyio --dev
+	yarn add flyio
+3、移除依赖
+	yarn remove flyio
+4、升级依赖
+	yarn upgrade flyio
+5、安装全部依赖
+	yarn
+	yarn install
