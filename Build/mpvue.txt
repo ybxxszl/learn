@@ -31,3 +31,16 @@ Vant Weapp组件	https://youzan.github.io/vant-weapp/#/intro
 	D:\qs-mpvue\dist\wx
 3、编译运行
 	npm start
+
+
+
+vue init F-loat/mpvue-quickstart qs-mpvue
+cd qs-mpvue
+npm install
+npm start
+
+
+
+
+1、flyio
+	npm install flyio
