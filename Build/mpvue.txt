@@ -34,6 +34,7 @@ Vant Weapp×é¼þ	https://youzan.github.io/vant-weapp/#/intro
 
 
 
+npm install --global @vue/cli-init
 vue init F-loat/mpvue-quickstart qs-mpvue
 cd qs-mpvue
 npm install
