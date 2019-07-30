@@ -43,5 +43,7 @@ npm start
 
 
 
-1¡¢flyio
+1¡¢mpvue-entry
+	npm install mpvue-entry -D
+2¡¢flyio
 	npm install flyio

@@ -21,16 +21,21 @@ vue-cli@3.0.0
 3、查看版本
 	vue -V
 4、创建项目
-	npm creare qs-vue
+	vue create qs-vue
 	cd qs-vue
-	npm install
 5、运行项目
 	npm run serve
 
 
 
 
-1、axios
+1、vue-router
+	npm install vue-router
+2、vuex
+	npm install vuex
+3、axios
 	npm install axios
-2、echarts
+4、axios vue-axios
+	npm install axios vue-axios
+5、echarts
 	npm install echarts
