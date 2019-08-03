@@ -24,6 +24,18 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  Admin:
+    image: runjar_prod:1.0
+    container_name: Admin
+    privileged: true
+    ports:
+      - 8084:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.4.4
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
 networks:
   dev:
     driver: bridge

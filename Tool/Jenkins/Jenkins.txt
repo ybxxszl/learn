@@ -43,3 +43,6 @@ RUN rm -rf /usr/local/java/jdk-8u181-linux-x64.tar.gz
 
 docker pull docker.io/jenkins/jenkins:lts
 docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 docker.io/jenkins/jenkins:lts
+
+…Ë÷√ ±º‰
+System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', 'Asia/Shanghai')
