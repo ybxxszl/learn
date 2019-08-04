@@ -1,0 +1,6 @@
+1、安装nsenter
+	docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+
+2、使用docker-enter
+	docker-enter QS1
+	docker-enter QS2
