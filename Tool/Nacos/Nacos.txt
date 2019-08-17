@@ -1,0 +1,7 @@
+1、克隆项目
+	git clone https://github.com/nacos-group/nacos-docker.git
+	cd nacos-docker
+2、单机模式
+	docker-compose -f example/standalone.yaml up
+3、集群模式
+	docker-compose -f example/cluster-hostname.yaml up

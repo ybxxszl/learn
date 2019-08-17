@@ -11,3 +11,8 @@
 
 启动服务：redis-server.exe --service-start --Service-name RedisServer1
 停止服务：redis-server.exe --service-stop --Service-name RedisServer1
+
+
+
+
+连接Redis服务：redis-cli -h 127.0.0.1 -p 6379 -a 1234 -n 0

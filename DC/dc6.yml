@@ -1,0 +1,22 @@
+version: "2"
+services:
+  Grafana:
+    image: docker.io/grafana/grafana
+    container_name: Grafana
+    restart: always
+    privileged: true
+    ports:
+      - 3000:3000
+    networks:
+      dev:
+        ipv4_address: 172.20.6.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.6.0/16
+          gateway: 172.20.6.1

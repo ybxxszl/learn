@@ -24,6 +24,54 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  QS3:
+    image: runjar_prod:1.0
+    container_name: QS3
+    privileged: true
+    ports:
+      - 8484:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.4
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  QS4:
+    image: runjar_prod:1.0
+    container_name: QS4
+    privileged: true
+    ports:
+      - 8585:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.5
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  QS5:
+    image: runjar_prod:1.0
+    container_name: QS5
+    privileged: true
+    ports:
+      - 8686:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.6
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  QS6:
+    image: runjar_prod:1.0
+    container_name: QS6
+    privileged: true
+    ports:
+      - 8787:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.7
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
 networks:
   dev:
     driver: bridge
