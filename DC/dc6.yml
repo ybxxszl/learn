@@ -13,6 +13,19 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  Prometheus:
+    image: docker.io/prom/prometheus
+    container_name: Prometheus
+    restart: always
+    privileged: true
+    ports:
+      - 9090:9090
+    networks:
+      dev:
+        ipv4_address: 172.20.6.3
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
 networks:
   dev:
     driver: bridge
