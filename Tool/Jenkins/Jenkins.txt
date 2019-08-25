@@ -36,7 +36,10 @@ RUN rm -rf /usr/local/java/jdk-8u181-linux-x64.tar.gz
 		Git plugin			Git插件
 		Publish Over SSH		SSH推送插件
 		Deploy to container Plugin	应用服务器推送插件
-	5、其他
+	5、VUE项目
+		NodeJS Plugin			NodeJS插件
+		Publish Over SSH		SSH推送插件
+	6、其他
 		Gerrit Trigger			Gerrit触发器插件
 		Email Extension Plugin		邮件增强插件
 
