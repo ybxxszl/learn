@@ -1,0 +1,26 @@
+version: "2"
+services:
+  Nacos:
+    image: docker.io/nacos/nacos-server
+    container_name: Nacos
+    restart: always
+    privileged: true
+    environment:
+      - MODE=standalone
+    ports:
+      - 8848:8848
+    networks:
+      dev:
+        ipv4_address: 172.20.7.2
+    volumes:
+      - /opt/docker/nacos/:/home/nacos
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.7.0/16
+          gateway: 172.20.7.1
