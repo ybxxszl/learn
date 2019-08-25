@@ -10,6 +10,8 @@ services:
     networks:
       dev:
         ipv4_address: 172.20.6.2
+    volumes:
+      - /opt/docker/grafana/:/etc/grafana
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
@@ -23,6 +25,8 @@ services:
     networks:
       dev:
         ipv4_address: 172.20.6.3
+    volumes:
+      - /opt/docker/prometheus/:/etc/prometheus
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
