@@ -12,9 +12,21 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
-  MQ:
+  #MQ:
+    #image: runjar_prod:1.0
+    #container_name: MQ
+    #privileged: true
+    #ports:
+      #- 8083:8080
+    #networks:
+      #dev:
+        #ipv4_address: 172.20.4.3
+    #labels:
+      #- name=ybxxszl
+      #- email=1062837400@qq.com
+  Eureka:
     image: runjar_prod:1.0
-    container_name: MQ
+    container_name: Eureka
     privileged: true
     ports:
       - 8083:8080
