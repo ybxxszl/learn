@@ -1,0 +1,91 @@
+spring:
+  redis:
+    database: 0
+    host: 172.20.2.3
+    port: 6379
+    password: 1234
+    timeout: 10000
+    jedis:
+      pool:
+        min-idle: 1
+        max-idle: 5
+        max-active: 10
+        max-wait: 100000
+        testOnBorrow: true
+        testOnReturn: true
+  #应用
+  application:
+    #名称
+    name: Token
+  #Spring Admin
+  boot:
+    admin:
+      #客户端
+      client:
+        #实例
+        instance:
+          #IP
+          prefer-ip: true
+        #注册多个服务
+        register-once: false
+        #注册地址
+        url:
+          - http://127.0.0.1:8080/token
+          - http://172.20.4.4:8080/admin
+
+#管理
+management:
+  #公开所有端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  #展示健康详细信息
+  endpoint:
+    health:
+      show-details: ALWAYS
+  #关闭健康检查
+  health:
+    defaults:
+      enabled: false
+
+info:
+  app:
+    name: 调查问卷
+    msg: 生命可以归结为一种简单的选择，要么忙于生存，要么赶着去死。谦虚、谨慎、戒骄、戒躁。
+
+server:
+  servlet:
+    context-path: /token
+  tomcat:
+    #accesslog
+    accesslog:
+      #开启accesslog
+      enabled: true
+      #日志路径
+      directory: ./logs/accesslog
+      #日志名称前缀
+      prefix: accesslog
+      #日志名称后缀
+      suffix: .log
+      #日志每小时封存
+      file-date-format: .yyyy-MM-dd-HH
+
+#日志
+logging:
+  pattern:
+    #输出到控制台的日志格式
+    console: "%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] [%logger{50}] - %msg%n"
+    #输出到文件的日志格式
+    file: "%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] [%logger{50}] - %msg%n"
+  level:
+    root: info
+  file: token.log
+
+#JWT
+jwt:
+  secret: Vm0wd2VHUXhUWGROVldSWFYwZG9WbFl3WkRSV01WbDNXa1pPVmxKc2NEQmFSV2hyVm0xS1IyTkliRmRXTTFKTVZsVmFWMVpWTVVWaA0KZWpBOQ==
+  time: 600000
