@@ -108,6 +108,8 @@
 	ÒÆ¶¯
 		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat1
 		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat2
+6¡¢°²×°openjdk
+	yum install java-1.8.0-openjdk
 
 
 ×¢£º
