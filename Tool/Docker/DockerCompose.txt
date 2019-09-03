@@ -14,6 +14,9 @@
 			vim /usr/lib/python2.7/site-packages/paramiko/ssh_gss.py
 			53 import gssapi.error
 			54 GSS_EXCEPTIONS = (gssapi.error.GSSException,)
+		③python setup.py egg_info Check the logs for full command output
+			pip install --upgrade setuptools
+			python -m pip install --upgrade pip
 5、查看docker-compose版本
 	docker-compose version
 6、卸载docker-compose
