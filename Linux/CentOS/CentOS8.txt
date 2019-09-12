@@ -1,3 +1,3 @@
 netstat -tunlp | grep 80	查看80端口占用情况
-lsof -i : 90	查看80端口占用情况
+lsof -i : 80	查看80端口占用情况
 kill -9 [PID]	根据pid杀死进程
