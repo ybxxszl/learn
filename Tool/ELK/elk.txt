@@ -1,6 +1,22 @@
-1、拉取镜像
-	docker pull docker.elastic.co/elasticsearch/elasticsearch:7.2.1
-2、运行容器
-	docker run --name Elasticsearch -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.2.1
-3、测试
-	http://127.0.0.1:9200/
+一、Elasticsearch
+	1、拉取镜像
+		docker pull docker.elastic.co/elasticsearch/elasticsearch:7.2.1
+	2、运行容器
+		docker run --name Elasticsearch -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.2.1
+	3、测试
+		http://127.0.0.1:9200/
+二、Kibana
+	1、拉取镜像
+		docker pull docker.elastic.co/kibana/kibana:7.2.1
+	2、运行容器
+		docker run --link Elasticsearch:elasticsearch --name Kibana -d -p 5601:5601 docker.elastic.co/kibana/kibana:7.2.1
+	3、测试
+		http://127.0.0.1:5601/
+	4、检查Kibana状态
+		http://127.0.0.1:5601/status
+三、Logstash
+	1、拉取镜像
+		docker pull docker.elastic.co/logstash/logstash:7.2.1
+四、Filebeat
+	1、拉取镜像
+		docker pull docker.elastic.co/beats/filebeat:7.2.1
