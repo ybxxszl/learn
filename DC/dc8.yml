@@ -1,0 +1,21 @@
+version: "2"
+services:
+  APIMonitor:
+    image: runjar_prod:1.0
+    container_name: APIMonitor
+    privileged: true
+    ports:
+      - 9090:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.8.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.8.0/16
+          gateway: 172.20.8.1
