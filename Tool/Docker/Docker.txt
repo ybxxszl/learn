@@ -85,11 +85,14 @@ Dockerfile
 		COPY questionnaire_survey.war /usr/local/tomcat/webapps
 		COPY questionnaire_survey_background_system.war /usr/local/tomcat/webapps
 	4、创建镜像
-		docker build -t tomcat:1.0
+		docker build -t tomcat:1.0 .
 	5、创建容器
 		docker create --name Tomcat -p 8080:8080 tomcat:1.0
 	6、启动容器
 		docker start Tomcat
+
+	构建镜像
+		docker build -f dc -t runjar:1.0 .
 
 
 Docker安装
