@@ -3,6 +3,7 @@ services:
   APIMonitor:
     image: runjar_prod:1.0
     container_name: APIMonitor
+    restart: always
     privileged: true
     ports:
       - 9090:8080
