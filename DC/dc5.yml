@@ -100,6 +100,30 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  VISMARKETING1:
+    image: runjar:1.0
+    container_name: VISMARKETING1
+    privileged: true
+    ports:
+      - 8891:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.11
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  VISMARKETING2:
+    image: runjar:1.0
+    container_name: VISMARKETING2
+    privileged: true
+    ports:
+      - 8892:8080
+    networks:
+      dev:
+        ipv4_address: 172.20.5.12
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
 networks:
   dev:
     driver: bridge
