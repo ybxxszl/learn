@@ -1,0 +1,61 @@
+version: "2"
+services:
+
+  Nexus:
+    image: docker.io/sonatype/nexus3
+    container_name: Nexus
+    restart: always
+    privileged: true
+    ports:
+      - 8881:8081
+    volumes:
+      - /opt/docker/nexus/data:/nexus-data
+    environment:
+      INSTALL4J_ADD_VM_PARAMS: -Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+    networks:
+      dev:
+        ipv4_address: 172.20.10.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+
+  DockerNexus:
+    image: quay.io/travelaudience/docker-nexus:3.17.0
+    container_name: DockerNexus
+    restart: always
+    ports:
+      - 8881:8081
+    volumes:
+      - /opt/docker/nexus/data:/nexus-data
+    environment:
+      INSTALL4J_ADD_VM_PARAMS: -Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+    networks:
+      dev:
+        ipv4_address: 172.20.10.2
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+
+  DockerNexusProxy:
+    image: quay.io/travelaudience/docker-nexus-proxy:latest
+    container_name: DockerNexusProxy
+    restart: always
+    ports:
+      - 8880:8080
+    environment:
+      UPSTREAM_HOST: DockerNexus
+      NEXUS_HTTP_HOST: 192.168.1.17:8880
+    networks:
+      dev:
+        ipv4_address: 172.20.10.3
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.10.0/16
+          gateway: 172.20.10.1
