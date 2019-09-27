@@ -1177,16 +1177,15 @@ CentOS6.9安装MySQL
 		mysql -hlocalhost -uroot -proot -P3306 或 mysql -uroot -proot
 CentOS6.9安装Redis
 	1、下载解压Redis
-		tar xzf redis-4.0.11.tar.gz
+		tar -xzf redis-4.0.11.tar.gz
 	2、下载编译gcc
 		yum install gcc
 	3、编译安装Redis
-		make
-		make install
-		make MALLOC=libc
-	4、启动Redis
+		make & make install
+		// make MALLOC=libc
+	4、启动Redis服务
 		./redis-server
-	5、打开Redis
+	5、打开Redis客户端
 		./redis-cli
 CentOS6.9安装jdk1.8
 	1、下载解压jdk1.8
