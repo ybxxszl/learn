@@ -35,6 +35,36 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  MongoDB:
+    image: docker.io/mongo
+    container_name: MongoDB
+    restart: always
+    privileged: true
+    ports:
+      - 27017:27017
+    volumes:
+      - /opt/docker/mongodb/data:/data/db
+    networks:
+      dev:
+        ipv4_address: 172.20.2.4
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  PostgreSQL:
+    image: docker.io/postgres:10
+    container_name: PostgreSQL
+    restart: always
+    privileged: true
+    ports:
+      - 5432:5432
+    volumes:
+      - /opt/docker/postgresql/data:/var/lib/postgresql/data
+    networks:
+      dev:
+        ipv4_address: 172.20.2.5
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
 networks:
   dev:
     driver: bridge
