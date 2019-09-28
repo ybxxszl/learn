@@ -49,6 +49,19 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  FileBrowser:
+    image: docker.io/filebrowser/filebrowser
+    container_name: FileBrowser
+    restart: always
+    privileged: true
+    ports:
+      - 88:80
+    networks:
+      dev:
+        ipv4_address: 172.20.1.5
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
 networks:
   dev:
     driver: bridge
