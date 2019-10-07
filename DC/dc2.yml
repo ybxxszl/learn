@@ -65,6 +65,73 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+
+  # chmod -R 777 cmd
+
+  Redis0:
+    image: docker.io/redis
+    container_name: Redis0
+    restart: always
+    privileged: true
+    ports:
+      - 6380:6379
+    volumes:
+      - /opt/docker/rediscs/conf/redis-master.conf:/etc/redis/redis-master.conf
+      - /opt/docker/rediscs/conf/sentinel-master.conf:/etc/redis/sentinel-master.conf
+      - /opt/docker/rediscs/data/data-master:/data
+      - /opt/docker/rediscs/cmd/redis-master.sh:/redis-master.sh
+    command: /redis-master.sh
+      # - redis-server /etc/redis/redis-master.conf
+      # - redis-sentinel /etc/redis/sentinel-master.conf
+    networks:
+      dev:
+        ipv4_address: 172.20.2.10
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Redis1:
+    image: docker.io/redis
+    container_name: Redis1
+    restart: always
+    privileged: true
+    ports:
+      - 6381:6379
+    volumes:
+      - /opt/docker/rediscs/conf/redis-slave1.conf:/etc/redis/redis-slave1.conf
+      - /opt/docker/rediscs/conf/sentinel-slave1.conf:/etc/redis/sentinel-slave1.conf
+      - /opt/docker/rediscs/data/data-slave1:/data
+      - /opt/docker/rediscs/cmd/redis-slave1.sh:/redis-slave1.sh
+    command: /redis-slave1.sh
+      # - redis-server /etc/redis/redis-slave1.conf
+      # - redis-sentinel /etc/redis/sentinel-slave1.conf
+    networks:
+      dev:
+        ipv4_address: 172.20.2.11
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Redis2:
+    image: docker.io/redis
+    container_name: Redis2
+    restart: always
+    privileged: true
+    ports:
+      - 6382:6379
+    volumes:
+      - /opt/docker/rediscs/conf/redis-slave2.conf:/etc/redis/redis-slave2.conf
+      - /opt/docker/rediscs/conf/sentinel-slave2.conf:/etc/redis/sentinel-slave2.conf
+      - /opt/docker/rediscs/data/data-slave2:/data
+      - /opt/docker/rediscs/cmd/redis-slave2.sh:/redis-slave2.sh
+    command: /redis-slave2.sh
+      # - redis-server /etc/redis/redis-slave2.conf
+      # - redis-sentinel /etc/redis/sentinel-slave2.conf
+    networks:
+      dev:
+        ipv4_address: 172.20.2.12
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+
 networks:
   dev:
     driver: bridge

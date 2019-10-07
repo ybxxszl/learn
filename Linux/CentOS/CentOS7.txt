@@ -110,6 +110,13 @@
 		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat2
 6、安装openjdk
 	yum install java-1.8.0-openjdk
+7、安装redis
+	下载解压
+		tar -xzf redis-5.0.5.tar.gz
+	下载编译gcc
+		yum install gcc
+	编译安装
+		make & make install
 
 
 注：
