@@ -1,3 +1,17 @@
+一、less
+	less -m test.log
+二、more
+	more test.log
+三、tail
+	tail -f -n 200 test.log
+
+
+grep -A10 -n -e "test" test.log
+
+
 netstat -tunlp | grep 80	查看80端口占用情况
-lsof -i : 80	查看80端口占用情况
+netstat -tunlp | grep java	查看java进程占用情况
+
+ps -a | grep java	查看java进程占用情况
+
 kill -9 [PID]	根据pid杀死进程
