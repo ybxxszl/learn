@@ -1,0 +1,13 @@
+version: "2"
+services:
+  VISMARKETING:
+    image: runjar:2.0
+    container_name: VISMARKETING
+    privileged: true
+    ports:
+      - 8080:8080
+    volumes:
+      - /root/runjar.sh:/runjar.sh
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
