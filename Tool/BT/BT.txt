@@ -1,1 +1,9 @@
-yum install -y wget && wget -O install.sh httpdownload.bt.cninstallinstall_6.0.sh && sh install.sh
+Linux宝塔
+    yum install -y wget && wget -O install.sh httpdownload.bt.cninstallinstall_6.0.sh && sh install.sh
+
+firewall-cmd --query-port=8888/tcp
+firewall-cmd --permanent --add-port=8888/tcp
+firewall-cmd --reload
+
+
+http://192.168.1.40:8888/

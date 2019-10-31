@@ -1,11 +1,9 @@
 Linux监控NetData
 	bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 
-
 firewall-cmd --query-port=19999/tcp
 firewall-cmd --permanent --add-port=19999/tcp
+firewall-cmd --reload
 
 
-
-
-http://192.168.1.17:19999/
+http://192.168.1.40:19999/
