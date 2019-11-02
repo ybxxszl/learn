@@ -1,6 +1,7 @@
 version: "2"
 services:
 
+  # chown -R 200 /opt/docker/nexus/data
   Nexus:
     image: docker.io/sonatype/nexus3
     container_name: Nexus

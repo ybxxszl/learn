@@ -1,0 +1,87 @@
+version: "2"
+services:
+  Portainer:
+    image: docker.io/portainer/portainer
+    container_name: Portainer
+    restart: always
+    privileged: true
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  # chown -R 1000 /docker/jenkins/jenkins_home
+  Jenkins:
+    image: docker.io/jenkins/jenkins:lts
+    container_name: Jenkins
+    restart: always
+    privileged: true
+    ports:
+      - 8000:8080
+      - 50000:50000
+    volumes:
+      - /docker/jenkins/jenkins_home:/var/jenkins_home
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Gitblit:
+    image: docker.io/jacekkow/gitblit
+    container_name: Gitblit
+    restart: always
+    privileged: true
+    ports:
+      - 8880:8080
+      - 8443:8443
+      - 9418:9418
+      - 29418:29418
+    volumes:
+      - /docker/gitblit/gitblit-data:/opt/gitblit-data
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  # chown -R 200 /docker/nexus/data
+  Nexus:
+    image: docker.io/sonatype/nexus3
+    container_name: Nexus
+    restart: always
+    privileged: true
+    ports:
+      - 8881:8081
+    volumes:
+      - /docker/nexus/data:/nexus-data
+    environment:
+      INSTALL4J_ADD_VM_PARAMS: -Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  MySQL:
+    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+    container_name: MySQL
+    restart: always
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - 3306:3306
+    volumes:
+      - /docker/mysql/config/my.cnf:/etc/my.cnf
+      - /docker/mysql/data:/var/lib/mysql
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Redis:
+    image: docker.io/redis
+    container_name: Redis
+    restart: always
+    privileged: true
+    ports:
+      - 6379:6379
+    volumes:
+      - /docker/redis/config/redis.conf:/etc/redis/redis.conf
+      - /docker/redis/data:/data
+    command: redis-server /etc/redis/redis.conf
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
