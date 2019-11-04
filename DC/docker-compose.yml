@@ -85,3 +85,67 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  Grafana:
+    image: docker.io/grafana/grafana
+    container_name: Grafana
+    restart: always
+    privileged: true
+    ports:
+      - 3000:3000
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Prometheus:
+    image: docker.io/prom/prometheus
+    container_name: Prometheus
+    restart: always
+    privileged: true
+    ports:
+      - 9090:9090
+    volumes:
+      - /docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Nacos:
+    image: docker.io/nacos/nacos-server
+    container_name: Nacos
+    restart: always
+    privileged: true
+    environment:
+      - MODE=standalone
+    ports:
+      - 8848:8848
+    volumes:
+      - /docker/nacos/custom.properties:/home/nacos/init.d/custom.properties
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Admin:
+    image: runjar_prod:1.0
+    container_name: Admin
+    restart: always
+    privileged: true
+    ports:
+      - 8080:8080
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Token:
+    image: runjar_prod:1.0
+    container_name: Token
+    privileged: true
+    ports:
+      - 8181:8080
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  QS:
+    image: runjar_prod:1.0
+    container_name: QS
+    privileged: true
+    ports:
+      - 8282:8080
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
