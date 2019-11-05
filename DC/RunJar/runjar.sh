@@ -1,1 +1,1 @@
-java -jar /app.jar
+java -jar /base.jar
