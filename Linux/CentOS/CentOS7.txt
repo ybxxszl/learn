@@ -1,4 +1,14 @@
-##CentOS 7
+##CentOS6内核升级CentOS7内核
+
+更换软件源
+	1、备份
+		mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+	2、下载
+		wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+	3、清除缓存
+		yum clean all
+	4、更新缓存
+		yum makecache
 
 升级内核
 	1、查看内核版本
@@ -10,21 +20,23 @@
 	4、安装kernel-lt或kernel-ml
 		yum --enablerepo=elrepo-kernel install kernel-lt -y		kernel-lt		长期支持版本
 		yum --enablerepo=elrepo-kernel install kernel-ml -y		kernel-ml		最新稳定版本
-	5、编辑/etc/grub.conf，修改Grub引导顺序
+	5、编辑/etc/grub.conf，修改Grub引导顺序，修改default值为最新内核顺序索引
 		default=0	一般最新安装的内核在第一位
 	6、重启并查看内核版本
 		reboot
 		uname -r
 
-更换软件源
-	1、备份
-		mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-	2、下载
-		wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
-	3、清除缓存
-		yum clean all
-	4、更新缓存
-		yum makecache
+
+安装docker
+	1、查看CentOS内核版本
+		uname -r
+	2、安装Fedora的EPEL源
+		yum install http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
+	3、添加hop5.repo源
+		wget -O /etc/yum.repos.d/hop5.repo http://www.hop5.in/yum/el6/hop5.repo
+	4、安装docker.io
+		yum install docker-io
+
 
 解决中文乱码
 	1、查看是否存在中文语言包
@@ -43,6 +55,7 @@
 		2019年 12月 31日 星期二 23:59:59 CST
 	5、修改时间
 		date -s "2019-12-31 23:59:59"
+
 
 1、SSH服务
 	安装openssh

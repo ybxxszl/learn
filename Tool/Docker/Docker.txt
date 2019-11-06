@@ -43,7 +43,7 @@
 
 	查看日志	docker logs -f --tail 1000 name
 
-	获取镜像的详细信息	docker inspect qs
+	获取镜像的详细信息	docker inspect QS
 	获取容器的详细信息	docker inspect QS
 
 	Docker容器中的文件拷贝到宿主机	docker cp Gerrit:/var/gerrit/etc/gerrit.config /root/gerrit.config

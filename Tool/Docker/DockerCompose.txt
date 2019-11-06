@@ -26,6 +26,11 @@
 8、模板文件
 	默认为docker-compose.yml
 
+docker-compose官方安装方式
+	下载
+		curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	权限
+		chmod +x /usr/local/bin/docker-compose
 
 一、常用选项
 
