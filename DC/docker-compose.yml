@@ -12,6 +12,141 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  FileBrowser:
+    image: docker.io/filebrowser/filebrowser
+    container_name: FileBrowser
+    restart: always
+    privileged: true
+    ports:
+      - 88:80
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  # cn=admin,dc=ybxxszl,dc=com
+  # ou=people,dc=ybxxszl,dc=com
+  PHPLDAPAdmin:
+    image: docker.io/osixia/phpldapadmin
+    container_name: PHPLDAPAdmin
+    restart: always
+    privileged: true
+    ports:
+      - 81:80
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=OpenLDAP
+      - PHPLDAPADMIN_HTTPS=false
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  OpenLDAP:
+    image: docker.io/osixia/openldap
+    container_name: OpenLDAP
+    restart: always
+    privileged: true
+    ports:
+      - 389:389
+      - 636:636
+    volumes:
+      - /docker/openldap/slapd.d:/etc/ldap/slapd.d
+      - /docker/openldap/ldap:/var/lib/ldap
+    environment:
+      - LDAP_ORGANISATION=ybxxszl
+      - LDAP_DOMAIN=ybxxszl.com
+      - LDAP_ADMIN_PASSWORD=wjy13944997040
+      - LDAP_TLS=false
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Gerrit:
+    image: docker.io/openfrontier/gerrit:2.16.10
+    container_name: Gerrit
+    restart: always
+    privileged: true
+    ports:
+      - 8081:8080
+      - 29419:29418
+    volumes:
+      - /docker/gerrit:/var/gerrit/review_site
+    environment:
+      WEBURL: http://49.233.155.139:8081/
+      SSHD_ADVERTISE_ADDR: 49.233.155.139:29419
+      DATABASE_TYPE: postgresql
+      DATABASE_HOSTNAME: PostgreSQL-Gerrit
+      DATABASE_DATABASE: gerrit
+      DATABASE_USERNAME: admin
+      DATABASE_PASSWORD: 1234
+      AUTH_TYPE: LDAP
+      LDAP_SERVER: OpenLDAP
+      LDAP_USERNAME: cn=admin,dc=ybxxszl,dc=com
+      LDAP_PASSWORD: wjy13944997040
+      LDAP_ACCOUNTBASE: ou=people,dc=ybxxszl,dc=com
+      LDAP_ACCOUNTPATTERN: (&(objectClass=person)(uid=$${username}))
+      LDAP_ACCOUNTFULLNAME: cn
+      LDAP_ACCOUNTEMAILADDRESS: mail
+      SMTP_SERVER: smtp.qq.com
+      SMTP_SERVER_PORT: 465
+      SMTP_ENCRYPTION: tls
+      SMTP_USER: 1062837400@qq.com
+      SMTP_PASS: zdayfjmjsnfjbbhh
+      USER_EMAIL: 1062837400@qq.com
+      GITWEB_TYPE: gitiles
+      GERRIT_INIT_ARGS: --install-all-plugins
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  # cd $REDMINE_HOME/plugins
+  # git clone git@github.com:mikitex70/redmine_drawio.git
+  Redmine:
+    image: docker.io/redmine
+    container_name: Redmine
+    restart: always
+    privileged: true
+    ports:
+      - 3333:3000
+    volumes:
+      - /docker/redmine/config/configuration.yml:/usr/src/redmine/config/configuration.yml
+      - /docker/redmine/files:/usr/src/redmine/files
+      - /docker/redmine/plugins:/usr/src/redmine/plugins
+      - /docker/redmine/repos:/var/lib/redmine/repos
+    environment:
+      REDMINE_DB_POSTGRES: PostgreSQL-Redmine
+      REDMINE_DB_DATABASE: redmine
+      REDMINE_DB_USERNAME: admin
+      REDMINE_DB_PASSWORD: 1234
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  PostgreSQL-Gerrit:
+    image: docker.io/postgres:10
+    container_name: PostgreSQL-Gerrit
+    restart: always
+    privileged: true
+    ports:
+      - 54321:5432
+    volumes:
+      - /docker/postgresql/gerrit:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: gerrit
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  PostgreSQL-Redmine:
+    image: docker.io/postgres:10
+    container_name: PostgreSQL-Redmine
+    restart: always
+    privileged: true
+    ports:
+      - 54322:5432
+    volumes:
+      - /docker/postgresql/redmine:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: redmine
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   # chown -R 1000 /docker/jenkins/jenkins_home
   Jenkins:
     image: docker.io/jenkins/jenkins:lts
