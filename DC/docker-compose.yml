@@ -23,7 +23,7 @@ services:
       - name=ybxxszl
       - email=1062837400@qq.com
   # cn=admin,dc=ybxxszl,dc=com
-  # ou=people,dc=ybxxszl,dc=com
+  # cn=qs,dc=ybxxszl,dc=com
   PHPLDAPAdmin:
     image: docker.io/osixia/phpldapadmin
     container_name: PHPLDAPAdmin
@@ -78,7 +78,7 @@ services:
       LDAP_SERVER: OpenLDAP
       LDAP_USERNAME: cn=admin,dc=ybxxszl,dc=com
       LDAP_PASSWORD: wjy13944997040
-      LDAP_ACCOUNTBASE: ou=people,dc=ybxxszl,dc=com
+      LDAP_ACCOUNTBASE: cn=qs,dc=ybxxszl,dc=com
       LDAP_ACCOUNTPATTERN: (&(objectClass=person)(uid=$${username}))
       LDAP_ACCOUNTFULLNAME: cn
       LDAP_ACCOUNTEMAILADDRESS: mail
@@ -94,14 +94,14 @@ services:
       - name=ybxxszl
       - email=1062837400@qq.com
   # cd $REDMINE_HOME/plugins
-  # git clone git@github.com:mikitex70/redmine_drawio.git
+  # git clone https://github.com/mikitex70/redmine_drawio.git
   Redmine:
     image: docker.io/redmine
     container_name: Redmine
     restart: always
     privileged: true
     ports:
-      - 3333:3000
+      - 3001:3000
     volumes:
       - /docker/redmine/config/configuration.yml:/usr/src/redmine/config/configuration.yml
       - /docker/redmine/files:/usr/src/redmine/files
