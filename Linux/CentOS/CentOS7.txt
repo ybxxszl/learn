@@ -144,6 +144,8 @@
 		#! refresh_learn
 		*/1 * * * * /docker/h5ai/refresh_learn.sh
 
+		chmod 777 refresh_learn.sh
+
 
 注：
 	systemctl（service和checkout的组合）
