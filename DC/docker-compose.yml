@@ -12,6 +12,18 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  NextCloud:
+    image: docker.io/nextcloud
+    container_name: NextCloud
+    restart: always
+    privileged: true
+    ports:
+      - 90:80
+    volumes:
+      - /docker/nextcloud:/data
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   FileBrowser:
     image: docker.io/filebrowser/filebrowser
     container_name: FileBrowser
