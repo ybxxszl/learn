@@ -22,6 +22,18 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  H5ai:
+    image: docker.io/ilemonrain/h5ai:full
+    container_name: H5ai
+    restart: always
+    privileged: true
+    ports:
+      - 85:80
+    volumes:
+      - /docker/h5ai:/h5ai
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   # cn=admin,dc=ybxxszl,dc=com
   # cn=qs,dc=ybxxszl,dc=com
   PHPLDAPAdmin:
