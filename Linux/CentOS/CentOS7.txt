@@ -134,6 +134,17 @@
 		make & make install
 
 
+定时任务
+	安装
+		yum install crontabs
+		systemctl status crond
+	添加
+		crontab -e
+
+		#! refresh_learn
+		*/1 * * * * /docker/h5ai/refresh_learn.sh
+
+
 注：
 	systemctl（service和checkout的组合）
 
