@@ -244,6 +244,48 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  Redis-Master:
+    image: docker.io/redis
+    container_name: Redis-Master
+    restart: always
+    privileged: true
+    ports:
+      - 6400:6379
+    volumes:
+      - /docker/redisms/conf/redis-master_6400.conf:/etc/redis/redis-master_6400.conf
+      - /docker/redisms/data/master:/data
+    command: redis-server /etc/redis/redis-master_6400.conf
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Redis-Slave1:
+    image: docker.io/redis
+    container_name: Redis-Slave1
+    restart: always
+    privileged: true
+    ports:
+      - 6401:6379
+    volumes:
+      - /docker/redisms/conf/redis-slave1_6401.conf:/etc/redis/redis-slave1_6401.conf
+      - /docker/redisms/data/slave1:/data
+    command: redis-server /etc/redis/redis-slave1_6401.conf
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Redis-Slave2:
+    image: docker.io/redis
+    container_name: Redis-Slave2
+    restart: always
+    privileged: true
+    ports:
+      - 6402:6379
+    volumes:
+      - /docker/redisms/conf/redis-slave2_6402.conf:/etc/redis/redis-slave2_6402.conf
+      - /docker/redisms/data/slave2:/data
+    command: redis-server /etc/redis/redis-slave2_6402.conf
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   Grafana:
     image: docker.io/grafana/grafana
     container_name: Grafana
