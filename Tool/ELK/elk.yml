@@ -1,0 +1,34 @@
+version: "2"
+services:
+  Elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
+    container_name: Elasticsearch
+    hostname: Elasticsearch
+    restart: always
+    privileged: true
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - /docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /docker/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options
+    environment:
+      - discovery.type=single-node
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Kibana:
+    image: docker.elastic.co/kibana/kibana:7.3.1
+    container_name: Kibana
+    hostname: Kibana
+    restart: always
+    privileged: true
+    ports:
+      - 5601:5601
+    links:
+      - Elasticsearch:elasticsearch
+    depends_on:
+      - Elasticsearch
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com

@@ -13,7 +13,7 @@
 	3、测试
 		http://127.0.0.1:5601/
 	4、检查Kibana状态
-		http://127.0.0.1:5601/status
+		http://127.0.0.1:5601/status/
 三、Logstash
 	1、拉取镜像
 		docker pull docker.elastic.co/logstash/logstash:7.3.1
@@ -30,13 +30,13 @@ yum install kibana-7.3.1-x86_64.rpm
 systemctl enable kibana
 systemctl start kibana
 
+yum install logstash-7.3.1.rpm
+systemctl enable logstash
+systemctl start logstash
+
 yum install filebeat-7.3.1-x86_64.rpm
 systemctl enable filebeat
 systemctl start filebeat
 
 filebeat modules enable nginx
 filebeat setup
-
-yum install logstash-7.3.1.rpm
-systemctl enable logstash
-systemctl start logstash
