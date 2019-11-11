@@ -1,3 +1,8 @@
 docker.io/redis
 
 docker run -d -p 6379:6379 --name Redis --privileged=true -v /opt/redis/config/redis.conf:/etc/redis/redis.conf -v /opt/redis/data:/data docker.io/redis redis-server /etc/redis/redis.conf
+
+
+docker run --name Redis-Master -p 6400:6379 -v /docker/redisms/conf/redis-master_6400.conf:/etc/redis/redis-master_6400.conf -v /docker/redisms/data/master:/data -d docker.io/redis redis-server /etc/redis/redis-master_6400.conf
+docker run --link Redis-Master:Redis-Master --name Redis-Slave1 -p 6401:6379 -v /docker/redisms/conf/redis-slave1_6401.conf:/etc/redis/redis-slave1_6401.conf -v /docker/redisms/data/slave1:/data -d docker.io/redis redis-server /etc/redis/redis-slave1_6401.conf
+docker run --link Redis-Master:Redis-Master --name Redis-Slave2 -p 6402:6379 -v /docker/redisms/conf/redis-slave2_6402.conf:/etc/redis/redis-slave2_6402.conf -v /docker/redisms/data/slave2:/data -d docker.io/redis redis-server /etc/redis/redis-slave2_6402.conf
