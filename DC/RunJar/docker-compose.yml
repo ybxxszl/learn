@@ -18,6 +18,7 @@ services:
     privileged: true
     ports:
       - 8080:8080
+      - 9090:9090
     volumes:
       - /root/runjar.sh:/runjar.sh
     labels:
@@ -25,4 +26,4 @@ services:
       - email=1062837400@qq.com
 
 # docker run --restart=always --name Portainer -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock docker.io/portainer/portainer
-# docker run --name VISMARKETING -d -p 8080:8080 -v /root/runjar.sh:/runjar.sh runjar_prod:2.0
+# docker run --name VISMARKETING -d -p 8080:8080 -p 9090:9090 -v /root/runjar.sh:/runjar.sh runjar_prod:2.0
