@@ -367,6 +367,7 @@ services:
   Token:
     image: runjar_prod:1.0
     container_name: Token
+    restart: always
     privileged: true
     ports:
       - 8181:8080
@@ -376,6 +377,7 @@ services:
   QS:
     image: runjar_prod:1.0
     container_name: QS
+    restart: always
     privileged: true
     ports:
       - 8282:8080

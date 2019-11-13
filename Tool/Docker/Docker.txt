@@ -36,6 +36,8 @@
 	停止容器	docker stop name
 	删除容器	docker rm name
 
+	修改容器属性 docker update --restart=always Admin / docker update --restart=no Admin
+
     查看容器网络 docker network ls
     删除容器网络 docker network rm dev
 
