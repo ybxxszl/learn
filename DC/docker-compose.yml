@@ -262,10 +262,42 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  Filebeat:
+    image: docker.io/prima/filebeat
+    container_name: Filebeat
+    restart: always
+    privileged: true
+    volumes:
+      - /docker/filebeat/filebeat.yml:/filebeat.yml
+      - /docker/logs:/logs
+    depends_on:
+      - Logstash
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Logstash:
+    image: docker.elastic.co/logstash/logstash:7.3.1
+    container_name: Logstash
+    restart: always
+    privileged: true
+    ports:
+      - 5044:5044
+      - 9600:9600
+    volumes:
+      - /docker/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - /docker/logstash/jvm.options:/usr/share/logstash/config/jvm.options
+      - /docker/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /docker/logs:/logs
+    links:
+      - Elasticsearch:elasticsearch
+    depends_on:
+      - Elasticsearch
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   Elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
     container_name: Elasticsearch
-    hostname: Elasticsearch
     restart: always
     privileged: true
     ports:
@@ -282,7 +314,6 @@ services:
   Kibana:
     image: docker.elastic.co/kibana/kibana:7.3.1
     container_name: Kibana
-    hostname: Kibana
     restart: always
     privileged: true
     ports:
