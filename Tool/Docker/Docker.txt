@@ -86,6 +86,18 @@
 		2、docker run --name Nginx -p 80:80 nginx			运行容器
 		3、docker exec -it 966d8517a70a /bin/bash			进入命令行
 
+docker pull docker.io/centos
+
+docker run -it -d --name CentOS docker.io/centos
+
+docker cp filebeat-7.3.1-x86_64.rpm CentOS:/filebeat-7.3.1-x86_64.rpm
+
+rpm -ivh filebeat-7.3.1-x86_64.rpm
+yum makecache
+yum -y install java-1.8.0-openjdk
+
+docker commit -a ybxxszl CentOS runjar:base
+
 Dockerfile
 	1、创建文件夹
 		mkdir MyDockerfile
