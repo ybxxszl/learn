@@ -35,3 +35,31 @@ Windows
 	重新加载配置文件		nginx -s reload
 	检查配置文件是否正确	nginx -t conf/nginx.conf
 	更改配置文件			nginx -c conf/my.conf
+
+
+
+Nginx
+	安装
+		yum install -y nginx
+	启动
+		systemctl start nginx
+
+acme.sh
+	安装
+		curl https://get.acme.sh | sh
+	别名
+		alias acme.sh=~/.acme.sh/acme.sh
+	导入
+		export DP_Id="ID"
+		export DP_Key="Token"
+	生成证书
+		acme.sh --issue --dns dns_dp -d ybxxszl.com -d *.ybxxszl.com
+	配置证书
+		ssl_certificate "/etc/pki/nginx/fullchain.cer";
+		ssl_certificate_key "/etc/pki/nginx/private/ybxxszl.key";
+	创建目录
+		mkdir -p /etc/pki/nginx/private
+	安装证书
+		acme.sh --installcert -d ybxxszl.com --key-file /etc/pki/nginx/private/ybxxszl.key --fullchain-file /etc/pki/nginx/fullchain.cer
+	自动更新证书
+		acme.sh --upgrade --auto-upgrade
