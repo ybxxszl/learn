@@ -372,6 +372,7 @@ services:
   VISMARKETING:
     image: runjar_prod:2.0
     container_name: VISMARKETING
+    restart: always
     privileged: true
     ports:
       - 8888:8080
