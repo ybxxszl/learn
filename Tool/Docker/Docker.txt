@@ -27,6 +27,9 @@
 	拉取镜像	docker pull ubuntu
 	删除镜像	docker rmi ubuntu
 
+	查看正在运行的容器的资源使用情况		docker stats
+	查看所有容器的资源使用情况		docker stats -a
+
 	查看正在运行的容器		docker ps
 	查看所有容器		docker ps -a
 
