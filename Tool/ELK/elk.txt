@@ -19,6 +19,9 @@
 五、Metricbeat
 	1、拉取镜像
 		docker pull docker.io/elastic/metricbeat:7.3.1
+六、Heartbeat
+	1、拉取镜像
+		docker pull docker.io/elastic/heartbeat:7.3.1
 
 
 yum install elasticsearch-7.3.1-x86_64.rpm
@@ -46,3 +49,9 @@ systemctl start metricbeat
 
 metricbeat modules enable nginx
 metricbeat setup
+
+yum install heartbeat-7.3.1-x86_64.rpm
+systemctl enable heartbeat-elastic
+systemctl start heartbeat-elastic
+
+heartbeat setup
