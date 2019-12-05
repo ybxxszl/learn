@@ -256,18 +256,6 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
-  Metricbeat:
-    image: docker.io/elastic/metricbeat:7.3.1
-    container_name: Metricbeat
-    restart: always
-    privileged: true
-    volumes:
-      - /docker/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
-    depends_on:
-      - Logstash
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
   Nacos:
     image: docker.io/nacos/nacos-server
     container_name: Nacos
