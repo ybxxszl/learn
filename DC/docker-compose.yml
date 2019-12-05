@@ -12,18 +12,6 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
-  NextCloud:
-    image: docker.io/nextcloud
-    container_name: NextCloud
-    restart: always
-    privileged: true
-    ports:
-      - 90:80
-    volumes:
-      - /docker/nextcloud:/data
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
   H5ai:
     image: docker.io/ilemonrain/h5ai:full
     container_name: H5ai
@@ -198,25 +186,211 @@ services:
     privileged: true
     ports:
       - 8881:8081
-    volumes:
-      - /docker/nexus/data:/nexus-data
+    # volumes:
+      # - /docker/nexus/data:/nexus-data
     environment:
       INSTALL4J_ADD_VM_PARAMS: -Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  Kibana:
+    image: docker.elastic.co/kibana/kibana:7.3.1
+    container_name: Kibana
+    restart: always
+    privileged: true
+    ports:
+      - 5601:5601
+    links:
+      - Elasticsearch:elasticsearch
+    depends_on:
+      - Elasticsearch
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
+    container_name: Elasticsearch
+    restart: always
+    privileged: true
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - /docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /docker/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options
+    environment:
+      - discovery.type=single-node
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Logstash:
+    image: docker.elastic.co/logstash/logstash:7.3.1
+    container_name: Logstash
+    restart: always
+    privileged: true
+    ports:
+      - 5044:5044
+      - 9600:9600
+    volumes:
+      - /docker/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - /docker/logstash/jvm.options:/usr/share/logstash/config/jvm.options
+      - /docker/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /docker/logs:/logs
+    links:
+      - Elasticsearch:elasticsearch
+    depends_on:
+      - Elasticsearch
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Filebeat:
+    image: docker.io/elastic/filebeat:7.3.1
+    container_name: Filebeat
+    restart: always
+    privileged: true
+    volumes:
+      - /docker/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - /docker/logs:/logs
+    depends_on:
+      - Logstash
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Metricbeat:
+    image: docker.io/elastic/metricbeat:7.3.1
+    container_name: Metricbeat
+    restart: always
+    privileged: true
+    volumes:
+      - /docker/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+    depends_on:
+      - Logstash
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Nacos:
+    image: docker.io/nacos/nacos-server
+    container_name: Nacos
+    restart: always
+    privileged: true
+    environment:
+      - MODE=standalone
+    ports:
+      - 8848:8848
+    volumes:
+      - /docker/nacos/custom.properties:/home/nacos/init.d/custom.properties
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Admin:
+    image: runjarfb:1.0
+    container_name: Admin
+    hostname: Admin
+    restart: always
+    privileged: true
+    ports:
+      - 8080:8080
+    volumes:
+      - /docker/service/admin/runjar.sh:/runjar.sh
+      - /docker/service/admin/filebeat.yml:/etc/filebeat/filebeat.yml
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  Token:
+    image: runjarfb:1.0
+    container_name: Token
+    hostname: Token
+    restart: always
+    privileged: true
+    ports:
+      - 8181:8080
+    volumes:
+      - /docker/service/token/runjar.sh:/runjar.sh
+      - /docker/service/token/filebeat.yml:/etc/filebeat/filebeat.yml
+    depends_on:
+      - Nacos
+      - Admin
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  User:
+    image: runjarfb:1.0
+    container_name: User
+    hostname: User
+    restart: always
+    privileged: true
+    ports:
+      - 8282:8080
+    volumes:
+      - /docker/service/user/runjar.sh:/runjar.sh
+      - /docker/service/user/filebeat.yml:/etc/filebeat/filebeat.yml
+    depends_on:
+      - Nacos
+      - Admin
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  VISMARKETING:
+    image: runjar_prod:2.0
+    container_name: VISMARKETING
+    restart: always
+    privileged: true
+    ports:
+      - 8888:8080
+      - 9090:9090
+    volumes:
+      - /root/runjar.sh:/runjar.sh
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   MySQL:
-    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/mysql:5.7
+    image: docker.io/mysql:5.7
     container_name: MySQL
     restart: always
     privileged: true
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: wjy13944997040
     ports:
       - 3306:3306
     volumes:
       - /docker/mysql/config/my.cnf:/etc/my.cnf
       - /docker/mysql/data:/var/lib/mysql
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  # CREATE USER 'slave' @'%' IDENTIFIED BY 'wjy13944997040';
+  # GRANT REPLICATION SLAVE ON *.* TO 'slave' @'%';
+  # SHOW MASTER STATUS;
+  # SHOW SLAVE STATUS \G;
+  # CHANGE MASTER TO master_host = '49.233.155.139', master_user = 'slave', master_password = 'wjy13944997040', master_port = 3400, master_log_file = 'mysql_3400.000003', master_log_pos = 154;
+  # START SLAVE;
+  MySQL-Master:
+    image: docker.io/mysql:5.7
+    container_name: MySQL-Master
+    restart: always
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: wjy13944997040
+    ports:
+      - 3400:3400
+    volumes:
+      - /docker/mysqlms/conf/my-master_3400.cnf:/etc/my.cnf
+      - /docker/mysqlms/data/master:/var/lib/mysql
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  MySQL-Slave:
+    image: docker.io/mysql:5.7
+    container_name: MySQL-Slave
+    restart: always
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: wjy13944997040
+    ports:
+      - 3401:3401
+    volumes:
+      - /docker/mysqlms/conf/my-slave_3401.cnf:/etc/my.cnf
+      - /docker/mysqlms/data/slave:/var/lib/mysql
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
@@ -259,126 +433,6 @@ services:
       - /docker/redisms/conf/redis-slave_6401.conf:/etc/redis/redis-slave_6401.conf
       - /docker/redisms/data/slave:/data
     command: redis-server /etc/redis/redis-slave_6401.conf
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  Filebeat:
-    image: docker.io/prima/filebeat
-    container_name: Filebeat
-    restart: always
-    privileged: true
-    volumes:
-      - /docker/filebeat/filebeat.yml:/filebeat.yml
-      - /docker/logs:/logs
-    depends_on:
-      - Logstash
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  Logstash:
-    image: docker.elastic.co/logstash/logstash:7.3.1
-    container_name: Logstash
-    restart: always
-    privileged: true
-    ports:
-      - 5044:5044
-      - 9600:9600
-    volumes:
-      - /docker/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - /docker/logstash/jvm.options:/usr/share/logstash/config/jvm.options
-      - /docker/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-      - /docker/logs:/logs
-    links:
-      - Elasticsearch:elasticsearch
-    depends_on:
-      - Elasticsearch
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  Elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
-    container_name: Elasticsearch
-    restart: always
-    privileged: true
-    ports:
-      - 9200:9200
-      - 9300:9300
-    volumes:
-      - /docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - /docker/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options
-    environment:
-      - discovery.type=single-node
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  Kibana:
-    image: docker.elastic.co/kibana/kibana:7.3.1
-    container_name: Kibana
-    restart: always
-    privileged: true
-    ports:
-      - 5601:5601
-    links:
-      - Elasticsearch:elasticsearch
-    depends_on:
-      - Elasticsearch
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  Nacos:
-    image: docker.io/nacos/nacos-server
-    container_name: Nacos
-    restart: always
-    privileged: true
-    environment:
-      - MODE=standalone
-    ports:
-      - 8848:8848
-    volumes:
-      - /docker/nacos/custom.properties:/home/nacos/init.d/custom.properties
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  Admin:
-    image: runjar_prod:1.0
-    container_name: Admin
-    restart: always
-    privileged: true
-    ports:
-      - 8080:8080
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  Token:
-    image: runjar_prod:1.0
-    container_name: Token
-    restart: always
-    privileged: true
-    ports:
-      - 8181:8080
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  QS:
-    image: runjar_prod:1.0
-    container_name: QS
-    restart: always
-    privileged: true
-    ports:
-      - 8282:8080
-    labels:
-      - name=ybxxszl
-      - email=1062837400@qq.com
-  VISMARKETING:
-    image: runjar_prod:2.0
-    container_name: VISMARKETING
-    restart: always
-    privileged: true
-    ports:
-      - 8888:8080
-      - 9090:9090
-    volumes:
-      - /root/runjar.sh:/runjar.sh
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
