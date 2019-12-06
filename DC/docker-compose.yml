@@ -149,7 +149,7 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
-  # chown -R 1000 /docker/jenkins/jenkins_home
+  # chown -R 1000:1000 /docker/jenkins/jenkins_home
   Jenkins:
     image: docker.io/jenkins/jenkins:lts
     container_name: Jenkins
@@ -178,7 +178,7 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
-  # chown -R 200 /docker/nexus/data
+  # chmod -R 777 /docker/nexus/data
   Nexus:
     image: docker.io/sonatype/nexus3
     container_name: Nexus
@@ -186,10 +186,23 @@ services:
     privileged: true
     ports:
       - 8881:8081
-    # volumes:
-      # - /docker/nexus/data:/nexus-data
+    volumes:
+      - /docker/nexus/data:/nexus-data
     environment:
       INSTALL4J_ADD_VM_PARAMS: -Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  # chmod -R 777 /docker/grafana/data
+  Grafana:
+    image: docker.io/grafana/grafana
+    container_name: Grafana
+    restart: always
+    privileged: true
+    ports:
+      - 3000:3000
+    volumes:
+      - /docker/grafana/data:/var/lib/grafana
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
