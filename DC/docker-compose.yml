@@ -331,6 +331,30 @@ services:
     labels:
       - name=ybxxszl
       - email=1062837400@qq.com
+  SwaggerUI:
+    image: docker.io/swaggerapi/swagger-ui
+    container_name: SwaggerUI
+    restart: always
+    privileged: true
+    environment:
+      SWAGGER_JSON: /swagger/swagger.json
+    ports:
+      - 9191:8080
+    volumes:
+      - /docker/swagger:/swagger
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
+  SwaggerEditor:
+    image: docker.io/swaggerapi/swagger-editor
+    container_name: SwaggerEditor
+    restart: always
+    privileged: true
+    ports:
+      - 9292:8080
+    labels:
+      - name=ybxxszl
+      - email=1062837400@qq.com
   MySQL:
     image: docker.io/mysql:5.7
     container_name: MySQL
