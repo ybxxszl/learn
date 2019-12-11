@@ -2,64 +2,64 @@ docker pull nginx
 docker run -d -p 80:80 --name Nginx -v /opt/nginx/config/conf.d:/etc/nginx/conf.d -v /opt/nginx/apps/:/opt/apps/ nginx
 
 
-°²×°ÒÀÀµ
+å®‰è£…ä¾èµ–
 	yum install gcc-c++
 	yum install -y pcre pcre-devel
 	yum install -y zlib zlib-devel
 	yum install -y openssl openssl-devel
-½âÑ¹ÎÄ¼ş
+è§£å‹æ–‡ä»¶
 	tar -xzf nginx-1.16.0.tar.gz
-½øÈënginxÄ¿Â¼
-	±àÒë
+è¿›å…¥nginxç›®å½•
+	ç¼–è¯‘
 		./configure
-	°²×°
+	å®‰è£…
 		make
 		make install
-	½øÈësbinÄ¿Â¼
-		Æô¶¯
+	è¿›å…¥sbinç›®å½•
+		å¯åŠ¨
 			./nginx
-¿ª·Å80¶Ë¿Ú
+å¼€æ”¾80ç«¯å£
 	firewall-cmd --permanent --add-port=80/tcp
-ÖØĞÂÆô¶¯·À»ğÇ½
+é‡æ–°å¯åŠ¨é˜²ç«å¢™
 	firewall-cmd --reload
 
 Linux
-	Æô¶¯					./nginx
-	Í£Ö¹					./nginx -s quit
-	ÖØĞÂ¼ÓÔØÅäÖÃÎÄ¼ş		./nginx -s reload
-	¼ì²éÅäÖÃÎÄ¼şÊÇ·ñÕıÈ·	./nginx -t
+	å¯åŠ¨					./nginx
+	åœæ­¢					./nginx -s quit
+	é‡æ–°åŠ è½½é…ç½®æ–‡ä»¶		./nginx -s reload
+	æ£€æŸ¥é…ç½®æ–‡ä»¶æ˜¯å¦æ­£ç¡®	./nginx -t
 
 Windows
-	Æô¶¯					start nginx
-	Í£Ö¹					nginx -s quit
-	ÖØĞÂ¼ÓÔØÅäÖÃÎÄ¼ş		nginx -s reload
-	¼ì²éÅäÖÃÎÄ¼şÊÇ·ñÕıÈ·	nginx -t conf/nginx.conf
-	¸ü¸ÄÅäÖÃÎÄ¼ş			nginx -c conf/my.conf
+	å¯åŠ¨					start nginx
+	åœæ­¢					nginx -s quit
+	é‡æ–°åŠ è½½é…ç½®æ–‡ä»¶		nginx -s reload
+	æ£€æŸ¥é…ç½®æ–‡ä»¶æ˜¯å¦æ­£ç¡®	nginx -t conf/nginx.conf
+	æ›´æ”¹é…ç½®æ–‡ä»¶			nginx -c conf/my.conf
 
 
 
 Nginx
-	°²×°
+	å®‰è£…
 		yum install -y nginx
-	Æô¶¯
+	å¯åŠ¨
 		systemctl start nginx
 
 acme.sh
-	°²×°
+	å®‰è£…
 		curl https://get.acme.sh | sh
-	±ğÃû
+	åˆ«å
 		alias acme.sh=~/.acme.sh/acme.sh
-	µ¼Èë
+	å¯¼å…¥
 		export DP_Id="ID"
 		export DP_Key="Token"
-	Éú³ÉÖ¤Êé
+	ç”Ÿæˆè¯ä¹¦
 		acme.sh --issue --dns dns_dp -d ybxxszl.com -d *.ybxxszl.com
-	ÅäÖÃÖ¤Êé
+	é…ç½®è¯ä¹¦
 		ssl_certificate "/etc/pki/nginx/fullchain.cer";
 		ssl_certificate_key "/etc/pki/nginx/private/ybxxszl.key";
-	´´½¨Ä¿Â¼
+	åˆ›å»ºç›®å½•
 		mkdir -p /etc/pki/nginx/private
-	°²×°Ö¤Êé
+	å®‰è£…è¯ä¹¦
 		acme.sh --installcert -d ybxxszl.com --key-file /etc/pki/nginx/private/ybxxszl.key --fullchain-file /etc/pki/nginx/fullchain.cer
-	×Ô¶¯¸üĞÂÖ¤Êé
+	è‡ªåŠ¨æ›´æ–°è¯ä¹¦
 		acme.sh --upgrade --auto-upgrade

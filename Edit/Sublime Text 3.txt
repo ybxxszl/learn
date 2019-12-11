@@ -1,29 +1,29 @@
-Sublime Text 3 ²å¼þ£¨http://cst.stu.126.net/u/json/cms/channel_v3.json£©
-1¡¢ChineseLocalization	ÖÐÎÄ²å¼þ ÔÚC:\Users\Administrator\AppData\Roaming\Sublime Text 3\PackagesÄ¿Â¼ÏÂgit clone -b st3 https://github.com/rexdf/ChineseLocalization.git
-2¡¢SideBarEnhancements	ÔöÇ¿²à±ßÀ¸ÓÒ¼ü¹¦ÄÜ£¬¿ìËÙ´ò¿ªä¯ÀÀÆ÷£ºPackage Settings -> Side Bar -> Settings - User£¬ÊäÈë{"default_browser": "chrome"}¡¢Package Settings -> Side Bar -> Key Bindings - User£¬ÊäÈë[{"keys": ["alt+f12"], "command": "side_bar_open_in_browser"}]
-3¡¢SublimeServer		WEB¾²Ì¬·þÎñÆ÷£¬SublimeServer -> Settings¡£Ìí¼ÓÎÄ¼þ¼Ðµ½ÏîÄ¿ -> View in SublimeServer
-4¡¢Terminal				Terminal²å¼þ£¬´ò¿ªTerminal
-5¡¢Git					Git²å¼þ£¬»ù±¾°üº¬ÁËGitµÄËùÓÐ¹¦ÄÜ
-6¡¢GitGutter			Git²å¼þ£¬ÏÔÊ¾Git±ä»¯ Ôö¼Ó¡¢ÐÞ¸Ä¡¢É¾³ý
-7¡¢ConvertToUTF8		Ö§³Ö´ò¿ªÆäËû¸ñÊ½µÄÎÄ¼þ
-8¡¢ColorPicker			±à¼­CSSÑÕÉ«Ê±£¬¿ÉÒÔ²é¿´»òÕßÑ¡ÔñÑÕÉ«£¬ÊäÈëCtrl+Shift+CÏÔÊ¾
-9¡¢All Autocomplete		ËÑË÷ËùÓÐ´ò¿ªµÄÎÄ¼þÑ°ÕÒÆ¥ÅäµÄÌáÊ¾´Ê
-10¡¢AutoFileName			¿ìËÙÔÚÎÄ¼þÖÐÐ´Â·¾¶
-11¡¢Pretty JSON			JSON¸ñÊ½»¯£¬ÊäÈëCtrl+Alt+J¸ñÊ½»¯
-12¡¢DocBlockr			Éú³ÉÓÅÃÀµÄ×¢ÊÍ£¬Package Settings -> DocBlockr -> Settings - User Ìí¼Ó {"jsdocs_extra_tags": ["@Desc","@Date {{date}}","@Author wjy"]}
-13¡¢Emmet				¿ìËÙ±àÐ´HTML/CSS
-14¡¢HTML5				ÊäÈëhtml5£¬ÊäÈëTab£¬×Ô¶¯²¹È«HTML5¹æ·¶ÎÄµµ
-15¡¢CSS3				CSS3²å¼þ
-16¡¢jQuery				Ö§³ÖjQuery¹æ·¶
-17¡¢JsFormat			Package Control: Add Repository ÊäÈëhttps://github.com/jdavisclark/JsFormat£¬»Ø³µ£¬ËÑË÷²å¼þ²¢°²×°£¬ÊäÈëCtrl+Alt+F¸ñÊ½»¯
-18¡¢HTML-CSS-JS PrettifyHTML/CSS/JS¸ñÊ½»¯²å¼þ HTML-CSS-JS Prettify -> Set 'node' Path ÉèÖÃNodeJSÂ·¾¶£¬HTML-CSS-JS Prettify -> Prettify Code ¸ñÊ½»¯´úÂë
-19¡¢LESS				less¸ßÁÁ²å¼þ
-20¡¢Less2Css			±àÒëlessÉú³Écss
-21¡¢AngularJS			AngularJS²å¼þ
-22¡¢Vue Syntax HighlightVue²å¼þ
+Sublime Text 3 æ’ä»¶ï¼ˆhttp://cst.stu.126.net/u/json/cms/channel_v3.jsonï¼‰
+1ã€ChineseLocalization	ä¸­æ–‡æ’ä»¶ åœ¨C:\Users\Administrator\AppData\Roaming\Sublime Text 3\Packagesç›®å½•ä¸‹git clone -b st3 https://github.com/rexdf/ChineseLocalization.git
+2ã€SideBarEnhancements	å¢žå¼ºä¾§è¾¹æ å³é”®åŠŸèƒ½ï¼Œå¿«é€Ÿæ‰“å¼€æµè§ˆå™¨ï¼šPackage Settings -> Side Bar -> Settings - Userï¼Œè¾“å…¥{"default_browser": "chrome"}ã€Package Settings -> Side Bar -> Key Bindings - Userï¼Œè¾“å…¥[{"keys": ["alt+f12"], "command": "side_bar_open_in_browser"}]
+3ã€SublimeServer		WEBé™æ€æœåŠ¡å™¨ï¼ŒSublimeServer -> Settingsã€‚æ·»åŠ æ–‡ä»¶å¤¹åˆ°é¡¹ç›® -> View in SublimeServer
+4ã€Terminal				Terminalæ’ä»¶ï¼Œæ‰“å¼€Terminal
+5ã€Git					Gitæ’ä»¶ï¼ŒåŸºæœ¬åŒ…å«äº†Gitçš„æ‰€æœ‰åŠŸèƒ½
+6ã€GitGutter			Gitæ’ä»¶ï¼Œæ˜¾ç¤ºGitå˜åŒ– å¢žåŠ ã€ä¿®æ”¹ã€åˆ é™¤
+7ã€ConvertToUTF8		æ”¯æŒæ‰“å¼€å…¶ä»–æ ¼å¼çš„æ–‡ä»¶
+8ã€ColorPicker			ç¼–è¾‘CSSé¢œè‰²æ—¶ï¼Œå¯ä»¥æŸ¥çœ‹æˆ–è€…é€‰æ‹©é¢œè‰²ï¼Œè¾“å…¥Ctrl+Shift+Cæ˜¾ç¤º
+9ã€All Autocomplete		æœç´¢æ‰€æœ‰æ‰“å¼€çš„æ–‡ä»¶å¯»æ‰¾åŒ¹é…çš„æç¤ºè¯
+10ã€AutoFileName			å¿«é€Ÿåœ¨æ–‡ä»¶ä¸­å†™è·¯å¾„
+11ã€Pretty JSON			JSONæ ¼å¼åŒ–ï¼Œè¾“å…¥Ctrl+Alt+Jæ ¼å¼åŒ–
+12ã€DocBlockr			ç”Ÿæˆä¼˜ç¾Žçš„æ³¨é‡Šï¼ŒPackage Settings -> DocBlockr -> Settings - User æ·»åŠ  {"jsdocs_extra_tags": ["@Desc","@Date {{date}}","@Author wjy"]}
+13ã€Emmet				å¿«é€Ÿç¼–å†™HTML/CSS
+14ã€HTML5				è¾“å…¥html5ï¼Œè¾“å…¥Tabï¼Œè‡ªåŠ¨è¡¥å…¨HTML5è§„èŒƒæ–‡æ¡£
+15ã€CSS3				CSS3æ’ä»¶
+16ã€jQuery				æ”¯æŒjQueryè§„èŒƒ
+17ã€JsFormat			Package Control: Add Repository è¾“å…¥https://github.com/jdavisclark/JsFormatï¼Œå›žè½¦ï¼Œæœç´¢æ’ä»¶å¹¶å®‰è£…ï¼Œè¾“å…¥Ctrl+Alt+Fæ ¼å¼åŒ–
+18ã€HTML-CSS-JS PrettifyHTML/CSS/JSæ ¼å¼åŒ–æ’ä»¶ HTML-CSS-JS Prettify -> Set 'node' Path è®¾ç½®NodeJSè·¯å¾„ï¼ŒHTML-CSS-JS Prettify -> Prettify Code æ ¼å¼åŒ–ä»£ç 
+19ã€LESS				lessé«˜äº®æ’ä»¶
+20ã€Less2Css			ç¼–è¯‘lessç”Ÿæˆcss
+21ã€AngularJS			AngularJSæ’ä»¶
+22ã€Vue Syntax HighlightVueæ’ä»¶
 
-1¡¢LuaÅäÖÃ
-¢Ù¹¤¾ß -> ±àÒëÏµÍ³ -> ÐÂ½¨±àÒëÏµÍ³
+1ã€Luaé…ç½®
+â‘ å·¥å…· -> ç¼–è¯‘ç³»ç»Ÿ -> æ–°å»ºç¼–è¯‘ç³»ç»Ÿ
 MyLua.sublime-build
 {
   "cmd": [
@@ -33,5 +33,5 @@ MyLua.sublime-build
   "file_regex": "^(?:lua:)?[\t ](...*?):([0-9]*):?([0-9]*)",
   "selector": "source.lua"
 }
-¢Ú¹¤¾ß -> ±àÒëÏµÍ³ -> Ñ¡ÖÐMyLua
-¢Û±àÒë¿ì½Ý¼ü F7
+â‘¡å·¥å…· -> ç¼–è¯‘ç³»ç»Ÿ -> é€‰ä¸­MyLua
+â‘¢ç¼–è¯‘å¿«æ·é”® F7

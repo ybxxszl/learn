@@ -1,26 +1,26 @@
-Éú³ÉÄ¬ÈÏpackage.json
+ç”Ÿæˆé»˜è®¤package.json
 npm init --yes
-ÒÀ¾İpackage.json°²×°°ü
+ä¾æ®package.jsonå®‰è£…åŒ…
 npm install
 
-¸üĞÂ°ü
+æ›´æ–°åŒ…
 npm update
-°²×°°ü²¢ĞŞ¸Ädependencies
+å®‰è£…åŒ…å¹¶ä¿®æ”¹dependencies
 npm install lodash --save
-°²×°°ü²¢ĞŞ¸ÄdevDependencies
+å®‰è£…åŒ…å¹¶ä¿®æ”¹devDependencies
 npm install lodash --save-dev
-Ğ¶ÔØ°ü²¢ĞŞ¸Ädependencies
+å¸è½½åŒ…å¹¶ä¿®æ”¹dependencies
 npm uninstall lodash --save
-Ğ¶ÔØ°ü²¢ĞŞ¸ÄdevDependencies
+å¸è½½åŒ…å¹¶ä¿®æ”¹devDependencies
 npm uninstall lodash --save-dev
 
-¸üĞÂÈ«¾Ö°ü
+æ›´æ–°å…¨å±€åŒ…
 npm update -g
-°²×°È«¾Ö°ü
+å®‰è£…å…¨å±€åŒ…
 npm install grunt -g
-Ğ¶ÔØÈ«¾Ö°ü
+å¸è½½å…¨å±€åŒ…
 npm uninstall grunt -g
 
 
-ÌÔ±¦NPM¾µÏñ£¨Ê¹ÓÃ¶¨ÖÆµÄ cnpm ÃüÁîĞĞ¹¤¾ß´úÌæÄ¬ÈÏµÄ npm£©
+æ·˜å®NPMé•œåƒï¼ˆä½¿ç”¨å®šåˆ¶çš„ cnpm å‘½ä»¤è¡Œå·¥å…·ä»£æ›¿é»˜è®¤çš„ npmï¼‰
 npm install -g cnpm --registry=https://registry.npm.taobao.org

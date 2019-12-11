@@ -1,17 +1,17 @@
-Ò»¡¢less
+ä¸€ã€less
 	less -m test.log
-¶ş¡¢more
+äºŒã€more
 	more test.log
-Èı¡¢tail
+ä¸‰ã€tail
 	tail -f -n 200 test.log
 
 
 grep -A10 -n -e "test" test.log
 
 
-netstat -tunlp | grep 80	²é¿´80¶Ë¿ÚÕ¼ÓÃÇé¿ö
-netstat -tunlp | grep java	²é¿´java½ø³ÌÕ¼ÓÃÇé¿ö
+netstat -tunlp | grep 80	æŸ¥çœ‹80ç«¯å£å ç”¨æƒ…å†µ
+netstat -tunlp | grep java	æŸ¥çœ‹javaè¿›ç¨‹å ç”¨æƒ…å†µ
 
-ps -a | grep java	²é¿´java½ø³ÌÕ¼ÓÃÇé¿ö
+ps -a | grep java	æŸ¥çœ‹javaè¿›ç¨‹å ç”¨æƒ…å†µ
 
-kill -9 [PID]	¸ù¾İpidÉ±ËÀ½ø³Ì
+kill -9 [PID]	æ ¹æ®pidæ€æ­»è¿›ç¨‹

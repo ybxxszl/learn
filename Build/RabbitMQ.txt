@@ -1,36 +1,36 @@
-Ò»¡¢Erlang
-	1¡¢ÏÂÔØ°²×°
-	2¡¢ÅäÖÃ»·¾³±äÁ¿
+ä¸€ã€Erlang
+	1ã€ä¸‹è½½å®‰è£…
+	2ã€é…ç½®ç¯å¢ƒå˜é‡
 		ERLANG_HOME=D:\ERL\erl10.1
 		Path=%ERLANG_HOME%\bin;
-¶ş¡¢RabbitMQ
-	1¡¢ÏÂÔØ°²×°
-	2¡¢°²×°RabbitMQ-Plugins
-		½øÈëRabbitMQ ServerµÄsbinÄ¿Â¼£¬cmdÊäÈërabbitmq-plugins enable rabbitmq_management
-	3¡¢ÔËĞĞ
-		½øÈëRabbitMQ ServerµÄsbinÄ¿Â¼£¬Ë«»÷rabbitmq-server.batÔËĞĞ
-	4¡¢·ÃÎÊ
+äºŒã€RabbitMQ
+	1ã€ä¸‹è½½å®‰è£…
+	2ã€å®‰è£…RabbitMQ-Plugins
+		è¿›å…¥RabbitMQ Serverçš„sbinç›®å½•ï¼Œcmdè¾“å…¥rabbitmq-plugins enable rabbitmq_management
+	3ã€è¿è¡Œ
+		è¿›å…¥RabbitMQ Serverçš„sbinç›®å½•ï¼ŒåŒå‡»rabbitmq-server.batè¿è¡Œ
+	4ã€è®¿é—®
 		http://127.0.0.1:15672
-		ÕËºÅ£ºguest
-		ÃÜÂë£ºguest
-Èı¡¢ÃüÁî
-Æô¶¯¼à¿Ø¹ÜÀíÆ÷£ºrabbitmq-plugins enable rabbitmq_management
-¹Ø±Õ¼à¿Ø¹ÜÀíÆ÷£ºrabbitmq-plugins disable rabbitmq_management
-Æô¶¯rabbitmq£ºrabbitmq-service start
-¹Ø±Õrabbitmq£ºrabbitmq-service stop
-²é¿´ËùÓĞµÄ¶ÓÁĞ£ºrabbitmqctl list_queues
-Çå³ıËùÓĞµÄ¶ÓÁĞ£ºrabbitmqctl reset
-¹Ø±ÕÓ¦ÓÃ£ºrabbitmqctl stop_app
-Æô¶¯Ó¦ÓÃ£ºrabbitmqctl start_app
+		è´¦å·ï¼šguest
+		å¯†ç ï¼šguest
+ä¸‰ã€å‘½ä»¤
+å¯åŠ¨ç›‘æ§ç®¡ç†å™¨ï¼šrabbitmq-plugins enable rabbitmq_management
+å…³é—­ç›‘æ§ç®¡ç†å™¨ï¼šrabbitmq-plugins disable rabbitmq_management
+å¯åŠ¨rabbitmqï¼šrabbitmq-service start
+å…³é—­rabbitmqï¼šrabbitmq-service stop
+æŸ¥çœ‹æ‰€æœ‰çš„é˜Ÿåˆ—ï¼šrabbitmqctl list_queues
+æ¸…é™¤æ‰€æœ‰çš„é˜Ÿåˆ—ï¼šrabbitmqctl reset
+å…³é—­åº”ç”¨ï¼šrabbitmqctl stop_app
+å¯åŠ¨åº”ç”¨ï¼šrabbitmqctl start_app
 
-Ìí¼ÓÓÃ»§£ºrabbitmqctl add_user username password
-·ÖÅä½ÇÉ«£ºrabbitmqctl set_user_tags username administrator
-ĞÂÔöĞéÄâÖ÷»ú£ºrabbitmqctl add_vhost  vhost_name
-½«ĞÂĞéÄâÖ÷»úÊÚÈ¨¸øĞÂÓÃ»§£ºrabbitmqctl set_permissions -p vhost_name username '.*' '.*' '.*'
+æ·»åŠ ç”¨æˆ·ï¼šrabbitmqctl add_user username password
+åˆ†é…è§’è‰²ï¼šrabbitmqctl set_user_tags username administrator
+æ–°å¢è™šæ‹Ÿä¸»æœºï¼šrabbitmqctl add_vhost  vhost_name
+å°†æ–°è™šæ‹Ÿä¸»æœºæˆæƒç»™æ–°ç”¨æˆ·ï¼šrabbitmqctl set_permissions -p vhost_name username '.*' '.*' '.*'
 
-½ÇÉ«ËµÃ÷
-none  ×îĞ¡È¨ÏŞ½ÇÉ«
-management ¹ÜÀíÔ±½ÇÉ«
-policymaker   ¾ö²ßÕß
-monitoring  ¼à¿Ø
-administrator  ³¬¼¶¹ÜÀíÔ±
+è§’è‰²è¯´æ˜
+none  æœ€å°æƒé™è§’è‰²
+management ç®¡ç†å‘˜è§’è‰²
+policymaker   å†³ç­–è€…
+monitoring  ç›‘æ§
+administrator  è¶…çº§ç®¡ç†å‘˜

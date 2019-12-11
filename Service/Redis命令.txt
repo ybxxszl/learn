@@ -1,18 +1,18 @@
-注册服务：redis-server.exe --service-install redis.windows.conf --loglevel verbose
-卸载服务：redis-server.exe --service-uninstall
+娉ㄥ唽鏈嶅姟锛歳edis-server.exe --service-install redis.windows.conf --loglevel verbose
+鍗歌浇鏈嶅姟锛歳edis-server.exe --service-uninstall
 
-启动服务：redis-server.exe --service-start
-停止服务：redis-server.exe --service-stop
-
-
-自定义安装（服务名为redisserver1）：
-注册服务：redis-server.exe --service-install redis.windows.conf --Service-name RedisServer1 --loglevel verbose
-卸载服务：redis-server.exe --service-uninstall --Service-name RedisServer1
-
-启动服务：redis-server.exe --service-start --Service-name RedisServer1
-停止服务：redis-server.exe --service-stop --Service-name RedisServer1
+鍚姩鏈嶅姟锛歳edis-server.exe --service-start
+鍋滄鏈嶅姟锛歳edis-server.exe --service-stop
 
 
+鑷畾涔夊畨瑁咃紙鏈嶅姟鍚嶄负redisserver1锛夛細
+娉ㄥ唽鏈嶅姟锛歳edis-server.exe --service-install redis.windows.conf --Service-name RedisServer1 --loglevel verbose
+鍗歌浇鏈嶅姟锛歳edis-server.exe --service-uninstall --Service-name RedisServer1
+
+鍚姩鏈嶅姟锛歳edis-server.exe --service-start --Service-name RedisServer1
+鍋滄鏈嶅姟锛歳edis-server.exe --service-stop --Service-name RedisServer1
 
 
-连接Redis服务：redis-cli -h 127.0.0.1 -p 6379 -a 1234 -n 0
+
+
+杩炴帴Redis鏈嶅姟锛歳edis-cli -h 127.0.0.1 -p 6379 -a 1234 -n 0

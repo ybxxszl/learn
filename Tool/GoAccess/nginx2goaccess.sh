@@ -51,7 +51,7 @@
 # 'Fwd:\t${http_x_forwarded_for}';
 #   ./nginx2goaccess.sh '${time_local}\t${remote_addr}\t${host}\t${request_method}\t${request_uri}\t${server_protocol}\t${http_referer}\t${http_x_mobile_group}\tLocal:\t${status}\t*${connection}\t${body_bytes_sent}\t${request_time}\tProxy:\t${upstream_status}\t${upstream_cache_status}\t${upstream_response_length}\t${upstream_response_time}\t${uri}${log_args}\tAgent:\t${http_user_agent}\tFwd:\t${http_x_forwarded_for}'
 #
-# Author: Rogério Carvalho Schneider <stockrt@gmail.com>
+# Author: Rog茅rio Carvalho Schneider <stockrt@gmail.com>
 
 # Params
 log_format="$1"

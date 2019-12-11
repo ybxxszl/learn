@@ -1,14 +1,14 @@
-Swagger½Ì³Ì
+Swaggeræ•™ç¨‹
 swagger-editor
-ÏÂÔØ²¢°²×°node.js£¬ÔËĞĞnpm install -g http-serverÃüÁî
-ÏÂÔØÏîÄ¿https://github.com/swagger-api/swagger-editor²¢½âÑ¹
-½øÈëswagger-editorÎÄ¼ş¼ĞÖĞ£¬ÔËĞĞhttp-serverÃüÁî
-·ÃÎÊhttp://127.0.0.1:8080
+ä¸‹è½½å¹¶å®‰è£…node.jsï¼Œè¿è¡Œnpm install -g http-serverå‘½ä»¤
+ä¸‹è½½é¡¹ç›®https://github.com/swagger-api/swagger-editorå¹¶è§£å‹
+è¿›å…¥swagger-editoræ–‡ä»¶å¤¹ä¸­ï¼Œè¿è¡Œhttp-serverå‘½ä»¤
+è®¿é—®http://127.0.0.1:8080
 swagger-ui
-ÏÂÔØ²¢°²×°node.js£¬ÔËĞĞnpm install -g http-serverÃüÁî
-ÏÂÔØÏîÄ¿https://github.com/swagger-api/swagger-ui²¢½âÑ¹
-½øÈëswagger-editorÎÄ¼ş¼ĞÖĞ£¬ÔËĞĞhttp-serverÃüÁî
-·ÃÎÊhttp://127.0.0.1:8080/dist/index.html
-SwaggerÅäÖÃ
+ä¸‹è½½å¹¶å®‰è£…node.jsï¼Œè¿è¡Œnpm install -g http-serverå‘½ä»¤
+ä¸‹è½½é¡¹ç›®https://github.com/swagger-api/swagger-uiå¹¶è§£å‹
+è¿›å…¥swagger-editoræ–‡ä»¶å¤¹ä¸­ï¼Œè¿è¡Œhttp-serverå‘½ä»¤
+è®¿é—®http://127.0.0.1:8080/dist/index.html
+Swaggeré…ç½®
 http://localhost:8080/qs/webjars/swagger-ui/3.20.1/
 http://localhost:8080/qs/api/swagger.json

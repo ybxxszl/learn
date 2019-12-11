@@ -1,81 +1,81 @@
-һ�������ʼ�
-	1�������ʼ�����
-		�����ʼ�ϵͳ
-			�����MUA��MTA��MDA��MRA
-			Э�飺SMTP��IMAP��POP3
-			MUA��֮Ϊ�ʼ��û��������û�ͨ��MUA�����ʼ�
-				���õ�MUA������outlook��Mac Mail��Thunderbird��Foxmail��Mutt
-				���ڸ����û�����������ʹ�õ����Ļ�����ҳ��ʽ�鿴�����ʼ�����Щ��ҳҲ���Գ�Ϊ����Web��MUA
-			IMAP��POP3
-				MUA�����ʼ�ʹ�õ���IMAP��POP3���ֱ�׼�ʼ�����Э��
-				IMAP��POP3������ʼ��������Ͻ��ض��û����ʼ�ץȡ����
-				���ǿ��Կ���ץȡ�Ƿ����ʼ��������ϱ����ʼ�
-				IMAP��Ҫ�������ڿͻ��˵����в������ʼ�������ͬ������POP3���ǽ��ʼ��������������в������ڱ��أ���Ӱ��������ϱ�����ʼ�
-				IMAP���û��������
+一、电子邮件
+	1、电子邮件服务
+		电子邮件系统
+			组件：MUA、MTA、MDA、MRA
+			协议：SMTP、IMAP、POP3
+			MUA称之为邮件用户代理，用户通过MUA接收邮件
+				常用的MUA软件：outlook、Mac Mail、Thunderbird、Foxmail、Mutt
+				对于个人用户来讲，可能使用的最多的还是网页方式查看电子邮件，这些网页也可以称为基于Web的MUA
+			IMAP、POP3
+				MUA接收邮件使用的是IMAP或POP3这种标准邮件接收协议
+				IMAP、POP3负责从邮件服务器上将特定用户的邮件抓取下来
+				我们可以控制抓取是否在邮件服务器上保存邮件
+				IMAP主要优势在于客户端的所有操作与邮件服务器同步，而POP3则是将邮件下载下来，所有操作都在本地，不影响服务器上保存的邮件
+				IMAP的用户体验更好
 			MTA
-				SMTA���ʼ����͵ı�׼Э�飬MUAͨ��SMTPЭ�����ʼ�������ͨ�ţ�ʵ���ʼ�����
-				SMTP����������˵��MTA
-				����MTA���Ƕ�SMTA��һ��ʵ��
-				Linux����������MTA��sendmail��Postfix
-				MTAֻ�����ʼ����䣬�ʼ���������MDA��ɵ�
-			MDA����MTA���յ����ʼ��������ʼ��������ϣ�ͨ��MTA��MDA�ǽ��������һ���
-				Linux�ϣ��ʼ�Ĭ�ϱ���Ŀ¼�ǣ�/var/spool/mail/username
-				MDA���˸��𱣴��ʼ�������Ҫ���Ƕ��ʼ����������ʼ�����������ɨ��
-				Linux��õ�MDA�У�procmail��maildrop
-				sendmail��PostfixĬ��ʹ�õ�MDA��procmail
-			MRAʵ��IMAP��POP3��Э�飬������MUA���������������ϵ��ʼ�ͨ��IMAP��POP3Э����͸��ͻ���
-				Linux��ʹ����Ϊ�㷺��MRA�ǣ�Dovecot
-				Ϊ��ȫ������ִ��ʼ�ϵͳһ���ʹ������֤��Դ���Э����м��ܣ����ԣ�MRAһ����Ҫ֧�ֵ�Э���У�IMAP��POP3��IMAPS��POP3S
-		�ʼ���ַ��ʽ
-			�����ʼ���ַ��ʽ�����֣�
+				SMTA是邮件发送的标准协议，MUA通过SMTP协议与邮件服务器通信，实现邮件发送
+				SMTP就是我们所说的MTA
+				所有MTA都是对SMTA的一种实现
+				Linux中最主流的MTA：sendmail、Postfix
+				MTA只负责邮件传输，邮件保存是由MDA完成的
+			MDA负责将MTA接收到的邮件保存在邮件服务器上，通常MTA和MDA是紧紧结合在一起的
+				Linux上，邮件默认保存目录是：/var/spool/mail/username
+				MDA除了负责保存邮件，更重要的是对邮件进行垃圾邮件处理及病毒扫描
+				Linux最常用的MDA有：procmail、maildrop
+				sendmail、Postfix默认使用的MDA是procmail
+			MRA实现IMAP、POP3等协议，负责与MUA交互，将服务器上的邮件通过IMAP或POP3协议递送给客户端
+				Linux下使用最为广泛的MRA是：Dovecot
+				为安全起见，现代邮件系统一般会使用数字证书对传输协议进行加密，所以，MRA一般需要支持的协议有：IMAP、POP3、IMAPS、POP3S
+		邮件地址格式
+			电子邮件地址格式有两种：
 				nash_su@mail.linuxcast.net
 				nash_su@linuxcast.net
-			��õ�Ϊ�ڶ��֣��û���@����
-				������ʽ���ʼ���ַ��Ϊδָ������ķ����������Ա���Ը������DNS��ѯ����ѯ�����MX��¼���ҳ�������ʼ�������֮�󣬲��ܹ������ʼ�
+			最常用的为第二种：用户名@域名
+				这种形式的邮件地址因为未指定该域的服务器，所以必须对该域进行DNS查询，查询该域的MX记录，找出该域的邮件服务器之后，才能够发送邮件
 				dig -t mx qq.com
-	2��postfix�ʼ������������
-		postfixһ��Ĭ�ϰ�װ yum install -y postfix
-		postfix�����ļ�������/etc/postfix/�������������ļ�Ϊ/etc/postfix/main.cf���������ܶ��������ܵ������ļ�
-		ͨ��������������postfix service postfix start chkconfig postfix on
-		postfixĬ��ʹ��TCP��25�Ŷ˿�
-		postfixĬ������������ֻΪ�����ṩ���񣬱������û�֮�����ͨ������MUA�໥�����ʼ� netstat -tupln | grep master
-		ͨ������������ʼ� mail -vs "mail from linuxcast.net" linuxcast@mail.linuxcast.net
-		ͨ��mail������Բ鿴�û�������/var/spool/mail/root
-		postfix����
-			postfix���������ļ� /etc/postfix/main.cf
-			��������һ�㲻ֱ�ӱ༭���ļ�������ʹ��postconf������б༭��鿴��
-				postconf -d		��ʾpostfix��Ĭ������
-				postconf -n		��ʾpostfix�ĵ�ǰ����
-				postconf -e key=value	�޸�postfix������
-			postconf����Ὣ�޸�����д��main.cf�����ļ������������÷�ʽ���Ա�����Ϊ��������µ�����
-			Ĭ�ϵ�postfixֻ�������ػ��ؽӿڣ�ֻΪ�����ṩ���������Ҫ��postfix�����ṩ��������Ҫ�޸�postfix����������нӿڣ�
+	2、postfix邮件服务基础配置
+		postfix一般默认安装 yum install -y postfix
+		postfix配置文件保存在/etc/postfix/，其中主配置文件为/etc/postfix/main.cf，还包含很多其他功能的配置文件
+		通过以下命令启动postfix service postfix start chkconfig postfix on
+		postfix默认使用TCP的25号端口
+		postfix默认启动，但是只为本机提供服务，本机的用户之间可以通过各种MUA相互发送邮件 netstat -tupln | grep master
+		通过以下命令发送邮件 mail -vs "mail from linuxcast.net" linuxcast@mail.linuxcast.net
+		通过mail命令可以查看用户的邮箱/var/spool/mail/root
+		postfix配置
+			postfix的主配置文件 /etc/postfix/main.cf
+			但是我们一般不直接编辑该文件，而是使用postconf命令进行编辑或查看：
+				postconf -d		显示postfix的默认配置
+				postconf -n		显示postfix的当前配置
+				postconf -e key=value	修改postfix的配置
+			postconf命令会将修改内容写入main.cf配置文件，这样的配置方式可以避免因为输入错误导致的问题
+			默认的postfix只监听本地环回接口，只为本机提供服务，如果需要让postfix对外提供服务，则需要修改postfix让其监听所有接口：
 				postconf -e | grep inet_interfaces
 				postconf -e "inet_interfaces=all"
-			֮��ָ�����ܻ��ʾ��������������
-				�༭main.cf�ļ������������������壺
+			之后指定可能会表示本机的主机名：
+				编辑main.cf文件，创建两个变量定义：
 					myhostname=mail.linuxcast.net
 					mydomain=linuxcast.net
-					Ĭ�ϵ�postfix�������������£�
+					默认的postfix主机名配置如下：
 						mydestination=$myhostname,localhost.$mydomain,localhost
-			ע�⣬���з��ʼ�ʱʹ�ô��������������������ڴ��г��������޷����ո��ʼ�
-			postfix - ��αװ
-				postfix�������ʼ�Դ��ַһ����Ҫ����αװ
-				Ĭ�Ϸ������ʼ�Դ��ַ��
-					�û���@��������nash_su@mail.linuxcast.net��
-				һ��ϰ��ʹ�õ��ʼ���ַ��
-					�û���@������nash_su@linuxcast.net��
-				postfixͨ��myoriginѡ������αװ��ַ��
-					postconf -e "myorigin=$mydomain"��mydomain��Ԥ����Ϊlinuxcast.net��
-					������������Щ�û��������ʼ�������αװ��
+			注意，所有发邮件时使用代表本机的主机名必须在此列出，否则无法接收该邮件
+			postfix - 域伪装
+				postfix发出的邮件源地址一般需要进行伪装
+				默认发出的邮件源地址：
+					用户名@主机名（nash_su@mail.linuxcast.net）
+				一般习惯使用的邮件地址：
+					用户名@域名（nash_su@linuxcast.net）
+				postfix通过myorigin选项配置伪装地址：
+					postconf -e "myorigin=$mydomain"（mydomain被预定义为linuxcast.net）
+					还可以设置哪些用户发出的邮件不进行伪装：
 						postconf -e "masquerade_exceptions=root"
-			postfix��������ѡ��
+			postfix基本配置选项
 				mydomain=linuxcast.net
 				myhostname=mail.linuxcast.net
 				inet_interfaces=all
 				mydestination=$myhostname,localhost.$mydomain,localhost
-				mynetworks=127.0.0.0/8		����Ҫ��֤��Σ�գ�Ȩ�����ò��ܹ���
+				mynetworks=127.0.0.0/8		不需要验证（危险，权限配置不能过大）
 				myorigin=$mydomain
-		postfix����
-			�鿴��ǰ�ʼ����Ͷ��� postqueue -p
-			ˢ�µ�ǰ�ʼ����Ͷ��� postqueue -f
-			�鿴�ʼ�������־ tail -f /var/log/maillog
+		postfix管理
+			查看当前邮件发送队列 postqueue -p
+			刷新当前邮件发送队列 postqueue -f
+			查看邮件服务日志 tail -f /var/log/maillog

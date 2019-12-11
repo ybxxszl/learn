@@ -1,8 +1,8 @@
-Ò»¡¢Jenkins°²×°
-	1¡¢Ê¹ÓÃdocker.io/jenkins
+ä¸€ã€Jenkinså®‰è£…
+	1ã€ä½¿ç”¨docker.io/jenkins
 		docker pull jenkins
 		docker run --name Jenkins -d -p 8083:8080 -p 50000:50000 jenkins
-	2¡¢Ê¹ÓÃdocker.io/tomcat jenkins.war
+	2ã€ä½¿ç”¨docker.io/tomcat jenkins.war
 		docker pull docker.io/tomcat
 		docker build -t jenkins:1.0 .
 		docker create --name Jenkins -p 8083:8080 jenkins:1.0
@@ -17,36 +17,36 @@ COPY jenkins.war /usr/local/tomcat/webapps/
 COPY jdk-8u181-linux-x64.tar.gz /usr/local/java/
 RUN tar -xzf /usr/local/java/jdk-8u181-linux-x64.tar.gz -C /usr/local/java/
 RUN rm -rf /usr/local/java/jdk-8u181-linux-x64.tar.gz
-¶ş¡¢Jenkins²å¼ş
-	1¡¢SpringBoot-Maven´ò°üJar
-		Maven Integration plugin	MavenÔöÇ¿²å¼ş
-		Git plugin			Git²å¼ş
-		Publish Over SSH		SSHÍÆËÍ²å¼ş
-	2¡¢SpringBoot-Maven´ò°üWar
-		Maven Integration plugin	MavenÔöÇ¿²å¼ş
-		Git plugin			Git²å¼ş
-		Publish Over SSH		SSHÍÆËÍ²å¼ş
-		Deploy to container Plugin	Ó¦ÓÃ·şÎñÆ÷ÍÆËÍ²å¼ş
-	3¡¢SpringBoot-Gradle´ò°üJar
-		Gradle Plugin			Gradle²å¼ş
-		Git plugin			Git²å¼ş
-		Publish Over SSH		SSHÍÆËÍ²å¼ş
-	4¡¢SpringBoot-Gradle´ò°üWar
-		Gradle Plugin			Gradle²å¼ş
-		Git plugin			Git²å¼ş
-		Publish Over SSH		SSHÍÆËÍ²å¼ş
-		Deploy to container Plugin	Ó¦ÓÃ·şÎñÆ÷ÍÆËÍ²å¼ş
-	5¡¢VUEÏîÄ¿
-		NodeJS Plugin			NodeJS²å¼ş
-		Publish Over SSH		SSHÍÆËÍ²å¼ş
-	6¡¢ÆäËû
-		Gerrit Trigger				Gerrit´¥·¢Æ÷²å¼ş
-		LDAP Plugin					LDAP²å¼ş
-		Email Extension Plugin		ÓÊ¼şÔöÇ¿²å¼ş
+äºŒã€Jenkinsæ’ä»¶
+	1ã€SpringBoot-Mavenæ‰“åŒ…Jar
+		Maven Integration plugin	Mavenå¢å¼ºæ’ä»¶
+		Git plugin			Gitæ’ä»¶
+		Publish Over SSH		SSHæ¨é€æ’ä»¶
+	2ã€SpringBoot-Mavenæ‰“åŒ…War
+		Maven Integration plugin	Mavenå¢å¼ºæ’ä»¶
+		Git plugin			Gitæ’ä»¶
+		Publish Over SSH		SSHæ¨é€æ’ä»¶
+		Deploy to container Plugin	åº”ç”¨æœåŠ¡å™¨æ¨é€æ’ä»¶
+	3ã€SpringBoot-Gradleæ‰“åŒ…Jar
+		Gradle Plugin			Gradleæ’ä»¶
+		Git plugin			Gitæ’ä»¶
+		Publish Over SSH		SSHæ¨é€æ’ä»¶
+	4ã€SpringBoot-Gradleæ‰“åŒ…War
+		Gradle Plugin			Gradleæ’ä»¶
+		Git plugin			Gitæ’ä»¶
+		Publish Over SSH		SSHæ¨é€æ’ä»¶
+		Deploy to container Plugin	åº”ç”¨æœåŠ¡å™¨æ¨é€æ’ä»¶
+	5ã€VUEé¡¹ç›®
+		NodeJS Plugin			NodeJSæ’ä»¶
+		Publish Over SSH		SSHæ¨é€æ’ä»¶
+	6ã€å…¶ä»–
+		Gerrit Trigger				Gerritè§¦å‘å™¨æ’ä»¶
+		LDAP Plugin					LDAPæ’ä»¶
+		Email Extension Plugin		é‚®ä»¶å¢å¼ºæ’ä»¶
 
 
 docker pull docker.io/jenkins/jenkins:lts
 docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 docker.io/jenkins/jenkins:lts
 
-ÉèÖÃÊ±¼ä
+è®¾ç½®æ—¶é—´
 System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', 'Asia/Shanghai')

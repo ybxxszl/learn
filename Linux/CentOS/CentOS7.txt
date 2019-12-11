@@ -1,144 +1,144 @@
-##CentOS6ÄÚºËÉı¼¶CentOS7ÄÚºË
+##CentOS6å†…æ ¸å‡çº§CentOS7å†…æ ¸
 
-¸ü»»Èí¼şÔ´
-	1¡¢±¸·İ
+æ›´æ¢è½¯ä»¶æº
+	1ã€å¤‡ä»½
 		mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-	2¡¢ÏÂÔØ
+	2ã€ä¸‹è½½
 		wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
-	3¡¢Çå³ı»º´æ
+	3ã€æ¸…é™¤ç¼“å­˜
 		yum clean all
-	4¡¢¸üĞÂ»º´æ
+	4ã€æ›´æ–°ç¼“å­˜
 		yum makecache
 
-Éı¼¶ÄÚºË
-	1¡¢²é¿´ÄÚºË°æ±¾
+å‡çº§å†…æ ¸
+	1ã€æŸ¥çœ‹å†…æ ¸ç‰ˆæœ¬
 		uname -r
-	2¡¢µ¼Èëpublic key
+	2ã€å¯¼å…¥public key
 		rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-	3¡¢°²×°ELRepo£¨http://elrepo.org/tiki/tiki-index.php£©
+	3ã€å®‰è£…ELRepoï¼ˆhttp://elrepo.org/tiki/tiki-index.phpï¼‰
 		rpm -Uvh https://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm
-	4¡¢°²×°kernel-lt»òkernel-ml
-		yum --enablerepo=elrepo-kernel install kernel-lt -y		kernel-lt		³¤ÆÚÖ§³Ö°æ±¾
-		yum --enablerepo=elrepo-kernel install kernel-ml -y		kernel-ml		×îĞÂÎÈ¶¨°æ±¾
-	5¡¢±à¼­/etc/grub.conf£¬ĞŞ¸ÄGrubÒıµ¼Ë³Ğò£¬ĞŞ¸ÄdefaultÖµÎª×îĞÂÄÚºËË³ĞòË÷Òı
-		default=0	Ò»°ã×îĞÂ°²×°µÄÄÚºËÔÚµÚÒ»Î»
-	6¡¢ÖØÆô²¢²é¿´ÄÚºË°æ±¾
+	4ã€å®‰è£…kernel-ltæˆ–kernel-ml
+		yum --enablerepo=elrepo-kernel install kernel-lt -y		kernel-lt		é•¿æœŸæ”¯æŒç‰ˆæœ¬
+		yum --enablerepo=elrepo-kernel install kernel-ml -y		kernel-ml		æœ€æ–°ç¨³å®šç‰ˆæœ¬
+	5ã€ç¼–è¾‘/etc/grub.confï¼Œä¿®æ”¹Grubå¼•å¯¼é¡ºåºï¼Œä¿®æ”¹defaultå€¼ä¸ºæœ€æ–°å†…æ ¸é¡ºåºç´¢å¼•
+		default=0	ä¸€èˆ¬æœ€æ–°å®‰è£…çš„å†…æ ¸åœ¨ç¬¬ä¸€ä½
+	6ã€é‡å¯å¹¶æŸ¥çœ‹å†…æ ¸ç‰ˆæœ¬
 		reboot
 		uname -r
 
 
-°²×°docker
-	1¡¢²é¿´CentOSÄÚºË°æ±¾
+å®‰è£…docker
+	1ã€æŸ¥çœ‹CentOSå†…æ ¸ç‰ˆæœ¬
 		uname -r
-	2¡¢°²×°FedoraµÄEPELÔ´
+	2ã€å®‰è£…Fedoraçš„EPELæº
 		yum install http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
-	3¡¢Ìí¼Óhop5.repoÔ´
+	3ã€æ·»åŠ hop5.repoæº
 		wget -O /etc/yum.repos.d/hop5.repo http://www.hop5.in/yum/el6/hop5.repo
-	4¡¢°²×°docker.io
+	4ã€å®‰è£…docker.io
 		yum install docker-io
 
 
-½â¾öÖĞÎÄÂÒÂë
-	1¡¢²é¿´ÊÇ·ñ´æÔÚÖĞÎÄÓïÑÔ°ü
+è§£å†³ä¸­æ–‡ä¹±ç 
+	1ã€æŸ¥çœ‹æ˜¯å¦å­˜åœ¨ä¸­æ–‡è¯­è¨€åŒ…
 		locale -a
-	2¡¢°²×°ÖĞÎÄÓïÑÔ°ü
+	2ã€å®‰è£…ä¸­æ–‡è¯­è¨€åŒ…
 		yum install kde-l10n-Chinese
-	3¡¢ĞŞ¸Ä²¢Ó¦ÓÃÅäÖÃ
+	3ã€ä¿®æ”¹å¹¶åº”ç”¨é…ç½®
 		localectl set-locale LANG=zh_CN
 		source /etc/locale.conf
 
 		vim /etc/locale.conf
 		LANG=zh_CN
 		source /etc/locale.conf
-	4¡¢²é¿´Ê±¼ä
+	4ã€æŸ¥çœ‹æ—¶é—´
 		date
-		2019Äê 12ÔÂ 31ÈÕ ĞÇÆÚ¶ş 23:59:59 CST
-	5¡¢ĞŞ¸ÄÊ±¼ä
+		2019å¹´ 12æœˆ 31æ—¥ æ˜ŸæœŸäºŒ 23:59:59 CST
+	5ã€ä¿®æ”¹æ—¶é—´
 		date -s "2019-12-31 23:59:59"
 
 
-1¡¢SSH·şÎñ
-	°²×°openssh
+1ã€SSHæœåŠ¡
+	å®‰è£…openssh
 		yum install openssh*
-	Æô¶¯sshd·şÎñ
+	å¯åŠ¨sshdæœåŠ¡
 		systemctl status sshd
 		systemctl start sshd
 		systemctl stop sshd
-	¿ª»úÆô¶¯sshd·şÎñ
+	å¼€æœºå¯åŠ¨sshdæœåŠ¡
 		systemctl enable sshd
 		systemctl disable sshd
-2¡¢firewall·À»ğÇ½
-	²é¿´·À»ğÇ½¹æÔò
+2ã€firewallé˜²ç«å¢™
+	æŸ¥çœ‹é˜²ç«å¢™è§„åˆ™
 		firewall-cmd --list-all
-	²é¿´¶Ë¿Ú80ÊÇ·ñ¿ª·Å
+	æŸ¥çœ‹ç«¯å£80æ˜¯å¦å¼€æ”¾
 		firewall-cmd --query-port=80/tcp
-	¿ª·Å80¶Ë¿Ú
+	å¼€æ”¾80ç«¯å£
 		firewall-cmd --permanent --add-port=80/tcp
-	±ÕÈû80¶Ë¿Ú
+	é—­å¡80ç«¯å£
 		firewall-cmd --permanent --remove-port=80/tcp
-	ĞŞ¸ÄÅäÖÃĞèÒªÖØĞÂÆô¶¯·À»ğÇ½
+	ä¿®æ”¹é…ç½®éœ€è¦é‡æ–°å¯åŠ¨é˜²ç«å¢™
 		firewall-cmd --reload
-3¡¢°²×°jdk
-	½âÑ¹
+3ã€å®‰è£…jdk
+	è§£å‹
 		tar -xzf jdk-8u181-linux-x64.tar.gz
-	ÒÆ¶¯
+	ç§»åŠ¨
 		mv jdk1.8.0_181 /usr/local/jdk
-	Ğ¶ÔØopenjdk
-		ËÑË÷openjdk°ü
+	å¸è½½openjdk
+		æœç´¢openjdkåŒ…
 			rpm -qa|grep openjdk
-		Ğ¶ÔØopenjdk°ü
+		å¸è½½openjdkåŒ…
 			rpm -e --nodeps java-1.7.0-openjdk-1.7.0.191-2.6.15.4.el7_5.x86_64
 			rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.191-2.6.15.4.el7_5.x86_64
 			rpm -e --nodeps java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
 			rpm -e --nodeps java-1.8.0-openjdk-headless-1.8.0.191.b12-0.el7_5.x86_64
-	ÅäÖÃ»·¾³±äÁ¿
+	é…ç½®ç¯å¢ƒå˜é‡
 		vim /etc/profile
 		export JAVA_HOME=/usr/local/jdk/jdk1.8.0_181
 		export PATH=$JAVA_HOME/bin:$PATH
 		source /etc/profile
-4¡¢°²×°nginx
-	°²×°ÒÀÀµ°ü
+4ã€å®‰è£…nginx
+	å®‰è£…ä¾èµ–åŒ…
 		yum install gcc-c++
 		yum install -y pcre pcre-devel
 		yum install -y zlib zlib-devel
 		yum install -y openssl openssl-devel
-	½âÑ¹
+	è§£å‹
 		tar -xzf nginx-1.14.0.tar.gz
-	½øÈënginxÄ¿Â¼
-		±àÒë
+	è¿›å…¥nginxç›®å½•
+		ç¼–è¯‘
 			./configure
-		Ö´ĞĞ
+		æ‰§è¡Œ
 			make
 			make install
-		½øÈësbinÄ¿Â¼
-			Æô¶¯
+		è¿›å…¥sbinç›®å½•
+			å¯åŠ¨
 				./nginx
-	¿ª·Å80¶Ë¿Ú
+	å¼€æ”¾80ç«¯å£
 		firewall-cmd --permanent --add-port=80/tcp
-	ÖØĞÂÆô¶¯·À»ğÇ½
+	é‡æ–°å¯åŠ¨é˜²ç«å¢™
 		firewall-cmd --reload
-5¡¢°²×°tomcat
-	½âÑ¹
+5ã€å®‰è£…tomcat
+	è§£å‹
 		tar -xzf apache-tomcat-8.5.34.tar.gz
-	ÒÆ¶¯
+	ç§»åŠ¨
 		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat1
 		mv apache-tomcat-8.5.34 /usr/local/tomcat/tomcat2
-6¡¢°²×°openjdk
+6ã€å®‰è£…openjdk
 	yum install java-1.8.0-openjdk
-7¡¢°²×°redis
-	ÏÂÔØ½âÑ¹
+7ã€å®‰è£…redis
+	ä¸‹è½½è§£å‹
 		tar -xzf redis-5.0.5.tar.gz
-	ÏÂÔØ±àÒëgcc
+	ä¸‹è½½ç¼–è¯‘gcc
 		yum install gcc
-	±àÒë°²×°
+	ç¼–è¯‘å®‰è£…
 		make & make install
 
 
-¶¨Ê±ÈÎÎñ
-	°²×°
+å®šæ—¶ä»»åŠ¡
+	å®‰è£…
 		yum install crontabs
 		systemctl status crond
-	Ìí¼Ó
+	æ·»åŠ 
 		crontab -e
 
 		#! refresh_learn
@@ -147,14 +147,14 @@
 		chmod 777 refresh_learn.sh
 
 
-×¢£º
-	systemctl£¨serviceºÍcheckoutµÄ×éºÏ£©
+æ³¨ï¼š
+	systemctlï¼ˆserviceå’Œcheckoutçš„ç»„åˆï¼‰
 
-	systemctl start docker					Æô¶¯·şÎñ
-	systemctl restart docker				ÖØÆô·şÎñ
-	systemctl stop docker					Í£Ö¹·şÎñ
-	systemctl status docker				²é¿´×´Ì¬
-	systemctl enable docker				Æô¶¯¿ª»ú×ÔÆô¶¯
-	systemctl disable docker				Í£Ö¹¿ª»ú×ÔÆô¶¯
-	systemctl set-default multi-user.target		Ê¹ÓÃÄ¬ÈÏÔËĞĞ¼¶±ğ£ºÃüÁîĞĞÄ£Ê½
-	systemctl set-default graphical.target		Ê¹ÓÃÄ¬ÈÏÔËĞĞ¼¶±ğ£ºÍ¼ĞÎ»¯Ä£Ê½
+	systemctl start docker					å¯åŠ¨æœåŠ¡
+	systemctl restart docker				é‡å¯æœåŠ¡
+	systemctl stop docker					åœæ­¢æœåŠ¡
+	systemctl status docker				æŸ¥çœ‹çŠ¶æ€
+	systemctl enable docker				å¯åŠ¨å¼€æœºè‡ªå¯åŠ¨
+	systemctl disable docker				åœæ­¢å¼€æœºè‡ªå¯åŠ¨
+	systemctl set-default multi-user.target		ä½¿ç”¨é»˜è®¤è¿è¡Œçº§åˆ«ï¼šå‘½ä»¤è¡Œæ¨¡å¼
+	systemctl set-default graphical.target		ä½¿ç”¨é»˜è®¤è¿è¡Œçº§åˆ«ï¼šå›¾å½¢åŒ–æ¨¡å¼

@@ -1,82 +1,82 @@
-Web·şÎñ - Apache
-	1¡¢Web·şÎñÔ­Àí¡¢HTTPĞ­Òé
-		Web·şÎñ¶ËÓë¿Í»§¶ËÖ®¼äÍ¨¹ıHTTPĞ­Òé´«ÊäÊı¾İ
-			µ±Ç°Ê¹ÓÃ×î¶àµÄHTTP°æ±¾ÊÇHTTP/1.1£¬HTTP/2.0ÕıÔÚ¿ª·¢
-			HTTPÊ¹ÓÃTCPĞ­Òé£¬Ä¬ÈÏ¶Ë¿ÚºÅÎª80
-			HTTP·½·¨
-				GET	´Ó·şÎñÆ÷ÉÏ»ñÈ¡Ò»¸ö×ÊÔ´£¨Ò»°ãÊÇÍøÒ³£©
-				POST	Ïò·şÎñÆ÷Ìá½»Êı¾İ£¨¿ÉÄÜ»á´´½¨Ò»¸öĞÂµÄ×ÊÔ´£©
-				PUT	Ïò·şÎñÆ÷Ìá½»Êı¾İ
-				DELETE	É¾³ıÖ¸¶¨×ÊÔ´
-				HEAD	Ö»ÇëÇóÍøÒ³µÄÍ·²¿ĞÅÏ¢
-			HTTP×´Ì¬Âë
-				200	Õı³££¬ÇëÇó³É¹¦
-				301	ÓÀ¾ÃÒÆ¶¯£¬Ò»°ãÓÃÓÚÓòÃûÖØ¶¨Ïò
-				304	Î´ĞŞ¸Ä£¬Ò»°ãÓÃÓÚ»º´æ
-				401	½ûÖ¹·ÃÎÊ£¬Î´ÊÚÈ¨
-				403	½ûÖ¹·ÃÎÊ£¬Í¨³£´ú±íÒÑÈÏÖ¤Í¨¹ı£¬µ«ÊÇÃ»ÓĞ·ÃÎÊÈ¨ÏŞ
-				404	Î´ÕÒµ½×ÊÔ´
-				500	·şÎñÆ÷ÄÚ²¿´íÎó
-		Web·şÎñ¼Ü¹¹
-			Webä¯ÀÀÆ÷  HTTP  Web Server AppServer DB Server
-	2¡¢Apache·şÎñ»ù´¡ÅäÖÃ
-		ÌØµã£º
-			¶¯Ì¬µÄ¡¢Ô¤´´½¨µÄ½ø³Ì ¶¯Ì¬Ä£¿é¼ÓÔØ ĞéÄâÖ÷»ú SSLÖ÷»ú
-		ÃüÁî£º
-			¿ÉÒÔÍ¨¹ıÒÔÏÂÃüÁî°²×°apacheÈí¼ş£º
+WebæœåŠ¡ - Apache
+	1ã€WebæœåŠ¡åŸç†ã€HTTPåè®®
+		WebæœåŠ¡ç«¯ä¸å®¢æˆ·ç«¯ä¹‹é—´é€šè¿‡HTTPåè®®ä¼ è¾“æ•°æ®
+			å½“å‰ä½¿ç”¨æœ€å¤šçš„HTTPç‰ˆæœ¬æ˜¯HTTP/1.1ï¼ŒHTTP/2.0æ­£åœ¨å¼€å‘
+			HTTPä½¿ç”¨TCPåè®®ï¼Œé»˜è®¤ç«¯å£å·ä¸º80
+			HTTPæ–¹æ³•
+				GET	ä»æœåŠ¡å™¨ä¸Šè·å–ä¸€ä¸ªèµ„æºï¼ˆä¸€èˆ¬æ˜¯ç½‘é¡µï¼‰
+				POST	å‘æœåŠ¡å™¨æäº¤æ•°æ®ï¼ˆå¯èƒ½ä¼šåˆ›å»ºä¸€ä¸ªæ–°çš„èµ„æºï¼‰
+				PUT	å‘æœåŠ¡å™¨æäº¤æ•°æ®
+				DELETE	åˆ é™¤æŒ‡å®šèµ„æº
+				HEAD	åªè¯·æ±‚ç½‘é¡µçš„å¤´éƒ¨ä¿¡æ¯
+			HTTPçŠ¶æ€ç 
+				200	æ­£å¸¸ï¼Œè¯·æ±‚æˆåŠŸ
+				301	æ°¸ä¹…ç§»åŠ¨ï¼Œä¸€èˆ¬ç”¨äºåŸŸåé‡å®šå‘
+				304	æœªä¿®æ”¹ï¼Œä¸€èˆ¬ç”¨äºç¼“å­˜
+				401	ç¦æ­¢è®¿é—®ï¼Œæœªæˆæƒ
+				403	ç¦æ­¢è®¿é—®ï¼Œé€šå¸¸ä»£è¡¨å·²è®¤è¯é€šè¿‡ï¼Œä½†æ˜¯æ²¡æœ‰è®¿é—®æƒé™
+				404	æœªæ‰¾åˆ°èµ„æº
+				500	æœåŠ¡å™¨å†…éƒ¨é”™è¯¯
+		WebæœåŠ¡æ¶æ„
+			Webæµè§ˆå™¨  HTTP  Web Server AppServer DB Server
+	2ã€ApacheæœåŠ¡åŸºç¡€é…ç½®
+		ç‰¹ç‚¹ï¼š
+			åŠ¨æ€çš„ã€é¢„åˆ›å»ºçš„è¿›ç¨‹ åŠ¨æ€æ¨¡å—åŠ è½½ è™šæ‹Ÿä¸»æœº SSLä¸»æœº
+		å‘½ä»¤ï¼š
+			å¯ä»¥é€šè¿‡ä»¥ä¸‹å‘½ä»¤å®‰è£…apacheè½¯ä»¶ï¼š
 				yum install -y httpd
-			°²×°Ö®ºó£¬Í¨¹ıÒÔÏÂÃüÁîÆô¶¯apache:
+			å®‰è£…ä¹‹åï¼Œé€šè¿‡ä»¥ä¸‹å‘½ä»¤å¯åŠ¨apache:
 				service httpd start
-			apacheÌá¹©µÄÊÇWeb·şÎñ£¬ËùÒÔÄ¬ÈÏÊ¹ÓÃ80(http)ºÍ443(https)¶Ë¿Ú£¨¼ÓÃÜÎª443£©
-			apacheµÄÅäÖÃÎÄ¼ş±£´æÔÚ£º
+			apacheæä¾›çš„æ˜¯WebæœåŠ¡ï¼Œæ‰€ä»¥é»˜è®¤ä½¿ç”¨80(http)å’Œ443(https)ç«¯å£ï¼ˆåŠ å¯†ä¸º443ï¼‰
+			apacheçš„é…ç½®æ–‡ä»¶ä¿å­˜åœ¨ï¼š
 				/etc/httpd/conf/httpd.conf
-			apacheÄ£¿éµÄÅäÖÃÎÄ¼ş±£´æÔÚ£º
+			apacheæ¨¡å—çš„é…ç½®æ–‡ä»¶ä¿å­˜åœ¨ï¼š
 				/etc/httpd/conf.d/
-			Ä¬ÈÏÍøÕ¾ÈÕÖ¾Îª£º
+			é»˜è®¤ç½‘ç«™æ—¥å¿—ä¸ºï¼š
 				/var/log/httpd/
-			ÍøÒ³·şÎñ£ºÄ¬ÈÏapache²»ĞèÒªÅäÖÃ¼´¿ÉÆô¶¯£¬Ä¬ÈÏÍøÕ¾µÄ¸ùÄ¿Â¼Îª/var/www/html
-		ÅäÖÃ£º
-			KeepAlive off						tcp³ÖĞøÁ¬½Ó¹¦ÄÜ
-			MaxKeepAliveRequest 100					Á¬½ÓµÄ×î´óÇëÇóÊı
-			KeepAliveTimeout 15					³ÖĞøÁ¬½ÓµÈ´ıÊ±¼ä
-			Listen 80						Ìá¹©·şÎñµÄ¶Ë¿ÚºÅ£¨¿ÉÒÔÎª192.168.56.1:80£¬Ö»¶ÔÕâ¸öµØÖ·µÄ¶Ë¿ÚÌá¹©·şÎñ£©
-			LoadModule auth_basic_module modules/mod_auth_basic.so	¼ÓÔØÄ£¿é
-			User apache						ÔËĞĞ³ÌĞòµÄÓÃ»§Éí·İ
-			Group apache						ÔËĞĞ³ÌĞòµÄÓÃ»§×é
-			ServerAdmin root@linuxcast.net				¹ÜÀíÔ±ÓÊÏä£¨µ±ÍøÕ¾³öÏÖ´íÎó£¬·µ»Ø¹ÜÀíÔ±ÓÊÏä£¬ÌáÊ¾ÁªÏµ¹ÜÀíÔ±£©
-			DocumentRoot "/var/www/html"				Ä¬ÈÏÍøÕ¾¸ùÄ¿Â¼Â·¾¶£¬Èç¹ûĞèÒªĞŞ¸Ä£¬ÔòÈ«²¿ĞŞ¸Ä
-			<Directory "/var/www/html"></Directory>			Ä¬ÈÏÍøÕ¾¸ùÄ¿Â¼Â·¾¶£¬Èç¹ûĞèÒªĞŞ¸Ä£¬ÔòÈ«²¿ĞŞ¸Ä
-			DirectoryIndex index.html index.html.var		²»ÊäÈëÍøÒ³Ãû³Æ£¬Ä¬ÈÏÏÔÊ¾µÄÍøÒ³£¬¿Õ¸ñ¸ô¿ª£¬´Ó×óµ½ÓÒ
-		Óï·¨¼ì²é£º
+			ç½‘é¡µæœåŠ¡ï¼šé»˜è®¤apacheä¸éœ€è¦é…ç½®å³å¯å¯åŠ¨ï¼Œé»˜è®¤ç½‘ç«™çš„æ ¹ç›®å½•ä¸º/var/www/html
+		é…ç½®ï¼š
+			KeepAlive off						tcpæŒç»­è¿æ¥åŠŸèƒ½
+			MaxKeepAliveRequest 100					è¿æ¥çš„æœ€å¤§è¯·æ±‚æ•°
+			KeepAliveTimeout 15					æŒç»­è¿æ¥ç­‰å¾…æ—¶é—´
+			Listen 80						æä¾›æœåŠ¡çš„ç«¯å£å·ï¼ˆå¯ä»¥ä¸º192.168.56.1:80ï¼Œåªå¯¹è¿™ä¸ªåœ°å€çš„ç«¯å£æä¾›æœåŠ¡ï¼‰
+			LoadModule auth_basic_module modules/mod_auth_basic.so	åŠ è½½æ¨¡å—
+			User apache						è¿è¡Œç¨‹åºçš„ç”¨æˆ·èº«ä»½
+			Group apache						è¿è¡Œç¨‹åºçš„ç”¨æˆ·ç»„
+			ServerAdmin root@linuxcast.net				ç®¡ç†å‘˜é‚®ç®±ï¼ˆå½“ç½‘ç«™å‡ºç°é”™è¯¯ï¼Œè¿”å›ç®¡ç†å‘˜é‚®ç®±ï¼Œæç¤ºè”ç³»ç®¡ç†å‘˜ï¼‰
+			DocumentRoot "/var/www/html"				é»˜è®¤ç½‘ç«™æ ¹ç›®å½•è·¯å¾„ï¼Œå¦‚æœéœ€è¦ä¿®æ”¹ï¼Œåˆ™å…¨éƒ¨ä¿®æ”¹
+			<Directory "/var/www/html"></Directory>			é»˜è®¤ç½‘ç«™æ ¹ç›®å½•è·¯å¾„ï¼Œå¦‚æœéœ€è¦ä¿®æ”¹ï¼Œåˆ™å…¨éƒ¨ä¿®æ”¹
+			DirectoryIndex index.html index.html.var		ä¸è¾“å…¥ç½‘é¡µåç§°ï¼Œé»˜è®¤æ˜¾ç¤ºçš„ç½‘é¡µï¼Œç©ºæ ¼éš”å¼€ï¼Œä»å·¦åˆ°å³
+		è¯­æ³•æ£€æŸ¥ï¼š
 			service httpd configtest
 			apachectl configtest
 			httpd -t
-	3¡¢Apache·şÎñÅäÖÃ - HTTPÈÏÖ¤
-		¿ÉÒÔÅäÖÃapacheÎªÌØ¶¨ÎÄ¼ş¼Ğ½øĞĞ¼òµ¥µÄHTTPÓÃ»§ÈÏÖ¤£¬ÒÑ´ïµ½¼òµ¥µÄ·ÃÎÊ¿ØÖÆÈ¨ÏŞ
-			1¡¢´´½¨apacheÕËºÅ¡¢ÃÜÂëÎÄ¼ş£º
+	3ã€ApacheæœåŠ¡é…ç½® - HTTPè®¤è¯
+		å¯ä»¥é…ç½®apacheä¸ºç‰¹å®šæ–‡ä»¶å¤¹è¿›è¡Œç®€å•çš„HTTPç”¨æˆ·è®¤è¯ï¼Œå·²è¾¾åˆ°ç®€å•çš„è®¿é—®æ§åˆ¶æƒé™
+			1ã€åˆ›å»ºapacheè´¦å·ã€å¯†ç æ–‡ä»¶ï¼š
 				htpasswd -cm /etc/httpd/.htpasswd linuxcast
 				htpasswd -m /etc/httpd/.htpasswd nash_su
-			2¡¢ĞŞ¸ÄapacheÅäÖÃÎÄ¼ş£¬ÎªÌØ¶¨Ä¿Â¼ÅäÖÃÈÏÖ¤£º
+			2ã€ä¿®æ”¹apacheé…ç½®æ–‡ä»¶ï¼Œä¸ºç‰¹å®šç›®å½•é…ç½®è®¤è¯ï¼š
 				<Directory /var/www/linuxcast>
 					AuthName "Linuxcast Auth"
 					AuthType basic
 					AuthUserFile /etc/httpd/.htpasswd
 					Require valid-user
 				</Directory>
-	4¡¢Apache·şÎñÅäÖÃ - ĞéÄâÖ÷»ú
-		Ä¬ÈÏapacheµÄÅäÖÃÖ»Ìá¹©ÁËÒ»¸öÍøÕ¾·şÎñ£¬µ«ÊÇÎÒÃÇ¿ÉÒÔÅäÖÃÒ»Ì¨apache·şÎñÆ÷Îª¶à¸öÍøÕ¾Ìá¹©·şÎñ£¬ÎÒÃÇ³ÆÖ®ÎªĞéÄâÖ÷»ú
-		ĞéÄâÖ÷»ú·ÖÎªÁ½ÖÖ£º
-			»ùÓÚIPµÄĞéÄâÖ÷»ú
-				apache·şÎñÍ¨¹ı²»Í¬µÄ·ÃÎÊIPÇø·Ö²»Í¬µÄĞéÄâÖ÷»ú
-			»ùÓÚÓòÃûµÄĞéÄâÖ÷»ú
-				apache·şÎñÍ¨¹ı²»Í¬µÄ·ÃÎÊÓòÃûÇø·Ö²»Í¬µÄĞéÄâÖ÷»ú
-		Ò»°ãÊ¹ÓÃ»ùÓÚÓòÃûµÄĞéÄâÖ÷»ú£¬µ«ÊÇÈç¹ûĞèÒª´î½¨SSLµÄĞéÄâÖ÷»ú£¬Ôò±ØĞëÊ¹ÓÃ»ùÓÚIPµÄĞéÄâÖ÷»ú
-		»ùÓÚÓòÃûµÄĞéÄâÖ÷»ú
-			È·±£DNS·şÎñÆ÷½«²»Í¬µÄÓòÃû½âÎöµ½Í¬Ò»¸öIPµØÖ·ÉÏ
-			Ê¹ÓÃÃüÁîhost»òdigÈ·¶¨½âÎöÕı³£
+	4ã€ApacheæœåŠ¡é…ç½® - è™šæ‹Ÿä¸»æœº
+		é»˜è®¤apacheçš„é…ç½®åªæä¾›äº†ä¸€ä¸ªç½‘ç«™æœåŠ¡ï¼Œä½†æ˜¯æˆ‘ä»¬å¯ä»¥é…ç½®ä¸€å°apacheæœåŠ¡å™¨ä¸ºå¤šä¸ªç½‘ç«™æä¾›æœåŠ¡ï¼Œæˆ‘ä»¬ç§°ä¹‹ä¸ºè™šæ‹Ÿä¸»æœº
+		è™šæ‹Ÿä¸»æœºåˆ†ä¸ºä¸¤ç§ï¼š
+			åŸºäºIPçš„è™šæ‹Ÿä¸»æœº
+				apacheæœåŠ¡é€šè¿‡ä¸åŒçš„è®¿é—®IPåŒºåˆ†ä¸åŒçš„è™šæ‹Ÿä¸»æœº
+			åŸºäºåŸŸåçš„è™šæ‹Ÿä¸»æœº
+				apacheæœåŠ¡é€šè¿‡ä¸åŒçš„è®¿é—®åŸŸååŒºåˆ†ä¸åŒçš„è™šæ‹Ÿä¸»æœº
+		ä¸€èˆ¬ä½¿ç”¨åŸºäºåŸŸåçš„è™šæ‹Ÿä¸»æœºï¼Œä½†æ˜¯å¦‚æœéœ€è¦æ­å»ºSSLçš„è™šæ‹Ÿä¸»æœºï¼Œåˆ™å¿…é¡»ä½¿ç”¨åŸºäºIPçš„è™šæ‹Ÿä¸»æœº
+		åŸºäºåŸŸåçš„è™šæ‹Ÿä¸»æœº
+			ç¡®ä¿DNSæœåŠ¡å™¨å°†ä¸åŒçš„åŸŸåè§£æåˆ°åŒä¸€ä¸ªIPåœ°å€ä¸Š
+			ä½¿ç”¨å‘½ä»¤hostæˆ–digç¡®å®šè§£ææ­£å¸¸
 				host www1.linuxcast.net
 				host www2.linuxcast.net
-			ÔÚapacheÅäÖÃÎÄ¼şÖĞÌí¼ÓÈçÏÂÅäÖÃ
+			åœ¨apacheé…ç½®æ–‡ä»¶ä¸­æ·»åŠ å¦‚ä¸‹é…ç½®
 				NameVirtualHost *:80
 				<VirtualHost *:80>
 					ServerName www1.linuxcast.net
@@ -88,53 +88,53 @@ Web·şÎñ - Apache
 					ServerAdmin root@linuxcast.net
 					DocumentRoot /var/www/linuxcast-2
 				</VirtualHost>
-			È·±£apacheÓÃ»§¶ÔÍøÒ³¸ùÄ¿Â¼¾ßÓĞ·ÃÎÊÈ¨ÏŞ
-Apache×¨Ìâ
-	Apache·şÎñµÄ°²×°¡¢¹ÜÀí¼°Ïà¹ØÎÄ¼ş
-		yum list | grep httpd ²éÕÒhttpdÈí¼ş°ü
-		service httpd graceful Íê³ÉËùÓĞÇëÇóºóÖØÆô·şÎñÆ÷
-		service httpd graceful Íê³ÉËùÓĞÇëÇóºó¹Ø±Õ·şÎñÆ÷
-		Ïà¹ØÎÄ¼ş£º
-			/etc/httpd/conf/Ä¿Â¼ÏÂ		Ö÷ÅäÖÃÎÄ¼ş
-			/etc/httpd/conf.d/Ä¿Â¼ÏÂ	Ä£¿éÅäÖÃÎÄ¼ş
-			/etc/httpd/logs/Ä¿Â¼ÏÂ		ÈÕÖ¾ÎÄ¼ş
-			/etc/httpd/modules/Ä¿Â¼ÏÂ	Ä£¿éÎÄ¼ş
-			/etc/httpd/run/Ä¿Â¼ÏÂ		ÔËĞĞĞÅÏ¢
-			/var/www/Ä¿Â¼ÏÂ			ÍøÕ¾¸ùÄ¿Â¼
-			/var/www/html/Ä¿Â¼ÏÂ		Ä¬ÈÏÍøÒ³Î»ÖÃ
-	Apache·şÎñ»ù±¾¸ÅÄî£¨DSO¡¢MPMµÈ£©
-		apacheÄ¬ÈÏ¼àÌıTCPĞ­Òé80¶Ë¿Ú
-		apache·şÎñÄ¬ÈÏ»áÆô¶¯Ò»¸öÖ÷½ø³Ì£¨¿ØÖÆ½ø³Ì£©ºÍ¶à¸ö×Ó½ø³Ì£¬ÒÔrootÉí·İÔËĞĞµÄÊ§Ö÷½ø³Ì£¬ÒÔapacheÉí·İÔËĞĞµÄÊÇ×Ï½û³Ç¡£Ö÷½ø³ÌµÄ½ø³ÌID±£´æÔÚ/etc/httpd/run/httpd.pidÎÄ¼şÄÚ
-		²é¿´apacheÏà¹Ø½ø³Ì
+			ç¡®ä¿apacheç”¨æˆ·å¯¹ç½‘é¡µæ ¹ç›®å½•å…·æœ‰è®¿é—®æƒé™
+Apacheä¸“é¢˜
+	ApacheæœåŠ¡çš„å®‰è£…ã€ç®¡ç†åŠç›¸å…³æ–‡ä»¶
+		yum list | grep httpd æŸ¥æ‰¾httpdè½¯ä»¶åŒ…
+		service httpd graceful å®Œæˆæ‰€æœ‰è¯·æ±‚åé‡å¯æœåŠ¡å™¨
+		service httpd graceful å®Œæˆæ‰€æœ‰è¯·æ±‚åå…³é—­æœåŠ¡å™¨
+		ç›¸å…³æ–‡ä»¶ï¼š
+			/etc/httpd/conf/ç›®å½•ä¸‹		ä¸»é…ç½®æ–‡ä»¶
+			/etc/httpd/conf.d/ç›®å½•ä¸‹	æ¨¡å—é…ç½®æ–‡ä»¶
+			/etc/httpd/logs/ç›®å½•ä¸‹		æ—¥å¿—æ–‡ä»¶
+			/etc/httpd/modules/ç›®å½•ä¸‹	æ¨¡å—æ–‡ä»¶
+			/etc/httpd/run/ç›®å½•ä¸‹		è¿è¡Œä¿¡æ¯
+			/var/www/ç›®å½•ä¸‹			ç½‘ç«™æ ¹ç›®å½•
+			/var/www/html/ç›®å½•ä¸‹		é»˜è®¤ç½‘é¡µä½ç½®
+	ApacheæœåŠ¡åŸºæœ¬æ¦‚å¿µï¼ˆDSOã€MPMç­‰ï¼‰
+		apacheé»˜è®¤ç›‘å¬TCPåè®®80ç«¯å£
+		apacheæœåŠ¡é»˜è®¤ä¼šå¯åŠ¨ä¸€ä¸ªä¸»è¿›ç¨‹ï¼ˆæ§åˆ¶è¿›ç¨‹ï¼‰å’Œå¤šä¸ªå­è¿›ç¨‹ï¼Œä»¥rootèº«ä»½è¿è¡Œçš„å¤±ä¸»è¿›ç¨‹ï¼Œä»¥apacheèº«ä»½è¿è¡Œçš„æ˜¯ç´«ç¦åŸã€‚ä¸»è¿›ç¨‹çš„è¿›ç¨‹IDä¿å­˜åœ¨/etc/httpd/run/httpd.pidæ–‡ä»¶å†…
+		æŸ¥çœ‹apacheç›¸å…³è¿›ç¨‹
 			ps aux | grep httpd
-		²é¿´80¶Ë¿Ú
+		æŸ¥çœ‹80ç«¯å£
 			netstat -tupln | grep 80
-		°²×°httpdµÄÈ«²¿Èí¼ş°ü
+		å®‰è£…httpdçš„å…¨éƒ¨è½¯ä»¶åŒ…
 			yum install -y httpd-*
 		Apache DSO
-			apacheÊÇÒ»¸öÄ£¿é»¯Éè¼ÆµÄ·şÎñ£¬ºËĞÄÖ»°üº¬Ö÷Òª¹¦ÄÜ£¬À©Õ¹¹¦ÄÜÍ¨¹ıÄ£¿éÊµÏÖ¡£²»Í¬µÄÄ£¿é¿ÉÒÔ±»¾²Ì¬µÄ±àÒë½ø³ÌĞò£¬Ò²¿ÉÒÔ¶¯Ì¬¼ÓÔØ£¬Í¨¹ıDSOÊµÏÖ
-			²é¿´ËùÓĞÄ£¿é
+			apacheæ˜¯ä¸€ä¸ªæ¨¡å—åŒ–è®¾è®¡çš„æœåŠ¡ï¼Œæ ¸å¿ƒåªåŒ…å«ä¸»è¦åŠŸèƒ½ï¼Œæ‰©å±•åŠŸèƒ½é€šè¿‡æ¨¡å—å®ç°ã€‚ä¸åŒçš„æ¨¡å—å¯ä»¥è¢«é™æ€çš„ç¼–è¯‘è¿›ç¨‹åºï¼Œä¹Ÿå¯ä»¥åŠ¨æ€åŠ è½½ï¼Œé€šè¿‡DSOå®ç°
+			æŸ¥çœ‹æ‰€æœ‰æ¨¡å—
 				httpd -M
-			²é¿´¾²Ì¬±àÒë½ø³ÌĞòµÄÄ£¿é
+			æŸ¥çœ‹é™æ€ç¼–è¯‘è¿›ç¨‹åºçš„æ¨¡å—
 				httpd -l
-			±àÒëÄ£¿éµÄÃüÁî
+			ç¼–è¯‘æ¨¡å—çš„å‘½ä»¤
 				apxs
 		Apache MPM
-			MPM¸ºÔğÊµÏÖÍøÂç¼àÌı¡¢ÇëÇóµÄ´¦ÀíµÈ¹¦ÄÜ£¬MPMÓĞºÜ¶àÖÖ£¬ÎªÁËÔÚ²»Í¬Æ½Ì¨»·¾³ÏÂÊµÏÖ×îÓÅ»¯µÄĞÔÄÜºÍ×îÇ¿µÄÎÈ¶¨ĞÔ
-			²é¿´µ±Ç°apache·şÎñËùÊ¹ÓÃµÄMPM
+			MPMè´Ÿè´£å®ç°ç½‘ç»œç›‘å¬ã€è¯·æ±‚çš„å¤„ç†ç­‰åŠŸèƒ½ï¼ŒMPMæœ‰å¾ˆå¤šç§ï¼Œä¸ºäº†åœ¨ä¸åŒå¹³å°ç¯å¢ƒä¸‹å®ç°æœ€ä¼˜åŒ–çš„æ€§èƒ½å’Œæœ€å¼ºçš„ç¨³å®šæ€§
+			æŸ¥çœ‹å½“å‰apacheæœåŠ¡æ‰€ä½¿ç”¨çš„MPM
 				httpd -i
 				httpd -V
-			prefork(×Ó½ø³ÌÖ¸Êı¼¶Ôö³¤)£º
+			prefork(å­è¿›ç¨‹æŒ‡æ•°çº§å¢é•¿)ï¼š
 				<IfModule prefork.c>
-				StartServers       8		Ä¬ÈÏ×Ó½ø³ÌÊı
-				MinSpareServers    5		×îĞ¡¿ÕÏĞ½ø³ÌÊı
-				MaxSpareServers   20		×î´ó¿ÕÏĞ½ø³ÌÊı
-				ServerLimit      256		²¢·¢ÊıÏŞÖÆ
-				MaxClients       256		×î´ó²¢·¢Êı£¬ĞèÒªĞ¡ÓÚµÈÓÚ²¢·¢ÊıÏŞÖÆ
-				MaxRequestsPerChild  4000	Ã¿¸ö×Ó½ø³Ì×î¶à´¦ÀíÇëÇóÊı
+				StartServers       8		é»˜è®¤å­è¿›ç¨‹æ•°
+				MinSpareServers    5		æœ€å°ç©ºé—²è¿›ç¨‹æ•°
+				MaxSpareServers   20		æœ€å¤§ç©ºé—²è¿›ç¨‹æ•°
+				ServerLimit      256		å¹¶å‘æ•°é™åˆ¶
+				MaxClients       256		æœ€å¤§å¹¶å‘æ•°ï¼Œéœ€è¦å°äºç­‰äºå¹¶å‘æ•°é™åˆ¶
+				MaxRequestsPerChild  4000	æ¯ä¸ªå­è¿›ç¨‹æœ€å¤šå¤„ç†è¯·æ±‚æ•°
 				</IfModule>
-			topÃüÁî¶¯Ì¬²é¿´ÏµÍ³ÔËĞĞ×´Ì¬
-Apache·şÎñÅäÖÃ
+			topå‘½ä»¤åŠ¨æ€æŸ¥çœ‹ç³»ç»Ÿè¿è¡ŒçŠ¶æ€
+ApacheæœåŠ¡é…ç½®
 #
 # This is the main Apache server configuration file.  It contains the
 # configuration directives that give the server its instructions.
@@ -178,7 +178,7 @@ Apache·şÎñÅäÖÃ
 # Don't give away too much information about all the subcomponents
 # we are running.  Comment out this line if you don't mind remote sites
 # finding out what major optional modules you are running
-ServerTokens OS		#ÏÔÊ¾µÄ±¨´íĞÅÏ¢
+ServerTokens OS		#æ˜¾ç¤ºçš„æŠ¥é”™ä¿¡æ¯
 
 #
 # ServerRoot: The top of the directory tree under which the server's
@@ -191,7 +191,7 @@ ServerTokens OS		#ÏÔÊ¾µÄ±¨´íĞÅÏ¢
 #
 # Do NOT add a slash at the end of the directory path.
 #
-ServerRoot "/etc/httpd"		#·şÎñµÄ¸ùÄ¿Â¼
+ServerRoot "/etc/httpd"		#æœåŠ¡çš„æ ¹ç›®å½•
 
 #
 # PidFile: The file in which the server should record its process
@@ -199,31 +199,31 @@ ServerRoot "/etc/httpd"		#·şÎñµÄ¸ùÄ¿Â¼
 # /etc/sysconfig/httpd must be set appropriately if this location is
 # changed.
 #
-PidFile run/httpd.pid		#¼ÇÂ¼¿ØÖÆ½ø³ÌµÄ½ø³ÌID
+PidFile run/httpd.pid		#è®°å½•æ§åˆ¶è¿›ç¨‹çš„è¿›ç¨‹ID
 
 #
 # Timeout: The number of seconds before receives and sends time out.
 #
-Timeout 60		#³¬Ê±Ê±¼ä
+Timeout 60		#è¶…æ—¶æ—¶é—´
 
 #
 # KeepAlive: Whether or not to allow persistent connections (more than
 # one request per connection). Set to "Off" to deactivate.
 #
-KeepAlive Off		#±£»î¹¦ÄÜ£¨Ò»´ÎÁ¬½Ó´¦Àí¶à¸öÇëÇó£©
+KeepAlive Off		#ä¿æ´»åŠŸèƒ½ï¼ˆä¸€æ¬¡è¿æ¥å¤„ç†å¤šä¸ªè¯·æ±‚ï¼‰
 
 #
 # MaxKeepAliveRequests: The maximum number of requests to allow
 # during a persistent connection. Set to 0 to allow an unlimited amount.
 # We recommend you leave this number high, for maximum performance.
 #
-MaxKeepAliveRequests 100		#Ò»´ÎÁ¬½Ó¿ÉÒÔ´¦ÀíµÄ×î´óÇëÇóÊı
+MaxKeepAliveRequests 100		#ä¸€æ¬¡è¿æ¥å¯ä»¥å¤„ç†çš„æœ€å¤§è¯·æ±‚æ•°
 
 #
 # KeepAliveTimeout: Number of seconds to wait for the next request from the
 # same client on the same connection.
 #
-KeepAliveTimeout 15		#Ò»¸öÁ¬½ÓÖĞÁ½´ÎÇëÇóµÄ³¬Ê±Ê±¼ä
+KeepAliveTimeout 15		#ä¸€ä¸ªè¿æ¥ä¸­ä¸¤æ¬¡è¯·æ±‚çš„è¶…æ—¶æ—¶é—´
 
 ##
 ## Server-Pool Size Regulation (MPM specific)
@@ -270,7 +270,7 @@ MaxRequestsPerChild  0
 # prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
 #
 #Listen 12.34.56.78:80
-Listen 80		#¼àÌı¶Ë¿ÚºÅ£¨¿ÉÒÔ12.34.56.78:80ÕâÑù£©
+Listen 80		#ç›‘å¬ç«¯å£å·ï¼ˆå¯ä»¥12.34.56.78:80è¿™æ ·ï¼‰
 
 #
 # Dynamic Shared Object (DSO) Support
@@ -355,7 +355,7 @@ LoadModule version_module modules/mod_version.so
 #
 # Load config files from the config directory "/etc/httpd/conf.d".
 #
-Include conf.d/*.conf		#¼ÓÔØÄ£¿éµÄÅäÖÃÎÄ¼ş
+Include conf.d/*.conf		#åŠ è½½æ¨¡å—çš„é…ç½®æ–‡ä»¶
 
 #
 # ExtendedStatus controls whether Apache will generate "full" status
@@ -376,8 +376,8 @@ Include conf.d/*.conf		#¼ÓÔØÄ£¿éµÄÅäÖÃÎÄ¼ş
 #  when the value of (unsigned)Group is above 60000; 
 #  don't use Group #-1 on these systems!
 #
-User apache		#×Ó½ø³ÌµÄËùÊôÓÃ»§
-Group apache#		#×Ó½ø³ÌµÄËùÊô×é
+User apache		#å­è¿›ç¨‹çš„æ‰€å±ç”¨æˆ·
+Group apache#		#å­è¿›ç¨‹çš„æ‰€å±ç»„
 
 ### Section 2: 'Main' server configuration
 #
@@ -396,7 +396,7 @@ Group apache#		#×Ó½ø³ÌµÄËùÊô×é
 # e-mailed.  This address appears on some server-generated pages, such
 # as error documents.  e.g. admin@your-domain.com
 #
-ServerAdmin root@localhost		#¹ÜÀíÔ±ÓÊÏä
+ServerAdmin root@localhost		#ç®¡ç†å‘˜é‚®ç®±
 
 #
 # ServerName gives the name and port that the server uses to identify itself.
@@ -412,7 +412,7 @@ ServerAdmin root@localhost		#¹ÜÀíÔ±ÓÊÏä
 #
 #ServerName www.example.com:80
 
-ServerName www.linuxcast.net		#·şÎñÆ÷ÓòÃû
+ServerName www.linuxcast.net		#æœåŠ¡å™¨åŸŸå
 
 #
 # UseCanonicalName: Determines how Apache constructs self-referencing 
@@ -421,14 +421,14 @@ ServerName www.linuxcast.net		#·şÎñÆ÷ÓòÃû
 # by the client.  When set "On", Apache will use the value of the
 # ServerName directive.
 #
-UseCanonicalName Off		#ÊÇ·ñÊ¹ÓÃºÏ·¨µÄÓòÃû£¨Èç¹ûÅäÖÃĞéÄâÖ÷»ú£¬±ØĞëÅäÖÃÎªoff£©
+UseCanonicalName Off		#æ˜¯å¦ä½¿ç”¨åˆæ³•çš„åŸŸåï¼ˆå¦‚æœé…ç½®è™šæ‹Ÿä¸»æœºï¼Œå¿…é¡»é…ç½®ä¸ºoffï¼‰
 
 #
 # DocumentRoot: The directory out of which you will serve your
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "/var/www/html"		#ÍøÒ³¸ùÄ¿Â¼
+DocumentRoot "/var/www/html"		#ç½‘é¡µæ ¹ç›®å½•
 
 #
 # Each directory to which Apache has access can be configured with respect
@@ -438,7 +438,7 @@ DocumentRoot "/var/www/html"		#ÍøÒ³¸ùÄ¿Â¼
 # First, we configure the "default" to be a very restrictive set of 
 # features.  
 #
-<Directory />		#Ö¸¶¨Ä¿Â¼µÄ·ÃÎÊ¿ØÖÆ
+<Directory />		#æŒ‡å®šç›®å½•çš„è®¿é—®æ§åˆ¶
     Options FollowSymLinks
     AllowOverride None
 </Directory>
@@ -453,7 +453,7 @@ DocumentRoot "/var/www/html"		#ÍøÒ³¸ùÄ¿Â¼
 #
 # This should be changed to whatever you set DocumentRoot to.
 #
-<Directory "/var/www/html">		#ÍøÒ³¸ùÄ¿Â¼µÄ·ÃÎÊ¿ØÖÆ
+<Directory "/var/www/html">		#ç½‘é¡µæ ¹ç›®å½•çš„è®¿é—®æ§åˆ¶
 
 #
 # Possible values for the Options directive are "None", "All",
@@ -496,7 +496,7 @@ DocumentRoot "/var/www/html"		#ÍøÒ³¸ùÄ¿Â¼
 #
 # See also: http://httpd.apache.org/docs/misc/FAQ.html#forbidden
 #
-<IfModule mod_userdir.c>		#¼ÓÔØÖ¸¶¨Ä£¿éÊ¹ÓÃµÄÅäÖÃ
+<IfModule mod_userdir.c>		#åŠ è½½æŒ‡å®šæ¨¡å—ä½¿ç”¨çš„é…ç½®
     #
     # UserDir is disabled by default since it can confirm the presence
     # of a username on the system (depending on home directory
@@ -538,20 +538,20 @@ DocumentRoot "/var/www/html"		#ÍøÒ³¸ùÄ¿Â¼
 # negotiated documents.  The MultiViews Option can be used for the 
 # same purpose, but it is much slower.
 #
-DirectoryIndex index.html index.html.var		#Ä¬ÈÏ¼ÓÔØµÄÍøÒ³
+DirectoryIndex index.html index.html.var		#é»˜è®¤åŠ è½½çš„ç½‘é¡µ
 
 #
 # AccessFileName: The name of the file to look for in each directory
 # for additional configuration directives.  See also the AllowOverride
 # directive.
 #
-AccessFileName .htaccess		#¼ÓÔØ·Ö²¼Ê½·ÃÎÊ¿ØÖÆµÄÅäÖÃÎÄ¼ş
+AccessFileName .htaccess		#åŠ è½½åˆ†å¸ƒå¼è®¿é—®æ§åˆ¶çš„é…ç½®æ–‡ä»¶
 
 #
 # The following lines prevent .htaccess and .htpasswd files from being 
 # viewed by Web clients. 
 #
-<Files ~ "^\.ht">		#¶ÔÎÄ¼şµÄ·ÃÎÊ½øĞĞ¿ØÖÆ
+<Files ~ "^\.ht">		#å¯¹æ–‡ä»¶çš„è®¿é—®è¿›è¡Œæ§åˆ¶
     Order allow,deny
     Deny from all
     Satisfy All
@@ -561,7 +561,7 @@ AccessFileName .htaccess		#¼ÓÔØ·Ö²¼Ê½·ÃÎÊ¿ØÖÆµÄÅäÖÃÎÄ¼ş
 # TypesConfig describes where the mime.types file (or equivalent) is
 # to be found.
 #
-TypesConfig /etc/mime.types		#¼ÓÔØÅäÖÃÎÄ¼ş£¨ÎÄ¼şÀàĞÍ£©
+TypesConfig /etc/mime.types		#åŠ è½½é…ç½®æ–‡ä»¶ï¼ˆæ–‡ä»¶ç±»å‹ï¼‰
 
 #
 # DefaultType is the default MIME type the server will use for a document
@@ -572,7 +572,7 @@ TypesConfig /etc/mime.types		#¼ÓÔØÅäÖÃÎÄ¼ş£¨ÎÄ¼şÀàĞÍ£©
 # keep browsers from trying to display binary files as though they are
 # text.
 #
-DefaultType text/plain		#Ö¸¶¨ÍøÒ³µÄÀàĞÍ
+DefaultType text/plain		#æŒ‡å®šç½‘é¡µçš„ç±»å‹
 
 #
 # The mod_mime_magic module allows the server to use various hints from the
@@ -592,7 +592,7 @@ DefaultType text/plain		#Ö¸¶¨ÍøÒ³µÄÀàĞÍ
 # each client request will result in AT LEAST one lookup request to the
 # nameserver.
 #
-HostnameLookups Off		#ÊÇ·ñ½øĞĞÓòÃûµÄ½âÎö£¬Ò»°ãÅäÖÃÎªoff
+HostnameLookups Off		#æ˜¯å¦è¿›è¡ŒåŸŸåçš„è§£æï¼Œä¸€èˆ¬é…ç½®ä¸ºoff
 
 #
 # EnableMMAP: Control whether memory-mapping is used to deliver
@@ -672,7 +672,7 @@ CustomLog logs/access_log combined
 # Set to "EMail" to also include a mailto: link to the ServerAdmin.
 # Set to one of:  On | Off | EMail
 #
-ServerSignature On		#Ö¸¶¨ÏÔÊ¾±¨´íĞÅÏ¢µÄÏêÏ¸³Ì¶È
+ServerSignature On		#æŒ‡å®šæ˜¾ç¤ºæŠ¥é”™ä¿¡æ¯çš„è¯¦ç»†ç¨‹åº¦
 
 #
 # Aliases: Add here as many aliases as you need (with no limit). The format is 
@@ -687,7 +687,7 @@ ServerSignature On		#Ö¸¶¨ÏÔÊ¾±¨´íĞÅÏ¢µÄÏêÏ¸³Ì¶È
 # We include the /icons/ alias for FancyIndexed directory listings.  If you
 # do not use FancyIndexing, you may comment this out.
 #
-Alias /icons/ "/var/www/icons/"		#·şÎñÆ÷Â·¾¶±ğÃû
+Alias /icons/ "/var/www/icons/"		#æœåŠ¡å™¨è·¯å¾„åˆ«å
 
 <Directory "/var/www/icons">
     Options Indexes MultiViews FollowSymLinks
@@ -712,7 +712,7 @@ Alias /icons/ "/var/www/icons/"		#·şÎñÆ÷Â·¾¶±ğÃû
 # The same rules about trailing "/" apply to ScriptAlias directives as to
 # Alias.
 #
-ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"		#·şÎñÆ÷½Å±¾±ğÃû
+ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"		#æœåŠ¡å™¨è„šæœ¬åˆ«å
 
 #
 # "/var/www/cgi-bin" should be changed to whatever your ScriptAliased
@@ -895,7 +895,7 @@ ForceLanguagePriority Prefer Fallback
 # in HTML content to override this choice, comment out this
 # directive:
 #
-AddDefaultCharset UTF-8		#Ö¸¶¨Ä¬ÈÏµÄÍøÒ³±àÂë
+AddDefaultCharset UTF-8		#æŒ‡å®šé»˜è®¤çš„ç½‘é¡µç¼–ç 
 
 #
 # AddType allows you to add to or override the MIME configuration
@@ -1031,7 +1031,7 @@ Alias /error/ "/var/www/error/"
 # The following directives modify normal HTTP response behavior to
 # handle known problems with browser implementations.
 #
-BrowserMatch "Mozilla/2" nokeepalive		#¶ÔÓÚ²»Í¬ä¯ÀÀÆ÷µÄ²»Í¬ÅäÖÃ
+BrowserMatch "Mozilla/2" nokeepalive		#å¯¹äºä¸åŒæµè§ˆå™¨çš„ä¸åŒé…ç½®
 BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
 BrowserMatch "RealPlayer 4\.0" force-response-1.0
 BrowserMatch "Java/1\.0" force-response-1.0
@@ -1147,52 +1147,52 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 #    CustomLog logs/dummy-host.example.com-access_log common
 #</VirtualHost>
 
-CentOS6.9°²×°MySQL
-	1¡¢¼ì²éMySQLÊÇ·ñÒÑ¾­°²×°
+CentOS6.9å®‰è£…MySQL
+	1ã€æ£€æŸ¥MySQLæ˜¯å¦å·²ç»å®‰è£…
 		yum list installed mysql*
-	2¡¢Ğ¶ÔØÒÑ¾­°²×°µÄmysql£¨½¨ÒéÊ¹ÓÃyumÃüÁî£¬ÒòÎªyumÃüÁî¿ÉÒÔ×Ô¶¯É¾³ıÓëmysqlÏà¹ØµÄÒÀÀµ£»Èç¹ûÊ¹ÓÃrpmÃüÁî£¬Ôò»¹ĞèÒªÊÖ¶¯É¾³ıºÍmysqlÏà¹ØµÄÎÄ¼ş£©
+	2ã€å¸è½½å·²ç»å®‰è£…çš„mysqlï¼ˆå»ºè®®ä½¿ç”¨yumå‘½ä»¤ï¼Œå› ä¸ºyumå‘½ä»¤å¯ä»¥è‡ªåŠ¨åˆ é™¤ä¸mysqlç›¸å…³çš„ä¾èµ–ï¼›å¦‚æœä½¿ç”¨rpmå‘½ä»¤ï¼Œåˆ™è¿˜éœ€è¦æ‰‹åŠ¨åˆ é™¤å’Œmysqlç›¸å…³çš„æ–‡ä»¶ï¼‰
 		yum remove mysql-libs.x86_64
-	3¡¢²éÕÒmysqlÏà¹ØÎÄ¼ş
+	3ã€æŸ¥æ‰¾mysqlç›¸å…³æ–‡ä»¶
 		whereis mysql
-	4¡¢²é¿´ÏµÍ³ÖĞµÄmysql°²×°°ü
+	4ã€æŸ¥çœ‹ç³»ç»Ÿä¸­çš„mysqlå®‰è£…åŒ…
 		yum list mysql*
-	5¡¢°²×°mysql-server
+	5ã€å®‰è£…mysql-server
 		yum install -y mysql-server
-	6¡¢ÉèÖÃ3306¶Ë¿Ú£¬²¢±£´æ
+	6ã€è®¾ç½®3306ç«¯å£ï¼Œå¹¶ä¿å­˜
 		/sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
 		/etc/rc.d/init.d/iptables save
-	7¡¢ÉèÖÃmysql¿ª»úÆô¶¯
+	7ã€è®¾ç½®mysqlå¼€æœºå¯åŠ¨
 		chkconfig mysqld on
-	8¡¢Æô¶¯mysql·şÎñ
+	8ã€å¯åŠ¨mysqlæœåŠ¡
 		service mysqld start
-	9¡¢Á¬½Ómysql
+	9ã€è¿æ¥mysql
 		mysql
-	10¡¢ÎªmysqlÉèÖÃÃÜÂë
-		use mysql; --Ê¹ÓÃÊı¾İ¿â
+	10ã€ä¸ºmysqlè®¾ç½®å¯†ç 
+		use mysql; --ä½¿ç”¨æ•°æ®åº“
 		update user set password=password('root') where user='root';
-		flush privileges; --Ë¢ĞÂÈ¨ÏŞ
-	11¡¢ÍË³ömysql
+		flush privileges; --åˆ·æ–°æƒé™
+	11ã€é€€å‡ºmysql
 		exit
-	12¡¢µÇÂ¼mysqlÊı¾İ¿â
-		mysql -hlocalhost -uroot -proot -P3306 »ò mysql -uroot -proot
-CentOS6.9°²×°Redis
-	1¡¢ÏÂÔØ½âÑ¹Redis
+	12ã€ç™»å½•mysqlæ•°æ®åº“
+		mysql -hlocalhost -uroot -proot -P3306 æˆ– mysql -uroot -proot
+CentOS6.9å®‰è£…Redis
+	1ã€ä¸‹è½½è§£å‹Redis
 		tar -xzf redis-4.0.11.tar.gz
-	2¡¢ÏÂÔØ±àÒëgcc
+	2ã€ä¸‹è½½ç¼–è¯‘gcc
 		yum install gcc
-	3¡¢±àÒë°²×°Redis
+	3ã€ç¼–è¯‘å®‰è£…Redis
 		make & make install
 		// make MALLOC=libc
-	4¡¢Æô¶¯Redis·şÎñ
+	4ã€å¯åŠ¨RedisæœåŠ¡
 		./redis-server
-	5¡¢´ò¿ªRedis¿Í»§¶Ë
+	5ã€æ‰“å¼€Rediså®¢æˆ·ç«¯
 		./redis-cli
-CentOS6.9°²×°jdk1.8
-	1¡¢ÏÂÔØ½âÑ¹jdk1.8
-	2¡¢ÅäÖÃ»·¾³±äÁ¿
-		±à¼­ÅäÖÃÎÄ¼ş	vim /etc/profile
-		Ìí¼ÓÈçÏÂÄÚÈİ	export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_181
+CentOS6.9å®‰è£…jdk1.8
+	1ã€ä¸‹è½½è§£å‹jdk1.8
+	2ã€é…ç½®ç¯å¢ƒå˜é‡
+		ç¼–è¾‘é…ç½®æ–‡ä»¶	vim /etc/profile
+		æ·»åŠ å¦‚ä¸‹å†…å®¹	export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_181
 				export PATH=$JAVA_HOME/bin:$PATH
-		Ö´ĞĞÅäÖÃÎÄ¼ş	. /etc/profile --¡°.¡±ºóÓĞÒ»¸ö¿Õ¸ñ
-	2¡¢²âÊÔ	java
+		æ‰§è¡Œé…ç½®æ–‡ä»¶	. /etc/profile --â€œ.â€åæœ‰ä¸€ä¸ªç©ºæ ¼
+	2ã€æµ‹è¯•	java
 		java -version
